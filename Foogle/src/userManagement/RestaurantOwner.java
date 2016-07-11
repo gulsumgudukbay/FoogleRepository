@@ -1,5 +1,5 @@
 package userManagement;
 
-public class RestaurantOwner {
+public class RestaurantOwner extends User {
 
 }
