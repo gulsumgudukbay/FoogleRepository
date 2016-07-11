@@ -1,5 +1,7 @@
 package restaurantAndFoodManagement;
 
+import java.util.ArrayList;
+
 public class Restaurant {
 	// MARK: Properties
 	private ArrayList<Food> foods;
@@ -17,10 +19,10 @@ public class Restaurant {
 	// MARK: Methods
 	// Accessors and Mutators
 	public String getName() {
-		return this.name
+		return this.name;
 	}
 	public void setName(String name) {
-		this.name = name
+		this.name = name;
 	}
 	
 	// Utility methods
