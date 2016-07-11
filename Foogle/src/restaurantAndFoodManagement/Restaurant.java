@@ -66,6 +66,38 @@ public class Restaurant {
 		} else {
 			Food temp = new Food(name, price, ingredients);
 			this.foods.add(temp);
+			// TEST
+			System.out.println("Food " + name + " is added to the list");
 		}
+	}
+	
+	// TEST
+	public static void main(String[] args) {
+		Ingredient myTomato = new Ingredient("tomato");
+		Ingredient myChicken = new Ingredient("chicken");
+		Ingredient myFries = new Ingredient("fries");
+		Ingredient myLettuce = new Ingredient("lettuce");
+		Ingredient myPotato = new Ingredient("potato");
+		
+		ArrayList<Ingredient> myFirstIngredients = new ArrayList<Ingredient>();
+		myFirstIngredients.add(myTomato);
+		myFirstIngredients.add(myChicken);
+		myFirstIngredients.add(myFries);
+		
+		ArrayList<Ingredient> mySecondIngredients = new ArrayList<Ingredient>();
+		mySecondIngredients.add(myLettuce);
+		mySecondIngredients.add(myPotato);
+		
+		Food myFirstFood = new Food("donner", 10.0, myFirstIngredients);
+		Food mySecondFood = new Food("donmez", 8.0, mySecondIngredients); // dad jokes :D
+		
+		ArrayList<Food> myFoods = new ArrayList<Food>();
+		myFoods.add(myFirstFood);
+		myFoods.add(mySecondFood);
+		
+		Restaurant myRestaurant = new Restaurant("hd iskender", myFoods);
+		
+		myRestaurant.getFood("donner");
+		myRestaurant.addFood("kumpir", 8.5, myFirstIngredients);
 	}
 }
