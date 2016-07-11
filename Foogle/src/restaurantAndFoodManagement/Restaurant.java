@@ -37,7 +37,7 @@ public class Restaurant {
 	// Returns the food with the given name
 	public Food getFood(String name) {
 		for(Food temp: foods) {
-			if(temp.name == name) {
+			if(temp.getName() == name) {
 				// TEST
 				System.out.println("Found: " + name);
 				return temp;
@@ -50,7 +50,7 @@ public class Restaurant {
 	// Checks occurences of a food with the given name. Returns true if the given food is already in foods list.
 	public boolean checkFoodOccurance(String name) {
 		for(Food temp: foods) {
-			if(temp.name == name) {
+			if(temp.getName() == name) {
 				return true;
 			}
 		}
