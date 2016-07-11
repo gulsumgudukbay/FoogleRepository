@@ -27,22 +27,22 @@ public class Food {
 	// MARK: Methods
 	// Accessors and Mutators
 	public String getName() {
-		return this.name
+		return this.name;
 	}
 	public Double getPrice() {
-		return this.price
+		return this.price;
 	}
 	public ArrayList<Ingredient> getIngredients() {
-		return this.ingredients
+		return this.ingredients;
 	}
 	public void setName(String name) {
-		this.name = name
+		this.name = name;
 	}
 	public void setPrice(Double price) {
-		this.price = price
+		this.price = price;
 	}
 	public void setIngredients(ArrayList<Ingredient> ingredients) {
-		this.ingredients = ingredients
+		this.ingredients = ingredients;
 	}
 	
 	// Utility methods
@@ -59,9 +59,10 @@ public class Food {
 			}
 		}
 		if(!found) {
-			System.out.println("Ingredient " + name + " not found.")
+			System.out.println("Ingredient " + name + " not found.");
 			return null;
 		}
+		return null;
 	}
 	// TODO: insertToPending(otheringBuf)
 	
