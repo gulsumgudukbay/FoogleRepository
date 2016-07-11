@@ -36,19 +36,14 @@ public class Restaurant {
 	// Utility methods
 	// Returns the food with the given name
 	public Food getFood(String name) {
-		boolean found = false;
 		for(Food temp: foods) {
 			if(temp.name == name) {
-				found = true;
 				// TEST
 				System.out.println("Found: " + name);
 				return temp;
 			}
 		}
-		if(!found) {
-			System.out.println("Ingredient " + name + " not found.");
-			return null;
-		}
+		System.out.println("Ingredient " + name + " not found.");
 		return null;
 	}
 	
@@ -65,12 +60,11 @@ public class Restaurant {
 	// Creates a new food with given parameters, and adds the food to foods list (if it's not already on the list)
 	// FIXME: right now it only accepts name, price and ingredients. CHECKFOODOCCURANCE
 	public void addFood(String name, Double price, ArrayList<Ingredient> ingredients) {
-		Food temp = new Food(name, price, ingredients);
-		
 		if (this.checkFoodOccurance(name)) {
 			// TEST
 			System.out.println("Food " + name + " is already on the list");
 		} else {
+			Food temp = new Food(name, price, ingredients);
 			this.foods.add(temp);
 		}
 	}

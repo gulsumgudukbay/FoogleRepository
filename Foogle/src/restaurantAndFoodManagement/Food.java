@@ -48,19 +48,14 @@ public class Food {
 	// Utility methods
 	// Finds the ingredient with given name, in ingredients array list and returns it
 	public Ingredient getIngredient(String name) {
-		boolean found = false;
 		for(Ingredient temp: ingredients) {
 			if(temp.name == name) {
-				found = true;
 				// TEST
 				System.out.println("Found: " + name);
 				return temp;
 			}
 		}
-		if(!found) {
-			System.out.println("Ingredient " + name + " not found.");
-			return null;
-		}
+		System.out.println("Ingredient " + name + " not found.");
 		return null;
 	}
 	// TODO: insertToPending(otheringBuf)
