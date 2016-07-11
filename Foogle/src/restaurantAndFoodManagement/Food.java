@@ -16,7 +16,7 @@ public class Food {
 	public Food(String name, Double price, ArrayList<Ingredient> ingredients) {
 		this.setName(name);
 		this.setPrice(price);
-		this.ingredients = ingredients;
+		this.setIngredients(ingredients);
 	}
 	public Food() {
 		this.name = "";
@@ -47,7 +47,6 @@ public class Food {
 	
 	// Utility methods
 	// Finds the ingredient with given name, in ingredients array list and returns it
-	// TODO: test this method after creating Ingredient
 	public Ingredient getIngredient(String name) {
 		boolean found = false;
 		for(Ingredient temp: ingredients) {
