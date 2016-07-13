@@ -81,15 +81,15 @@ public class MainMenu extends JFrame {
 		btnLoginAsA = new JButton("Login as a Restaurant Owner");
 		
 		JLabel lblMeal = new JLabel("Meal");
-		lblMeal.setIcon(new ImageIcon("/Users/duygudurmus/Desktop/Resources/sandwich.png"));
+		lblMeal.setIcon(new ImageIcon("/Users/duygudurmus/git/FoogleRepository/Foogle/src/uiManagement/resources/sandwich.png"));
 		lblMeal.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		JLabel lblDessert = new JLabel("Dessert");
-		lblDessert.setIcon(new ImageIcon("/Users/duygudurmus/Desktop/Resources/ice-cream.png"));
+		lblDessert.setIcon(new ImageIcon("/Users/duygudurmus/git/FoogleRepository/Foogle/src/uiManagement/resources/ice-cream.png"));
 		lblDessert.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		JLabel lblBeverage = new JLabel("Beverage");
-		lblBeverage.setIcon(new ImageIcon("/Users/duygudurmus/Desktop/Resources/cocktail.png"));
+		lblBeverage.setIcon(new ImageIcon("/Users/duygudurmus/git/FoogleRepository/Foogle/src/uiManagement/resources/cocktail.png"));
 		lblBeverage.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		JCheckBox checkBoxMeal = new JCheckBox("");
@@ -104,10 +104,10 @@ public class MainMenu extends JFrame {
 		JLabel lblNewLabel = new JLabel("");
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("/Users/duygudurmus/Desktop/Resources/foodsearch.png"));
+		lblNewLabel_1.setIcon(new ImageIcon("/Users/duygudurmus/git/FoogleRepository/Foogle/src/uiManagement/resources/foodsearch.png"));
 		
 		JButton btnSearch = new JButton("Search");
-		btnSearch.setIcon(new ImageIcon("/Users/duygudurmus/Desktop/Resources/plate-fork-and-knife.png"));
+		btnSearch.setIcon(new ImageIcon("/Users/duygudurmus/git/FoogleRepository/Foogle/src/uiManagement/resources//plate-fork-and-knife.png"));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
