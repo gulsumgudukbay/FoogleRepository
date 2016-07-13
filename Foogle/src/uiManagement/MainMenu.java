@@ -55,8 +55,6 @@ public class MainMenu extends JFrame {
 	}
 
 	public MainMenu() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("/Users/duygudurmus/Documents/workspacemars/WindowBuilder/src/windowBuilder/resources/foody_16.png"));
-		
 		initComponents();
 		createEvents();
 	}
