@@ -32,7 +32,7 @@ public class UserDB {
 	}
 	
 	public boolean createRestaurantOwnerAccount(String username, String password, String email){
-		if(username == null || password == null || email == null )
+		if(doesUsernameExist(username) || username == null || password == null || email == null )
 			return false;
 		else{
 			String query = "INSERT INTO Restaurant_Owners VALUE (NULL,'"+ username + "','"+ password + "','"+ email+"');" ;  
@@ -87,10 +87,34 @@ public class UserDB {
 		}
 	}
 	
+	public boolean doesEmailExist(String email){
+		if(email == null || email.equals(""))
+			return false;
+		else{
+			ResultSet rset = null;
+			String query = "select * from Restaurant_Owners where email = '" + email + "'";
+			try {
+				rset = stmt.executeQuery(query);
+				if(rset.next()){					
+					return true;
+				}
+				else 
+					return false;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}			
+		}
+	}
+	
 	public static void main(String[] args){
 		UserDB udb = new UserDB();
 		udb.isAuthenticated("test2", "asd");
 		udb.createRestaurantOwnerAccount("test3", "test3", "test3");
+		System.out.println(udb.isUsernameValid("adasfdf"));
+		System.out.println(udb.doesUsernameExist("test3"));
+		System.out.println(udb.doesEmailExist("asdasdfdf"));
+		
 	}
 	
 }
