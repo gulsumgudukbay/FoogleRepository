@@ -18,7 +18,7 @@ public class UserDB {
 			try {
 				rset = stmt.executeQuery(query);
 				if(rset.next()){
-					return true;
+					return true; 
 				}
 				else {
 					return false;
