@@ -47,6 +47,46 @@ public class UserDB {
 		}
 	}
 	
+	public boolean isUsernameValid(String username){
+		if(username == null || username.equals(""))
+			return false;
+		else{
+			ResultSet rset = null;
+			String query = "select * from Restaurant_Owners where username = '" + username + "'";//search in the database table whether if the specified username exists or not
+			try {
+				rset = stmt.executeQuery(query);
+				if(!rset.next()){					
+					return true;
+				}
+				else 
+					return false;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}			
+		}
+	}
+	
+	public boolean doesUsernameExist(String username){
+		if(username == null || username.equals(""))
+			return false;
+		else{
+			ResultSet rset = null;
+			String query = "select * from Restaurant_Owners where username = '" + username + "'";//search in the database table whether if the specified username exists or not
+			try {
+				rset = stmt.executeQuery(query);
+				if(rset.next()){					
+					return true;
+				}
+				else 
+					return false;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}			
+		}
+	}
+	
 	public static void main(String[] args){
 		UserDB udb = new UserDB();
 		udb.isAuthenticated("test2", "asd");
