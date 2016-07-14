@@ -5,8 +5,8 @@ import java.sql.Statement;
 public class DatabaseManager {
 
 	private static ConnectionManager cm = null;
-	private static DatabaseManager dbSoleInstance = new DatabaseManager();
 	private static Statement stmt = null;
+	private static DatabaseManager dbSoleInstance = new DatabaseManager();
 	
 	private DatabaseManager(){
 		cm = ConnectionManager.getSoleInstance();
