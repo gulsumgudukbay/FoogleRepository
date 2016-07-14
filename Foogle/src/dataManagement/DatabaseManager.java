@@ -1,20 +1,23 @@
 package dataManagement;
 
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DatabaseManager {
 
 	private static ConnectionManager cm = null;
-	private static Statement stmt = null;
-	private static DatabaseManager dbSoleInstance = new DatabaseManager();
+	private Statement stmt = null;
+	private static DatabaseManager dbSoleInstance  = null;
 	
-	private DatabaseManager(){
+	private DatabaseManager() throws SQLException{
 		cm = ConnectionManager.getSoleInstance();
-		stmt = ConnectionManager.getStmt();
+		stmt = cm.createStmt();
+		if(dbSoleInstance == null)
+			dbSoleInstance = new DatabaseManager();
 	}
 	
-	public static Statement getStmt(){
-		return stmt;
+	public static Statement createStmt(){
+		return cm.createStmt();
 	}
 	
 	public static DatabaseManager getSoleInstance(){

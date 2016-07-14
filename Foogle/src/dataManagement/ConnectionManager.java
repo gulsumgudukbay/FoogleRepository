@@ -9,7 +9,7 @@ public class ConnectionManager {
 
 	private static ConnectionManager cm = new ConnectionManager();
 	private static Connection con;
-	private static Statement stmt;
+	private Statement stmt;
 	
 	private ConnectionManager(){	
 		try{
@@ -25,8 +25,13 @@ public class ConnectionManager {
 		return cm;
 	}
 	
-	public static Statement getStmt(){
-		return stmt;
+	public static Statement createStmt() {
+		try {
+			return con.createStatement();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	

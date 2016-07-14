@@ -7,7 +7,7 @@ import java.sql.Statement;
 public class UserDB {
 	private static UserDB udb = new UserDB();
 	private DatabaseManager dbm = DatabaseManager.getSoleInstance();
-	private Statement stmt = DatabaseManager.getStmt();
+	private Statement stmt = DatabaseManager.createStmt();
 	
 	public static UserDB getSoleInstance(){
 		return udb;
@@ -127,7 +127,7 @@ public class UserDB {
 	}
 	
 	public static void main(String[] args){
-		UserDB udb = new UserDB();
+		UserDB udb = UserDB.getSoleInstance();
 		udb.isAuthenticated("test2", "asd");
 		udb.createRestaurantOwnerAccount("test3", "test3", "test3");
 		System.out.println(udb.isUsernameValid("adasfdf"));
