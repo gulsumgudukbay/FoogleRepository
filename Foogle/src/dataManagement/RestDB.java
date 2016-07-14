@@ -1,5 +1,5 @@
 package dataManagement;
 
-public class RestDB extends Database{
+public class RestDB {
 
 }

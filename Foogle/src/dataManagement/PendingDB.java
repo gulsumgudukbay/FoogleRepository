@@ -1,5 +1,5 @@
 package dataManagement;
 
-public class PendingDB extends Database{
+public class PendingDB {
 
 }

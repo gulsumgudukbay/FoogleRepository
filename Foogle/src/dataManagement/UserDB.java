@@ -1,5 +1,7 @@
 package dataManagement;
 
-public class UserDB extends Database{
+public class UserDB {
+	
+	
 
 }
