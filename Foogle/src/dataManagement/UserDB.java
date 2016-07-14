@@ -5,9 +5,28 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class UserDB {
-	
+	private static UserDB udb = new UserDB();
 	private DatabaseManager dbm = DatabaseManager.getSoleInstance();
 	private Statement stmt = DatabaseManager.getStmt();
+	
+	public static UserDB getSoleInstance(){
+		return udb;
+	}
+	
+	public int getRestaurantOwnerID(String username){
+		int id = -1;
+		String query = "select * from Restaurant_Owners where username = '" + username + "'";
+		ResultSet rset;
+		try {
+			rset = stmt.executeQuery(query);
+			if(rset.next()) id = rset.getInt("idRestaurant_Owners");
+				return id;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return id;
+		} 	
+		
+	}
 	
 	public boolean isAuthenticated(String username, String password){
 		if(password == null || password.equals(""))
