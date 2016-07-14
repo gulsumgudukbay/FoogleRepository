@@ -3,6 +3,9 @@ package dataManagement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+import restaurantAndFoodManagement.Ingredient;
 
 public class RestDB {
 	private static RestDB rdb = new RestDB();
@@ -108,11 +111,96 @@ public class RestDB {
 		}
 	}
 	
+	public boolean doesFoodExist(String name){
+		if(name == null || name.equals(""))
+			return false;
+		else{
+			ResultSet rset = null;
+			String query = "select * from Foods where name = '" + name + "'";
+			try {
+				rset = stmt.executeQuery(query);
+				if(rset.next()){					
+					return true;
+				}
+				else 
+					return false;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}			
+		}
+	}
+	
+	
+	public boolean doesIngredientExist(String name){
+		if(name == null || name.equals("") )
+			return false;
+		else{
+			ResultSet rset = null;
+			String query = "select * from Ingredients where name = '" + name + "'";
+			try {
+				rset = stmt.executeQuery(query);
+				if(rset.next()){					
+					return true;
+				}
+				else 
+					return false;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}			
+		}
+	}
+	
+	public int getFoodID(String foodName){
+		int id = -1;
+		String query = "select * from Foods where name = '" + foodName + "'";
+		ResultSet rset;
+		try {
+			rset = stmt.executeQuery(query);
+			if(rset.next()) id = rset.getInt("id");
+				return id;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return id;
+		} 	
+		
+	}
+	
+	public ArrayList<Ingredient> getAllIngredientsForAFood(String foodName){
+		
+		if(doesFoodExist(foodName)){
+			ArrayList<Ingredient> ings = new ArrayList<Ingredient>();
+			ResultSet rset = null;
+			int foodID = getFoodID(foodName);
+			String query = "select * from Ingredients where Foods_id = '" + foodID + "'";
+			try{
+				Ingredient ingr = new Ingredient();
+				rset = stmt.executeQuery(query);
+				while(rset.next()){
+					ingr.setName(rset.getString("name"));
+					ings.add(ingr);
+				}
+			} catch(SQLException e){
+				e.printStackTrace();
+				return null;
+			}
+			
+			return ings;
+		}
+		else
+			return null;
+		
+		
+		
+	}
+	
 	public static void main(String[] args){
 		RestDB rdb = RestDB.getSoleInstance();
 		System.out.println(rdb.doesFoodExist("food1", "testRestaurant"));
 		System.out.println(rdb.createRestaurant("testRestaurant", "test2"));
 		System.out.println(rdb.doesRestaurantExist("testlkjRestaurant", "test"));
+		rdb.getAllIngredientsForAFood("food1");
 	}
 	
 }
