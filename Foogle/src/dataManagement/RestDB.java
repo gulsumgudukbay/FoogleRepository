@@ -152,6 +152,27 @@ public class RestDB {
 			}			
 		}
 	}
+
+	public boolean doesIngredientExistInFood(String ingname, String foodname){
+		if(ingname == null || ingname.equals("") ||foodname == null || foodname.equals(""))
+			return false;
+		else{
+			ResultSet rset = null;
+			int foodID = getFoodID(foodname);
+			String query = "select * from Ingredients where name = '" + ingname + "' and Foods_id = "+foodID;
+			try {
+				rset = stmt.executeQuery(query);
+				if(rset.next()){					
+					return true;
+				}
+				else 
+					return false;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}			
+		}
+	}
 	
 	
 	public boolean doesIngredientExist(String name){
@@ -189,6 +210,7 @@ public class RestDB {
 		
 	}
 	
+	//unnecessary, to be deleted
 	public ArrayList<Ingredient> getAllIngredientsForAFood(String foodName){
 		
 		if(doesFoodExist(foodName)){
@@ -216,7 +238,7 @@ public class RestDB {
 	}
 	
 	
-public ArrayList<Food> getAllFoods(String restaurantName){
+	public ArrayList<Food> getAllFoods(String restaurantName){
 		
 		if(doesRestaurantExist(restaurantName)){
 			Statement stmt2 = null;
