@@ -60,5 +60,20 @@ public class RestaurantOwner extends User {
 	}
 	
 	// Utility methods
-	
+	public void addRestaurant(Restuarant restaurant) {
+		
+	}
+	public void addFoodToRestaurant(Food food) {
+		
+	}
+	// Foods of a specific restaurant? All restaurants?
+	public void viewFoods() {
+		
+	}
+	public void viewRestaurants() {
+		
+	}
+	public void getRestaurant(name) {
+		
+	}
 }
