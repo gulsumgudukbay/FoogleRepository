@@ -12,4 +12,9 @@ public class PendingDB {
 		return pdb;
 	}
 
+	
+	public static void main(String[] args){
+		PendingDB pdb = PendingDB.getSoleInstance();
+		System.out.println(pdb.getSoleInstance().toString()); 
+	}
 }

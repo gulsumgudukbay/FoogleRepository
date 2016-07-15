@@ -239,7 +239,7 @@ public class RestDB {
 	
 	
 	public ArrayList<Food> getAllFoods(String restaurantName){
-		
+		 
 		if(doesRestaurantExist(restaurantName)){
 			Statement stmt2 = null;
 			stmt2 = DatabaseManager.createStmt();
