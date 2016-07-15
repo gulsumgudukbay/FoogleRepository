@@ -33,14 +33,26 @@ import javax.swing.JCheckBox;
 public class MainMenu extends JFrame {
 
 	private JPanel contentPane;
-	private JButton btnLoginAsA;
+	private JButton loginButton;
+	private JLabel lblMeal;
+	private JLabel lblDessert;
+	private JLabel lblBeverage;
+	private JCheckBox checkBoxMeal;
+	private JCheckBox checkBoxDessert;
+	private JCheckBox checkBoxBeverage;
+	private JButton btnSearch;
+	private JButton CreateButton;
 
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) 
 	{
 		EventQueue.invokeLater(new Runnable() 
 		{
 			public void run() 
 			{
+				
 				try 
 				{
 					MainMenu frame = new MainMenu();
@@ -54,6 +66,9 @@ public class MainMenu extends JFrame {
 		});
 	}
 
+	/**
+	 * Create the frame.
+	 */
 	public MainMenu() {
 		initComponents();
 		createEvents();
@@ -67,111 +82,119 @@ public class MainMenu extends JFrame {
 	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Foogle");
-		setBounds(200, 200, 450, 300);
+		setBounds(200, 200, 750, 300);
 		
 		setResizable(false);
 		contentPane = new JPanel();
-		contentPane.setPreferredSize(new Dimension(900,600));
-	    getContentPane().add(contentPane, BorderLayout.CENTER);
+		contentPane.setPreferredSize(new Dimension(1440,800));
+	    getContentPane().add(contentPane, BorderLayout.NORTH);
 	    pack();
 		contentPane.setToolTipText("");
-		contentPane.setBackground(new Color(253, 245, 230));
+		contentPane.setBackground(new Color(250, 240, 230));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
-		btnLoginAsA = new JButton("Login as a Restaurant Owner");
+		loginButton = new JButton("Login as a Restaurant Owner");
 		
-		JLabel lblMeal = new JLabel("Meal");
-		lblMeal.setIcon(new ImageIcon("/Users/duygudurmus/git/FoogleRepository/Foogle/src/uiManagement/resources/sandwich.png"));
+		
+		lblMeal = new JLabel("Meal");
+		lblMeal.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/sandwich.png")));
 		lblMeal.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
-		JLabel lblDessert = new JLabel("Dessert");
-		lblDessert.setIcon(new ImageIcon("/Users/duygudurmus/git/FoogleRepository/Foogle/src/uiManagement/resources/ice-cream.png"));
+		lblDessert = new JLabel("Dessert");
+		lblDessert.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/ice-cream.png")));
 		lblDessert.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
-		JLabel lblBeverage = new JLabel("Beverage");
-		lblBeverage.setIcon(new ImageIcon("/Users/duygudurmus/git/FoogleRepository/Foogle/src/uiManagement/resources/cocktail.png"));
+		lblBeverage = new JLabel("Beverage");
+		lblBeverage.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/cocktail.png")));
 		lblBeverage.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
-		JCheckBox checkBoxMeal = new JCheckBox("");
+		checkBoxMeal = new JCheckBox("");
 		
-		JCheckBox checkBoxDessert = new JCheckBox("");
-		
-		JCheckBox checkBoxBeverage = new JCheckBox("");
+		checkBoxDessert = new JCheckBox("");
+
+		checkBoxBeverage = new JCheckBox("");
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
 		
-		JLabel lblNewLabel = new JLabel("");
+		JLabel searchLogo = new JLabel("");
+		searchLogo.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/foodsearch.png")));
+		 
+		btnSearch = new JButton("Search");
+		btnSearch.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
+		btnSearch.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/plate-fork-and-knife.png")));
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("/Users/duygudurmus/git/FoogleRepository/Foogle/src/uiManagement/resources/foodsearch.png"));
-		
-		JButton btnSearch = new JButton("Search");
-		btnSearch.setIcon(new ImageIcon("/Users/duygudurmus/git/FoogleRepository/Foogle/src/uiManagement/resources//plate-fork-and-knife.png"));
+		CreateButton = new JButton("Create an Account as a Restaurant Owner");
+		CreateButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-					.addGap(85)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblMeal)
-							.addPreferredGap(ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
-							.addComponent(lblDessert)
-							.addGap(164)
-							.addComponent(lblBeverage)))
-					.addGap(126))
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(122)
-					.addComponent(checkBoxMeal)
-					.addPreferredGap(ComponentPlacement.RELATED, 283, Short.MAX_VALUE)
-					.addComponent(checkBoxDessert)
-					.addGap(258)
-					.addComponent(checkBoxBeverage)
-					.addGap(143))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(383, Short.MAX_VALUE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnSearch, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE)
+					.addGap(131)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblNewLabel)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblNewLabel_1)
-							.addGap(89)
-							.addComponent(btnLoginAsA, GroupLayout.PREFERRED_SIZE, 264, GroupLayout.PREFERRED_SIZE)))
-					.addGap(20))
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblMeal)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(24)
+									.addComponent(checkBoxMeal)))
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(468)
+									.addComponent(checkBoxDessert))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(426)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(searchLogo)
+										.addComponent(lblDessert))))
+							.addPreferredGap(ComponentPlacement.RELATED, 279, Short.MAX_VALUE)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+									.addComponent(checkBoxBeverage)
+									.addGap(46))
+								.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+									.addComponent(lblBeverage)
+									.addGap(29))
+								.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+										.addComponent(CreateButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(loginButton, GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE))
+									.addGap(19))))
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+							.addComponent(btnSearch, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 1217, GroupLayout.PREFERRED_SIZE)))
+					.addGap(62))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnLoginAsA, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGap(41)
-									.addComponent(lblNewLabel))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addContainerGap()
-									.addComponent(lblNewLabel_1)))
-							.addGap(35)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblBeverage)
-								.addComponent(lblDessert))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addComponent(checkBoxDessert)
-								.addComponent(checkBoxBeverage)))
+							.addContainerGap()
+							.addComponent(searchLogo))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblMeal)
+							.addGap(14)
+							.addComponent(loginButton, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(checkBoxMeal)))
+							.addComponent(CreateButton, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)))
 					.addGap(18)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE)
-					.addGap(24)
-					.addComponent(btnSearch, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(22, Short.MAX_VALUE))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblMeal)
+						.addComponent(lblDessert)
+						.addComponent(lblBeverage))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(checkBoxMeal)
+						.addComponent(checkBoxDessert)
+						.addComponent(checkBoxBeverage))
+					.addGap(18)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 437, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnSearch, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(17, Short.MAX_VALUE))
 		);
 		panel.setLayout(null);
 		contentPane.setLayout(gl_contentPane);
@@ -184,6 +207,14 @@ public class MainMenu extends JFrame {
 	private void createEvents() 
 	{
 		
+		loginButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				LoginScreen loginScreen = new LoginScreen();
+				loginScreen.setVisible(true);
+				
+			}
+		});
 	}
 }
 
