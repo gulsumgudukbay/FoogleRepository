@@ -16,7 +16,7 @@ public class Food {
 	public Food(String name, Double price, ArrayList<Ingredient> ingredients) {
 		this.setName(name);
 		this.setPrice(price);
-		this.ingredients = ingredients;
+		this.setIngredients(ingredients);
 	}
 	public Food() {
 		this.name = "";
@@ -27,41 +27,36 @@ public class Food {
 	// MARK: Methods
 	// Accessors and Mutators
 	public String getName() {
-		return this.name
+		return this.name;
 	}
 	public Double getPrice() {
-		return this.price
+		return this.price;
 	}
 	public ArrayList<Ingredient> getIngredients() {
-		return this.ingredients
+		return this.ingredients;
 	}
 	public void setName(String name) {
-		this.name = name
+		this.name = name;
 	}
 	public void setPrice(Double price) {
-		this.price = price
+		this.price = price;
 	}
 	public void setIngredients(ArrayList<Ingredient> ingredients) {
-		this.ingredients = ingredients
+		this.ingredients = ingredients;
 	}
 	
 	// Utility methods
 	// Finds the ingredient with given name, in ingredients array list and returns it
-	// TODO: test this method after creating Ingredient
 	public Ingredient getIngredient(String name) {
-		boolean found = false;
 		for(Ingredient temp: ingredients) {
 			if(temp.name == name) {
-				found = true;
 				// TEST
 				System.out.println("Found: " + name);
 				return temp;
 			}
 		}
-		if(!found) {
-			System.out.println("Ingredient " + name + " not found.")
-			return null;
-		}
+		System.out.println("Ingredient " + name + " not found.");
+		return null;
 	}
 	// TODO: insertToPending(otheringBuf)
 	

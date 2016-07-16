@@ -1,19 +1,19 @@
 package restaurantAndFoodManagement;
 
 public class Ingredient {
-	private String name;
+	String name;
 	
 	public Ingredient() {
-		this.name = ""
+		this.name = "";
 	}
 	public Ingredient(String name) {
 		this.setName(name);
 	}
 	
 	public String getName() {
-		return this.name
+		return this.name;
 	}
 	public void setName(String name) {
-		this.name = name
+		this.name = name;
 	}
 }
