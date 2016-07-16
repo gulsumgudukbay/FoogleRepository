@@ -1,7 +1,7 @@
 package userManagement;
 
-import java.util.*
-import java.io*
+import java.util.ArrayList;
+
 import dataManagement.RestDB;
 import restaurantAndFoodManagement.Food;
 import restaurantAndFoodManagement.Ingredient;
