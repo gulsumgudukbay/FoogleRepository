@@ -6,6 +6,8 @@ import java.util.*;
 public class Food {
 	// MARK: Properties
 	private String name;
+	private String cuisine;
+	private String type;
 	private Double price;
 	private ArrayList<Ingredient> ingredients;
 	// TODO: private OtheringProcessor oip;
@@ -19,6 +21,7 @@ public class Food {
 		this.setIngredients(ingredients);
 	}
 	public Food() {
+		this.type = "";
 		this.name = "";
 		this.price = 0.0;
 		this.ingredients = new ArrayList<Ingredient>();
@@ -26,6 +29,18 @@ public class Food {
 	
 	// MARK: Methods
 	// Accessors and Mutators
+	public String getCuisine() {
+		return cuisine;
+	}
+	public void setCuisine(String cuisine) {
+		this.cuisine = cuisine;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public String getName() {
 		return this.name;
 	}

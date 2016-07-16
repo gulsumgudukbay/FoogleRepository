@@ -18,9 +18,10 @@ public class RestDB {
 	public static RestDB getSoleInstance(){
 		return rdb;
 	}
+
 	
 	//TODO process ingredients add food to the restaurant and to the foods table
-	public boolean createFoodToExistingRestaurant(String restaurantName,String restaurantOwnerUsername, String foodName, String ingredients){
+	public boolean createFoodToExistingRestaurant(String restaurantName, String restaurantOwnerUsername, String foodName, String ingredients){
 		if(doesRestaurantExist(restaurantName,  restaurantOwnerUsername) || restaurantName == null || foodName == null || foodName == null )
 			return false;
 		else{
@@ -34,6 +35,26 @@ public class RestDB {
 			System.out.println("Created!");
 			return true;
 		}
+	}
+
+	public ArrayList<Ingredient> getAllIngredients(){
+		ArrayList<Ingredient> ings = new ArrayList<Ingredient>();
+		ResultSet rset = null;
+		
+		String query = "select * from Ingredients";
+		try{
+			Ingredient ingr = new Ingredient();
+			rset = stmt.executeQuery(query);
+			while(rset.next()){
+				ingr.setName(rset.getString("name"));
+				ings.add(ingr);
+				System.out.println(ingr.getName());
+			}
+		} catch(SQLException e){
+			e.printStackTrace();
+			return null;
+		}
+		return ings;		
 	}
 	
 	//called if the restaurant is confirmed in the pending list!!!
@@ -54,8 +75,95 @@ public class RestDB {
 		}
 	}
 	
+	public String getFoodNameFromID(int id){
+		String un = "";
+		String query = "select * from Foods where id = " + id ;
+		ResultSet rset;
+		try {
+			rset = stmt.executeQuery(query);
+			if(rset.next()) un = rset.getString("name");
+				return un;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return un;
+		} 	
+	}
 	
+	public String getFoodTypeFromName(String name){
+		String type = "";
+		String query = "select * from Foods where name = '" + name + "'";
+		ResultSet rset;
+		try {
+			rset = stmt.executeQuery(query);
+			if(rset.next()) type = rset.getString("type");
+				return type;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return type;
+		} 	
+	}
 	
+	public String getFoodCuisineFromName(String name){
+		String cuisine = "";
+		String query = "select * from Foods where name = '" + name + "'";
+		ResultSet rset;
+		try {
+			rset = stmt.executeQuery(query);
+			if(rset.next()) cuisine = rset.getString("cuisine");
+				return cuisine;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return cuisine;
+		} 	
+	}
+	
+	public double getFoodPriceFromName(String name){
+		double price = -1.00;
+		String query = "select * from Foods where name = '" + name + "'";
+		ResultSet rset;
+		try {
+			rset = stmt.executeQuery(query);
+			if(rset.next()) price = rset.getDouble("price");
+				return price;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return price;
+		} 	
+	}
+	
+	public ArrayList<Food> getFoodList(ArrayList<String> wanted, ArrayList<String> unwanted, String type){
+		ArrayList<Food> result = new ArrayList<Food>();
+
+		ResultSet rset = null;
+		
+		String query = "select * from Ingredients where (name = '" + wanted.get(0)+"'";
+		for(int i = 1; i < wanted.size(); i++)
+			query += " or name = '"+wanted.get(i)+"'";
+		query += ") and not( name = '"+ unwanted.get(0)+"'";
+		
+		for(int i = 1; i < unwanted.size(); i++)
+			query+= " or name = '" + unwanted.get(i)+ "'";
+		query += ")";
+		
+		try{
+			Food fd = new Food();
+			rset = stmt.executeQuery(query);
+			while(rset.next()){
+				fd.setName(getFoodNameFromID(rset.getInt("Foods_id")));
+				fd.setType(getFoodTypeFromName(fd.getName()));
+				fd.setPrice(getFoodPriceFromName(fd.getName()));
+				fd.setCuisine(getFoodCuisineFromName(fd.getName()));
+				fd.setIngredients(getAllIngredientsForAFood(fd.getName()));
+				System.out.println(fd.getName()+ " price: "+fd.getPrice()+ " type: "+ fd.getType()+" cuisine: "+ fd.getCuisine());
+				result.add(fd);
+			}
+		} catch(SQLException e){
+			e.printStackTrace();
+			return null;
+		}		
+		
+		return result;
+	}
 	
 	public boolean doesRestaurantExist(String name, String restaurantOwnerUsername){
 		if(name == null || name.equals("") || restaurantOwnerUsername == null || restaurantOwnerUsername.equals(""))
@@ -174,7 +282,6 @@ public class RestDB {
 		}
 	}
 	
-	
 	public boolean doesIngredientExist(String name){
 		if(name == null || name.equals("") )
 			return false;
@@ -237,7 +344,6 @@ public class RestDB {
 			return null;		
 	}
 	
-	
 	public ArrayList<Food> getAllFoods(String restaurantName){
 		 
 		if(doesRestaurantExist(restaurantName)){
@@ -274,7 +380,9 @@ public class RestDB {
 		System.out.println(rdb.createRestaurant("testRestaurant", "test2"));
 		System.out.println(rdb.doesRestaurantExist("testlkjRestaurant", "test"));
 		rdb.getAllIngredientsForAFood("food1");
+		rdb.getAllIngredients();
 		rdb.getAllFoods("testRestaurant");
+		
 	}
 	
 }

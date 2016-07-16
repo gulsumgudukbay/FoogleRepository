@@ -1,7 +1,12 @@
 package restaurantAndFoodManagement;
 
+import java.util.ArrayList;
+
+import dataManagement.RestDB;
+
 public class Ingredient {
 	String name;
+	RestDB rdb = RestDB.getSoleInstance();
 	
 	public Ingredient() {
 		this.name = "";
