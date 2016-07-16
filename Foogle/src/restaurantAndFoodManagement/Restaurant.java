@@ -89,7 +89,7 @@ public class Restaurant {
 		mySecondIngredients.add(myPotato);
 		
 		Food myFirstFood = new Food("donner", 10.0, myFirstIngredients);
-		Food mySecondFood = new Food("donmez", 8.0, mySecondIngredients); // dad jokes :D
+		Food mySecondFood = new Food("donmez", 8.0, mySecondIngredients);
 		
 		ArrayList<Food> myFoods = new ArrayList<Food>();
 		myFoods.add(myFirstFood);

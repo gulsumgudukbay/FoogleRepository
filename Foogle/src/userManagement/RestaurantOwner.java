@@ -61,19 +61,26 @@ public class RestaurantOwner extends User {
 	
 	// Utility methods
 	public void addRestaurant(Restuarant restaurant) {
-		
+		// sb.createRestaurant(restaurant.getName(), this.getName());
 	}
-	public void addFoodToRestaurant(Food food) {
-		
+	public void addFoodToRestaurant(Food food, Restaurant restaurant) {
+		// sb.createFoodToExistingRestaurant(food, restaurant.getName());
 	}
 	// Foods of a specific restaurant? All restaurants?
 	public void viewFoods() {
-		
+		/*for(Restaurant restaurant: restaurants) {
+			sb.getAllFoods(restaurant.getName());
+		}*/
 	}
 	public void viewRestaurants() {
-		
+		// sb.getAllRestaurants(this.getName());
 	}
-	public void getRestaurant(name) {
-		
+	public Restaurant getRestaurant(name) {
+		for(Restaurant restaurant: restaurants) {
+			if(restaurant.getName() == name) {
+				return restaurant;
+			}
+		}
+		return null;
 	}
 }
