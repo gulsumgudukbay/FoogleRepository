@@ -135,7 +135,7 @@ public class RestDB {
 		ArrayList<Food> result = new ArrayList<Food>();
 
 		ResultSet rset = null;
-		
+	
 		String query = "select * from Ingredients where (name = '" + wanted.get(0)+"'";
 		for(int i = 1; i < wanted.size(); i++)
 			query += " or name = '"+wanted.get(i)+"'";
