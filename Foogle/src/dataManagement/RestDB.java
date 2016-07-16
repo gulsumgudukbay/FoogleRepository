@@ -162,6 +162,13 @@ public class RestDB {
 			return null;
 		}		
 		
+		if(result != null){
+			for(int i = 0; i < result.size(); i++)
+				if(!result.get(i).getType().equals(type)){
+					result.remove(i);
+					i++;
+				}
+		}
 		return result;
 	}
 	
