@@ -1,7 +1,13 @@
 package userManagement;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+import java.util.*
+import java.io*
+>>>>>>> branch 'master' of https://github.com/gulsumgudukbay/FoogleRepository.git
 
+<<<<<<< HEAD
 import dataManagement.RestDB;
 import restaurantAndFoodManagement.Food;
 import restaurantAndFoodManagement.Ingredient;
@@ -20,5 +26,8 @@ public class Customer extends User {
 	}
 	
 		
+=======
+public class Customer extends User {
+>>>>>>> branch 'master' of https://github.com/gulsumgudukbay/FoogleRepository.git
 	
 }
