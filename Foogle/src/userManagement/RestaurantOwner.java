@@ -1,6 +1,16 @@
 package userManagement;
 
+import java.util.ArrayList;
+
+import dataManagement.RestDB;
+import restaurantAndFoodManagement.Food;
+import restaurantAndFoodManagement.Ingredient;
+import searchManagement.SearchController;
+
 public class RestaurantOwner extends User {
+	RestDB rdb = RestDB.getSoleInstance();
+	SearchController sc = new SearchController();
+	
 	// MARK: Properties
 	private String username;
 	private String password;
@@ -60,11 +70,17 @@ public class RestaurantOwner extends User {
 	}
 	
 	// Utility methods
+	// Creates a new restaurant by calling db method and appends it to restaurants list.
 	public void addRestaurant(Restuarant restaurant) {
-		// sb.createRestaurant(restaurant.getName(), this.getName());
+		rdb.createRestaurant(restaurant.getName(), this.getUsername());
+		restaurants.add(restaurant);
 	}
-	public void addFoodToRestaurant(Food food, Restaurant restaurant) {
-		// sb.createFoodToExistingRestaurant(food, restaurant.getName());
+	public void addFoodToRestaurant(Food food, Restaurant restaurant, ArrayList<Ingredient> ingredients) {
+		String ingredientStr = "";
+		
+		for(Ingredient ingredient: ingredients) {
+			ingredientStr += ingredient.getName();
+		}
 	}
 	// Foods of a specific restaurant? All restaurants?
 	public void viewFoods() {
