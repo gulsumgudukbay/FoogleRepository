@@ -8,7 +8,7 @@ public class Food {
 	private String name;
 	private String cuisine;
 	private String type;
-	private Double price;
+	private double price;
 	private ArrayList<Ingredient> ingredients;
 	// TODO: private OtheringProcessor oip;
 	// TODO: private String otheringBuff; 
