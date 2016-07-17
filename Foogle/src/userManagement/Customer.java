@@ -23,8 +23,4 @@ public class Customer extends User {
 	public ArrayList<Food> search(ArrayList<String> wanted, ArrayList<String> unwanted, String types){
 		return sc.showResults(wanted, unwanted, types);
 	}
-	
-	// FIXME: Login and Sign Up
-	// How do we login and sign up user? Customer doesn't have username or anything. 
-	// Where should we write these methods? Where should we call them?
 }		

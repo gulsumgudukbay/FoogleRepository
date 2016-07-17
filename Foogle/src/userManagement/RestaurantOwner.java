@@ -3,12 +3,14 @@ package userManagement;
 import java.util.ArrayList;
 
 import dataManagement.RestDB;
+import dataManagement.UserDB;
 import restaurantAndFoodManagement.Food;
 import restaurantAndFoodManagement.Ingredient;
 import searchManagement.SearchController;
 
 public class RestaurantOwner extends User {
 	RestDB rdb = RestDB.getSoleInstance();
+	UserDB udb = UserDB.getSoleInstance();
 	SearchController sc = new SearchController();
 	
 	// MARK: Properties
@@ -98,5 +100,15 @@ public class RestaurantOwner extends User {
 			}
 		}
 		return null;
+	}
+	// Sign Up method
+	public void createRestaurantOwnerAccount(String username, String password, String email) {
+		udb.createRestaurantOwnerAccount(username, password, email);
+	}
+	// Login method
+	public void loginAsRestaurantOwner(String username, String password) {
+		if(udb.isAuthenticated(username, password)) {
+			System.out.println("Welcome back, " + username);
+		}
 	}
 }
