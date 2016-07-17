@@ -49,7 +49,6 @@ public class RestDB {
 			while(rset.next()){
 				ingr.setName(rset.getString("name"));
 				ings.add(ingr);
-				System.out.println(ingr.getName());
 			}
 		} catch(SQLException e){
 			e.printStackTrace();
@@ -184,7 +183,6 @@ public class RestDB {
 					}
 				}
 			
-			
 			finalresult = new ArrayList<Food>();
 			//removing duplicates
 			for(int i = 0; i < result.size();i++)
@@ -192,7 +190,7 @@ public class RestDB {
 					finalresult.add(result.get(i));
 		
 			for(int i = 0; i < finalresult.size();i++)
-				System.out.println(" final " +finalresult.get(i).getName());
+				System.out.println("search: " +finalresult.get(i).getName());
 		     
 		}
 		return finalresult;
@@ -402,7 +400,6 @@ public class RestDB {
 					fd.setName(name);
 					fd.setIngredients(getAllIngredientsForAFood(name));
 					fds.add(fd);
-					System.out.println(fd.getName()+ " INGREDIENTS: "+ fd.getIngredients().toString());
 				}
 			} catch(SQLException e){
 				e.printStackTrace();
