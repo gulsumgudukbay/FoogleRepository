@@ -20,13 +20,12 @@ public class RestDB {
 		return rdb;
 	}
 
-	
 	//TODO process ingredients add food to the restaurant and to the foods table
-	public boolean createFoodToExistingRestaurant(String restaurantName, String restaurantOwnerUsername, String foodName, String ingredients){
-		if(doesRestaurantExist(restaurantName,  restaurantOwnerUsername) || restaurantName == null || foodName == null || foodName == null )
+	public boolean createFoodToExistingRestaurant(String restaurantName, String restaurantOwnerUsername, String foodName, String type, String cuisine, double price, ArrayList<Ingredient> ingredients){
+		if(doesRestaurantExist(restaurantName,  restaurantOwnerUsername) || restaurantName == null || foodName == null || cuisine == null || cuisine.equals("") || foodName.equals("") )
 			return false;
 		else{
-			String query = "INSERT INTO Restaurant_Owners VALUE (NULL,'" + "','"  + "','"+"');" ;  
+			String query = "INSERT INTO `Foogle`.`Foods` (`name`, `type`, `cuisine`, `price`, `Restaurants_id`) VALUES ('"+ foodName+ "', '" + type + "', '"+ cuisine + "', '543', '1');" ;  
 			try {
 				stmt.executeUpdate(query);
 			} catch (SQLException e) {

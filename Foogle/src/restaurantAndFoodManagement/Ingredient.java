@@ -6,6 +6,7 @@ import dataManagement.RestDB;
 
 public class Ingredient {
 	String name;
+	boolean isConfirmed;
 	RestDB rdb = RestDB.getSoleInstance();
 	
 	public Ingredient() {
@@ -24,4 +25,11 @@ public class Ingredient {
 	public String toString(){
 		return name;
 	}
+	public boolean isConfirmed() {
+		return isConfirmed;
+	}
+	public void setConfirmed(boolean isConfirmed) {
+		this.isConfirmed = isConfirmed;
+	}
+	
 }

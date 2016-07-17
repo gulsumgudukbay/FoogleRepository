@@ -17,4 +17,20 @@ public class PendingDB {
 		PendingDB pdb = PendingDB.getSoleInstance();
 		System.out.println(pdb.getSoleInstance().toString()); 
 	}
+	
+	public void confirmIngredient(String name){
+		
+	}
+	
+	public int getTheFoodIDOfIngredient(String name){
+		return -1;
+	}
+	
+	public boolean isOtherIngredientConfirmed(String name){
+		return true;
+	}
+	
+	public boolean isAllOtherIngredientsConfirmedFor(String foodName){
+		return true;
+	}
 }
