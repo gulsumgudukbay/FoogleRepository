@@ -24,5 +24,8 @@ public class UserResource {
 		this.users = users;
 	}
 
-	// TODO: Utility methods
+	// TODO: Utility methods ?
+	// listAllUsers
+	// getRestaurantOwner(username)
+	// searchFood(inputs)
 }

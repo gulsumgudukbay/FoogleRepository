@@ -13,7 +13,15 @@ public class Admin extends User{
 	private ArrayList<Ingredient> pendingIngredients;
 	private ArrayList<Restaurant> pendingRestaurants;
 	
-	// TODO: Constructors
+	// MARK: Constructors
+	public Admin() {
+		this.pendingIngredients = new ArrayList<Ingredient>();
+		this.pendingRestaurants = new ArrayList<Restaurant>();
+	}
+	public Admin(ArrayList<Ingredient> pendingIngredients, ArrayList<Restaurant> pendingRestaurants) {
+		this.pendingIngredients = pendingIngredients;
+		this.pendingRestaurants = pendingRestaurants;
+	}
 	
 	// MARK: Methods
 	// Accessors and Mutators
