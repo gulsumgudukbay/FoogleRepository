@@ -7,6 +7,7 @@ import restaurantAndFoodManagement.Ingredient;
 
 public class OtherIngredientProcessor {
 
+	
 	private String otherBuffer;
 	
 	public OtherIngredientProcessor(String ings) {
