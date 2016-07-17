@@ -196,7 +196,7 @@ public class RestDB {
 			for(int i = 0; i < result.size();i++)
 				System.out.println(" dasdasd " +result.get(i).getName());
 			
-			
+		     
 		}
 		return result;
 	}
