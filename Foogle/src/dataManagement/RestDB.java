@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import restaurantAndFoodManagement.Food;
 import restaurantAndFoodManagement.Ingredient;
@@ -147,15 +148,6 @@ public class RestDB {
 		ResultSet rset = null;
 	
 		String query = "select * from Ingredients";
-		/*for(int i = 1; i < wanted.size(); i++)
-			query += " or name = '"+wanted.get(i)+"'";
-		query += ") and not( name = '"+ unwanted.get(0)+"'";
-		
-		for(int i = 1; i < unwanted.size(); i++)
-			query+= " and name = '" + unwanted.get(i)+ "'";
-		query += ")";
-		System.out.println(query);*/
-		
 		
 		try{
 			Statement stmtfl = DatabaseManager.createStmt();
@@ -168,7 +160,6 @@ public class RestDB {
 				fd.setPrice(getFoodPriceFromName(fd.getName()));
 				fd.setCuisine(getFoodCuisineFromName(fd.getName()));
 				fd.setIngredients(getAllIngredientsForAFood(fd.getName()));
-				System.out.println(fd.getName()+ " price: "+fd.getPrice()+ " type: "+ fd.getType()+" cuisine: "+ fd.getCuisine());
 				result.add(fd);
 			}
 		} catch(SQLException e){
@@ -176,29 +167,41 @@ public class RestDB {
 			return null;
 		}		
 		
+		ArrayList<Food> finalresult = null;
+		
 		if(result != null){
 			
 			for(int i = 0; i < result.size(); i++)
 				if(!(result.get(i).getType()).equals(type)){
-					result.remove(i);
+					result.remove(i--);
 				}
 			
 			for(int j = 0; j < result.size();j++){
 				for(int i = 0; i < unwanted.size();i++){
 					if(result.get(j).searchInIngredients(unwanted.get(i))){
 						result.remove(j);
-					
+						i--;
 					}
-					System.out.println(j+ " "+ i +" iteration " +result.get(j));
+
 
 				}
 			}
 			for(int i = 0; i < result.size();i++)
 				System.out.println(" dasdasd " +result.get(i).getName());
 			
+			
+			//removing duplicates
+			
+			HashSet<Food> set = new HashSet<>(result);
+
+			// Create ArrayList from the set.
+			finalresult = new ArrayList<Food>(set);
+			
+			for(int i = 0; i < finalresult.size();i++)
+				System.out.println(" final " +finalresult.get(i).getName());
 		     
 		}
-		return result;
+		return finalresult;
 	}
 	
 	public boolean doesRestaurantExist(String name, String restaurantOwnerUsername){
@@ -353,7 +356,6 @@ public class RestDB {
 		
 	}
 	
-	//unnecessary, to be deleted
 	public ArrayList<Ingredient> getAllIngredientsForAFood(String foodName){
 		
 		if(doesFoodExist(foodName)){
