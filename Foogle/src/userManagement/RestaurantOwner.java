@@ -76,21 +76,21 @@ public class RestaurantOwner extends User {
 		restaurants.add(restaurant);
 	}
 	public void addFoodToRestaurant(Food food, Restaurant restaurant, ArrayList<Ingredient> ingredients) {
-		String ingredientStr = "";
-		
-		for(Ingredient ingredient: ingredients) {
-			ingredientStr += ingredient.getName();
-		}
+		rdb.createFoodToExistingRestaurant(restaurant.getName(),this.getUsername(), food.getName(), ingredients);
 	}
+	// FIXME: Ambiguous method decleration
 	// Foods of a specific restaurant? All restaurants?
 	public void viewFoods() {
 		/*for(Restaurant restaurant: restaurants) {
-			sb.getAllFoods(restaurant.getName());
+			rdb.getAllFoods(restaurant.getName());
 		}*/
 	}
 	public void viewRestaurants() {
-		// sb.getAllRestaurants(this.getName());
+		for(int i = 0; i < this.restaurants.size(); i++) {
+			System.out.println("Restaurant #" + i + "\t" + restaurants.get(i));
+		}
 	}
+	// Returns restaurant with the given name, in restaurants list.
 	public Restaurant getRestaurant(name) {
 		for(Restaurant restaurant: restaurants) {
 			if(restaurant.getName() == name) {
