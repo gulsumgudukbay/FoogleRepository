@@ -20,7 +20,7 @@ public class OtherIngredientProcessor {
 		// Test ettim, düzgün çalışıyor tek problem son ing tek harfli olursa hata veriyor. Bu da bir problem olmaz zaten ama test ederken dikkat edin.
 		for(int i = 0; i < ings.length(); i++) { 
 			
-			if(i == ings.length() - 1) {  
+			if(i == ings.length() - 1) { 
 				Ingredient currentIng = new Ingredient (ings.substring(currentFirst, i + 1)); 
 				ingsSeperated.add(currentIng);
 			}
