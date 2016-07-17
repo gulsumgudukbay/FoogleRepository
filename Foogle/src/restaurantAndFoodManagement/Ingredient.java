@@ -21,4 +21,7 @@ public class Ingredient {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String toString(){
+		return name;
+	}
 }

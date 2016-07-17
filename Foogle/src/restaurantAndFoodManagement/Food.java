@@ -61,6 +61,22 @@ public class Food {
 	}
 	
 	// Utility methods
+	
+	public boolean searchInIngredients(String nameOfIngredient){
+		for(int i = 0; i < ingredients.size();i++)
+			if(ingredients.get(i).getName().equals(nameOfIngredient))
+				return true;
+		return false;
+	}
+	
+	public String toString(){
+		String result = "";
+		result+= name+" "+type+" "+price+" ingredients: ";
+		for(int i = 0; i < ingredients.size();i++)
+			result+= ingredients.get(i)+" ";
+		return result;
+	}
+	
 	// Finds the ingredient with given name, in ingredients array list and returns it
 	public Ingredient getIngredient(String name) {
 		for(Ingredient temp: ingredients) {

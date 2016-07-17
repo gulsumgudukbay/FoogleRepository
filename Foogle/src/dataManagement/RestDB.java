@@ -63,9 +63,11 @@ public class RestDB {
 			return false;
 		else{
 			int id = udb.getRestaurantOwnerID(restaurantOwnerUsername);
+			Statement stmtr = DatabaseManager.createStmt();
+
 			String query = "INSERT INTO Restaurants VALUE ('"+ name+ "'," + id + "," + "NULL);" ;  
 			try {
-				stmt.executeUpdate(query);
+				stmtr.executeUpdate(query);
 			} catch (SQLException e) {
 				e.printStackTrace();
 				return false;
@@ -79,8 +81,10 @@ public class RestDB {
 		String un = "";
 		String query = "select * from Foods where id = " + id ;
 		ResultSet rset;
+		Statement stmtn = DatabaseManager.createStmt();
+
 		try {
-			rset = stmt.executeQuery(query);
+			rset = stmtn.executeQuery(query);
 			if(rset.next()) un = rset.getString("name");
 				return un;
 		} catch (SQLException e) {
@@ -93,8 +97,10 @@ public class RestDB {
 		String type = "";
 		String query = "select * from Foods where name = '" + name + "'";
 		ResultSet rset;
+		Statement stmtt = DatabaseManager.createStmt();
+
 		try {
-			rset = stmt.executeQuery(query);
+			rset = stmtt.executeQuery(query);
 			if(rset.next()) type = rset.getString("type");
 				return type;
 		} catch (SQLException e) {
@@ -107,8 +113,10 @@ public class RestDB {
 		String cuisine = "";
 		String query = "select * from Foods where name = '" + name + "'";
 		ResultSet rset;
+		Statement stmtc = DatabaseManager.createStmt();
+
 		try {
-			rset = stmt.executeQuery(query);
+			rset = stmtc.executeQuery(query);
 			if(rset.next()) cuisine = rset.getString("cuisine");
 				return cuisine;
 		} catch (SQLException e) {
@@ -121,8 +129,10 @@ public class RestDB {
 		double price = -1.00;
 		String query = "select * from Foods where name = '" + name + "'";
 		ResultSet rset;
+		Statement stmtp = DatabaseManager.createStmt();
+
 		try {
-			rset = stmt.executeQuery(query);
+			rset = stmtp.executeQuery(query);
 			if(rset.next()) price = rset.getDouble("price");
 				return price;
 		} catch (SQLException e) {
@@ -136,19 +146,23 @@ public class RestDB {
 
 		ResultSet rset = null;
 	
-		String query = "select * from Ingredients where (name = '" + wanted.get(0)+"'";
-		for(int i = 1; i < wanted.size(); i++)
+		String query = "select * from Ingredients";
+		/*for(int i = 1; i < wanted.size(); i++)
 			query += " or name = '"+wanted.get(i)+"'";
 		query += ") and not( name = '"+ unwanted.get(0)+"'";
 		
 		for(int i = 1; i < unwanted.size(); i++)
-			query+= " or name = '" + unwanted.get(i)+ "'";
+			query+= " and name = '" + unwanted.get(i)+ "'";
 		query += ")";
+		System.out.println(query);*/
+		
 		
 		try{
-			Food fd = new Food();
-			rset = stmt.executeQuery(query);
+			Statement stmtfl = DatabaseManager.createStmt();
+
+			rset = stmtfl.executeQuery(query);
 			while(rset.next()){
+				Food fd = new Food();
 				fd.setName(getFoodNameFromID(rset.getInt("Foods_id")));
 				fd.setType(getFoodTypeFromName(fd.getName()));
 				fd.setPrice(getFoodPriceFromName(fd.getName()));
@@ -163,11 +177,26 @@ public class RestDB {
 		}		
 		
 		if(result != null){
+			
 			for(int i = 0; i < result.size(); i++)
-				if(!result.get(i).getType().equals(type)){
+				if(!(result.get(i).getType()).equals(type)){
 					result.remove(i);
-					i++;
 				}
+			
+			for(int j = 0; j < result.size();j++){
+				for(int i = 0; i < unwanted.size();i++){
+					if(result.get(j).searchInIngredients(unwanted.get(i))){
+						result.remove(j);
+					
+					}
+					System.out.println(j+ " "+ i +" iteration " +result.get(j));
+
+				}
+			}
+			for(int i = 0; i < result.size();i++)
+				System.out.println(" dasdasd " +result.get(i).getName());
+			
+			
 		}
 		return result;
 	}
@@ -334,9 +363,10 @@ public class RestDB {
 			int foodID = getFoodID(foodName);
 			String query = "select * from Ingredients where Foods_id = '" + foodID + "'";
 			try{
-				Ingredient ingr = new Ingredient();
+				
 				rset = stmt.executeQuery(query);
 				while(rset.next()){
+					Ingredient ingr = new Ingredient();
 					ingr.setName(rset.getString("name"));
 					ings.add(ingr);
 				}
@@ -389,6 +419,20 @@ public class RestDB {
 		rdb.getAllIngredientsForAFood("food1");
 		rdb.getAllIngredients();
 		rdb.getAllFoods("testRestaurant");
+		
+		ArrayList<String> wanted = new ArrayList();
+		wanted.add("ing2");
+		wanted.add("ing4");
+		wanted.add("ing10");
+		wanted.add("ing11");
+		wanted.add("ing7");
+		wanted.add("ing6");
+		
+		ArrayList<String> unwanted = new ArrayList();
+		unwanted.add("ing5");
+		unwanted.add("ing3");
+		
+		rdb.getFoodList(wanted,unwanted,"meal");
 		
 	}
 	
