@@ -1,14 +1,19 @@
 package userManagement;
 
-import java.util.*;
-// TODO: Import database classes
+import java.util.ArrayList;
+
+import dataManagement.RestDB;
+import dataManagement.UserDB;
+import restaurantAndFoodManagement.Food;
+import restaurantAndFoodManagement.Ingredient;
+import searchManagement.SearchController;
 
 public class UserResource {
 	// MARK: Properties
 	private ArrayList<User> users;
 	// TODO: Database instance
 	
-	// MARK: Constructors
+	// TODO: Constructors
 	
 	// MARK: Methods
 	// Accessors and Mutators

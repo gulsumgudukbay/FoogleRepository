@@ -61,7 +61,6 @@ public class Food {
 	}
 	
 	// Utility methods
-	
 	public boolean searchInIngredients(String nameOfIngredient){
 		for(int i = 0; i < ingredients.size();i++)
 			if(ingredients.get(i).getName().equals(nameOfIngredient))
