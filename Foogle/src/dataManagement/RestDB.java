@@ -176,32 +176,33 @@ public class RestDB {
 					result.remove(i--);
 				}
 			
-			for(int j = 0; j < result.size();j++){
+			for(int j = 0; j < result.size();j++)
 				for(int i = 0; i < unwanted.size();i++){
 					if(result.get(j).searchInIngredients(unwanted.get(i))){
 						result.remove(j);
 						i--;
 					}
-
-
 				}
-			}
-			for(int i = 0; i < result.size();i++)
-				System.out.println(" dasdasd " +result.get(i).getName());
 			
 			
+			finalresult = new ArrayList<Food>();
 			//removing duplicates
-			
-			HashSet<Food> set = new HashSet<>(result);
-
-			// Create ArrayList from the set.
-			finalresult = new ArrayList<Food>(set);
-			
+			for(int i = 0; i < result.size();i++)
+				if(!searchInFoodArrayList(finalresult, result.get(i)))
+					finalresult.add(result.get(i));
+		
 			for(int i = 0; i < finalresult.size();i++)
 				System.out.println(" final " +finalresult.get(i).getName());
 		     
 		}
 		return finalresult;
+	}
+	
+	private boolean searchInFoodArrayList(ArrayList<Food> fds, Food fd){
+		for(int i = 0; i < fds.size();i++)
+			if(fds.get(i).getName().equals(fd.getName()))
+				return true;
+		return false;
 	}
 	
 	public boolean doesRestaurantExist(String name, String restaurantOwnerUsername){
