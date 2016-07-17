@@ -79,7 +79,7 @@ public class RestaurantOwner extends User {
 		restaurants.add(restaurant);
 	}
 	public void addFoodToRestaurant(Food food, Restaurant restaurant, ArrayList<Ingredient> ingredients) {
-		rdb.createFoodToExistingRestaurant(restaurant.getName(),this.getUsername(), food.getName(), ingredients);
+		rdb.createFoodToExistingRestaurant(restaurant.getName(),this.getUsername(), food.getName(), food.getType(), food.getCuisine(), food.getPrice(), ingredients);
 	}
 	// FIXME: Ambiguous method decleration
 	// Foods of a specific restaurant? All restaurants?

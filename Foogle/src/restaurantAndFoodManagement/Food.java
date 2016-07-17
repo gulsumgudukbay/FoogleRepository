@@ -15,7 +15,7 @@ public class Food {
 	// TODO: enum type & cuisine
 	
 	// MARK: Constructors
-	public Food(String name, Double price, ArrayList<Ingredient> ingredients) {
+	public Food(String name, double price, ArrayList<Ingredient> ingredients) {
 		this.setName(name);
 		this.setPrice(price);
 		this.setIngredients(ingredients);
@@ -44,7 +44,7 @@ public class Food {
 	public String getName() {
 		return this.name;
 	}
-	public Double getPrice() {
+	public double getPrice() {
 		return this.price;
 	}
 	public ArrayList<Ingredient> getIngredients() {
@@ -53,7 +53,7 @@ public class Food {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public void setPrice(Double price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	public void setIngredients(ArrayList<Ingredient> ingredients) {
