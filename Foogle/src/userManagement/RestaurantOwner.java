@@ -6,6 +6,7 @@ import dataManagement.RestDB;
 import dataManagement.UserDB;
 import restaurantAndFoodManagement.Food;
 import restaurantAndFoodManagement.Ingredient;
+import restaurantAndFoodManagement.Restaurant;
 import searchManagement.SearchController;
 
 public class RestaurantOwner extends User {
@@ -18,7 +19,7 @@ public class RestaurantOwner extends User {
 	private String password;
 	private String email;
 	private ArrayList<Restaurant> restaurants;
-	private Int restaurantNo;
+	private int restaurantNo;
 	
 	// MARK: Contructors
 	public RestaurantOwner() {
@@ -51,7 +52,7 @@ public class RestaurantOwner extends User {
 	public ArrayList<Restaurant> getRestaurants() {
 		return restaurants;
 	}
-	public Int getRestaurantNo() {
+	public int getRestaurantNo() {
 		return restaurantNo;
 	}
 	
@@ -67,13 +68,13 @@ public class RestaurantOwner extends User {
 	public void setRestaurants(ArrayList<Restaurant> restaurants) {
 		this.restaurants = restaurants;
 	}
-	public void setRestaurantNo(Int restaurantNo) {
+	public void setRestaurantNo(int restaurantNo) {
 		this.restaurantNo = restaurantNo;
 	}
 	
 	// Utility methods
 	// Creates a new restaurant by calling db method and appends it to restaurants list.
-	public void addRestaurant(Restuarant restaurant) {
+	public void addRestaurant(Restaurant restaurant) {
 		rdb.createRestaurant(restaurant.getName(), this.getUsername());
 		restaurants.add(restaurant);
 	}
@@ -93,7 +94,7 @@ public class RestaurantOwner extends User {
 		}
 	}
 	// Returns restaurant with the given name, in restaurants list.
-	public Restaurant getRestaurant(name) {
+	public Restaurant getRestaurant(String name) {
 		for(Restaurant restaurant: restaurants) {
 			if(restaurant.getName() == name) {
 				return restaurant;

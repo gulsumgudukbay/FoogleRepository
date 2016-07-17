@@ -2,11 +2,8 @@ package userManagement;
 
 import java.util.ArrayList;
 
-import dataManagement.RestDB;
-import dataManagement.UserDB;
-import restaurantAndFoodManagement.Food;
 import restaurantAndFoodManagement.Ingredient;
-import searchManagement.SearchController;
+import restaurantAndFoodManagement.Restaurant;
 
 public class Admin extends User{
 	// MARK: Properties
