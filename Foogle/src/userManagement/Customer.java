@@ -14,6 +14,8 @@ public class Customer extends User {
 	// TODO: Uncomment the property below
 	// private Event input;
 	
+	// TODO: Constructors?
+	
 	public ArrayList<Ingredient> getAllIngredients(){
 		return rdb.getAllIngredients();
 	}
