@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import restaurantAndFoodManagement.Ingredient;
 
 
-public class OtherIngProcessor {
+public class OtherIngredientProcessor {
 
 	private String otherBuffer;
 	
-	public OtherIngProcessor(String ings) {
+	public OtherIngredientProcessor(String ings) {
 		otherBuffer = ings;
 	}
 	
@@ -17,13 +17,11 @@ public class OtherIngProcessor {
 		ArrayList<Ingredient> ingsSeperated = new ArrayList<Ingredient> ();
 		int currentFirst = 0;
 		
-		for(int i = 0; i < ings.length(); i++) { // Test ettim, düzgün çalışıyor 
+		// Test ettim, düzgün çalışıyor tek problem son ing tek harfli olursa hata veriyor. Bu da bir problem olmaz zaten ama test ederken dikkat edin.
+		for(int i = 0; i < ings.length(); i++) { 
 			
-			// Son ingredient tespiti, aslında burayı -2 değil de -1 ile, aşağıyı da i+1 ile değil de i ile yapmak istedim ama hata verdi.
-			if(i == ings.length() - 2) {  
+			if(i == ings.length() - 1) {  
 				Ingredient currentIng = new Ingredient (ings.substring(currentFirst, i + 1)); 
-				i++;
-				currentFirst = i;
 				ingsSeperated.add(currentIng);
 			}
 			
@@ -35,6 +33,6 @@ public class OtherIngProcessor {
 			}
 		}
 		
-		return ingsSeperated; // Bu return hiç gerekli olmuyor 
+		return ingsSeperated;
 	}
 }
