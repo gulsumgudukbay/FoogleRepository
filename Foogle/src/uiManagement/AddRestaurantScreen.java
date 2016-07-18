@@ -1,17 +1,17 @@
 package uiManagement;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import dataManagement.RestDB;
 
 // IMAGE EKLENECEK
 // OLUŞAN RESTORAN DATABASEE EKLENECEK
@@ -72,7 +72,8 @@ public class AddRestaurantScreen extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String newRes = txtRestaurantName.getText();
-				
+				RestDB rdb = RestDB.getSoleInstance();
+				rdb.createRestaurant(newRes, "Username");
 			}
 		});
 		btnSubmit.setBounds(540, 160, 117, 45);
