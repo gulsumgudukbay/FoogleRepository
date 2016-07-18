@@ -219,6 +219,22 @@ public class RestDB {
 
 				}
 			}
+			
+		
+			for(int i = 0; i < result.size();i++){
+				for(int j = 0; j < wanted.size(); j++){
+					if (!result.get(i).searchInIngredients(wanted.get(j)) && j == wanted.size()-1){
+						result.remove(i);
+						//i--;
+					}
+					else if(result.get(i).searchInIngredients(wanted.get(j))){
+						break;
+					}
+			
+				
+				}
+			}
+			
 
 			finalresult = new ArrayList<Food>();
 			// removing duplicates
@@ -497,17 +513,15 @@ public class RestDB {
 		rdb.getAllIngredients();
 		rdb.getAllFoods("testRestaurant", "test2");
 
-		ArrayList<String> wanted = new ArrayList();
-		wanted.add("ing2");
-		wanted.add("ing4");
-		wanted.add("ing10");
-		wanted.add("ing11");
-		wanted.add("ing7");
-		wanted.add("ing6");
+		ArrayList<String> wanted = new ArrayList<String>();
+		wanted.add("ing13");
+		wanted.add("ing3");
+		wanted.add("ing5");
+		
 
-		ArrayList<String> unwanted = new ArrayList();
-		unwanted.add("ing5");
-		unwanted.add("ing3");
+		ArrayList<String> unwanted = new ArrayList<String>();
+		unwanted.add("ing6");
+		unwanted.add("ing12");
 
 		Ingredient ing1 = new Ingredient();
 		ing1.setName("ing5");

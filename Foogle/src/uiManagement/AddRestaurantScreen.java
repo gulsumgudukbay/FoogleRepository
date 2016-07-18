@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -73,7 +74,7 @@ public class AddRestaurantScreen extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				String newRes = txtRestaurantName.getText();
 				RestDB rdb = RestDB.getSoleInstance();
-				rdb.createRestaurant(newRes, "Username");
+				rdb.createRestaurant(newRes, LoginScreen.getUsername());
 			}
 		});
 		btnSubmit.setBounds(540, 160, 117, 45);
@@ -94,6 +95,6 @@ public class AddRestaurantScreen extends JFrame {
 		contentPane.add(btnBack);
 		
 		btnBack.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
-		// btnBack.setIcon(new ImageIcon(LoginScreen.class.getResource("/resources/back_64.png")));
+		btnBack.setIcon(new ImageIcon(LoginScreen.class.getResource("/resources/back_64.png")));
 	}
 }
