@@ -2,12 +2,16 @@ package userManagement;
 
 import java.util.ArrayList;
 
+<<<<<<< HEAD
+import restaurantAndFoodManagement.Restaurant;
+=======
 import dataManagement.RestDB;
 import dataManagement.UserDB;
 import restaurantAndFoodManagement.Food;
 import restaurantAndFoodManagement.Ingredient;
 import restaurantAndFoodManagement.Restaurant;
 import searchManagement.SearchController;
+>>>>>>> branch 'master' of https://github.com/gulsumgudukbay/FoogleRepository.git
 
 public class RestaurantOwner extends User {
 	RestDB rdb = RestDB.getSoleInstance();
