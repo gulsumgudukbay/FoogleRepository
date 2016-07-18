@@ -13,6 +13,10 @@ public class Restaurant {
 		this.name = "";
 		this.foods = new ArrayList<Food>();
 	}
+	public Restaurant(String name) {
+		this.setName(name);
+		this.foods = new ArrayList<Food>();
+	}
 	public Restaurant(String name, ArrayList<Food> foods) {
 		this.setName(name);
 		this.setFoods(foods);
