@@ -49,6 +49,7 @@ public class AddRestaurantScreen extends JFrame {
 	 * @param username 
 	 */
 	public AddRestaurantScreen(String username) {
+		setBackground(new Color(253, 245, 230));
 		this.username = username;
 		initComponents();
 	}
@@ -69,13 +70,13 @@ public class AddRestaurantScreen extends JFrame {
 		contentPane.setLayout(null);
 		
 		txtRestaurantName = new JTextField();
-		txtRestaurantName.setBounds(1103, 236, 295, 52);
+		txtRestaurantName.setBounds(987, 237, 295, 52);
 		contentPane.add(txtRestaurantName);
 		txtRestaurantName.setColumns(10);
 		
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setIcon(new ImageIcon(AddRestaurantScreen.class.getResource("/resources/login.png")));
-		btnSubmit.setBounds(1205, 337, 193, 66);
+		btnSubmit.setBounds(1089, 338, 193, 66);
 		
 		btnSubmit.addMouseListener(new MouseAdapter() {
 			@Override
@@ -115,7 +116,7 @@ public class AddRestaurantScreen extends JFrame {
 		
 		lblRestaurantName = new JLabel("Restaurant Name:");
 		lblRestaurantName.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
-		lblRestaurantName.setBounds(903, 235, 199, 52);
+		lblRestaurantName.setBounds(787, 236, 199, 52);
 		contentPane.add(lblRestaurantName);
 		
 		labelIcon = new JLabel("");

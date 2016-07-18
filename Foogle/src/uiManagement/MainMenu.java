@@ -959,7 +959,7 @@ public class MainMenu extends JFrame {
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				LoginScreen loginScreen = new LoginScreen();
+				LoginScreen loginScreen = new LoginScreen("");
 				loginScreen.setVisible(true);
 			
 			}
