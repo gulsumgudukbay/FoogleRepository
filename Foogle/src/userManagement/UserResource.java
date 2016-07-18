@@ -40,6 +40,11 @@ public class UserResource {
 	public int getRestaurantOwner(String username) {
 		udb.getRestaurantOwnerID(username);
 	}
-	// TODO: Search method
-	// Calls search controller's methods
+	// Search method, returns list of food
+	public ArrayList<Food> searchFood(ArrayList<Integer> guiInput, String types) {
+		ArrayList<String> unwanted = sc.getUnwantedIngredients(guiInput);
+		ArrayList<String> wanted = sc.getWantedIngredients(guiInput);
+		
+		return sc.showResults(wanted, unwanted, types);
+	}
 }
