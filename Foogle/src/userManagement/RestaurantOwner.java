@@ -1,12 +1,11 @@
 package userManagement;
-
 import java.util.ArrayList;
 
-import restaurantAndFoodManagement.Restaurant;
 import dataManagement.RestDB;
 import dataManagement.UserDB;
 import restaurantAndFoodManagement.Food;
 import restaurantAndFoodManagement.Ingredient;
+import restaurantAndFoodManagement.Restaurant;
 import restaurantAndFoodManagement.Restaurant;
 import searchManagement.SearchController;
 

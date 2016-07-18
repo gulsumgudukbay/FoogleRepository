@@ -15,12 +15,14 @@ public class Food {
 	// TODO: enum type & cuisine
 	
 	// MARK: Constructors
-	public Food(String name, double price, ArrayList<Ingredient> ingredients) {
+	public Food(String name, String cuisine, double price, ArrayList<Ingredient> ingredients) {
+		this.setCuisine(cuisine);
 		this.setName(name);
 		this.setPrice(price);
 		this.setIngredients(ingredients);
 	}
 	public Food() {
+		this.cuisine = "";
 		this.type = "";
 		this.name = "";
 		this.price = 0.0;
@@ -30,9 +32,11 @@ public class Food {
 	// MARK: Methods
 	// Accessors and Mutators
 	public String getCuisine() {
+		System.out.println("CUISINE "+ cuisine);
 		return cuisine;
 	}
 	public void setCuisine(String cuisine) {
+		System.out.println("SETTING "+cuisine);
 		this.cuisine = cuisine;
 	}
 	public String getType() {
@@ -112,12 +116,12 @@ public class Food {
 		myIngredients.add(myChicken);
 		myIngredients.add(myFries);
 		
-		Food myFood = new Food("donner", 10.0, myIngredients);
+		//Food myFood = new Food("donner", 10.0, myIngredients);
 		
-		System.out.println(myFood.getName());
-		System.out.println(myFood.getPrice());
-		System.out.println(myFood.getIngredients());
+		//System.out.println(myFood.getName());
+		//System.out.println(myFood.getPrice());
+		//System.out.println(myFood.getIngredients());
 		
-		myFood.getIngredient("tomato");
+		//myFood.getIngredient("tomato");
 	}
 }

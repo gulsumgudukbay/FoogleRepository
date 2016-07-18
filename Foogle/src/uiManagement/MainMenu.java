@@ -437,11 +437,11 @@ public class MainMenu extends JFrame {
 		
 		for(int i=0;i<foodList.size();i++)
 			if(foodtype.equals("meal"))
-				searchListMeal.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+				searchListMeal.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
 			else if(foodtype.equals("dessert"))
-				searchListDessert.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+				searchListDessert.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
 			else
-				searchListBeverage.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+				searchListBeverage.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
 				
 	}
 
@@ -549,6 +549,7 @@ public class MainMenu extends JFrame {
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
+					System.out.println(((Food)value).getCuisine());
 					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
 				}
 				return renderer;
