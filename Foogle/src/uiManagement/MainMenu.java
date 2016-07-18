@@ -502,7 +502,7 @@ public class MainMenu extends JFrame {
 					btnDontCareBeverage.setVisible(false);
 					btnOkBeverage.setVisible(false);
 				}
-				if(checkBoxBeverage.isEnabled() || checkBoxDessert.isEnabled() || checkBoxMeal.isEnabled() )
+				if(checkBoxBeverage.isEnabled() && checkBoxDessert.isEnabled() && checkBoxMeal.isEnabled() )
 					JOptionPane.showMessageDialog(null, "Please select at least one of food type and ingredients :)");
 			}
 		});
