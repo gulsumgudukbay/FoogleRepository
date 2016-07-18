@@ -42,6 +42,7 @@ public class MyAccountScreen extends JFrame {
 	private JScrollPane scrollPane = new JScrollPane();
 	private JLabel lblRestaurant = new JLabel("Restaurant:");
 	private JLabel lblFood = new JLabel("Food:");
+	private static String username;
 
 	
 	/**
@@ -51,7 +52,7 @@ public class MyAccountScreen extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MyAccountScreen frame = new MyAccountScreen();
+					MyAccountScreen frame = new MyAccountScreen(username);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,9 +63,11 @@ public class MyAccountScreen extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param username 
 	 */
-	public MyAccountScreen() {
+	public MyAccountScreen(String username) {
 		
+		this.username = username;
 		rests[0] = "THE BEST REST";
 		rests[1] = "REST 2";
 		rests[2] = "REST 3";
@@ -89,32 +92,36 @@ public class MyAccountScreen extends JFrame {
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				LoggedInScreen loggedInScreen = new LoggedInScreen();
+				LoggedInScreen loggedInScreen = new LoggedInScreen(username);
 				loggedInScreen.setVisible(true);
 				dispose();
 			}
 		});
 				
 		restaurants.setBackground(new Color(250, 240, 230));
+		
+		JLabel lblHi = new JLabel("Hi " + username + "!");
+		lblHi.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
 
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(54)
+					.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
+					.addGap(101)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(54)
-							.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(300)
-							.addComponent(restaurants, GroupLayout.PREFERRED_SIZE, 921, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(lblHi)
+						.addComponent(restaurants, GroupLayout.PREFERRED_SIZE, 921, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(209, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(38)
-					.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblHi))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(restaurants, GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
 					.addContainerGap())

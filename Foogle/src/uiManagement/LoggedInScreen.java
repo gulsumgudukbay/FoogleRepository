@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 public class LoggedInScreen extends JFrame {
 	
 	private JPanel contentPane;
+	private static String username;
 	
 	public static void main(String[] args) 
 	{
@@ -28,7 +29,7 @@ public class LoggedInScreen extends JFrame {
 				
 				try 
 				{
-					LoggedInScreen frame = new LoggedInScreen();
+					LoggedInScreen frame = new LoggedInScreen(username);
 					frame.setVisible(true);
 				} 
 				catch (Exception e) 
@@ -39,7 +40,8 @@ public class LoggedInScreen extends JFrame {
 		});
 	}	
 	
-	public LoggedInScreen() {
+	public LoggedInScreen(String username) {
+		this.username = username;
 		initComponents();
 	}
 	
@@ -56,9 +58,10 @@ public class LoggedInScreen extends JFrame {
 		
 		JButton btnAddRes = new JButton("Add a Restaurant");
 		btnAddRes.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/shop.png")));
+		
 		btnAddRes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddRestaurantScreen addResScreen = new AddRestaurantScreen();
+				AddRestaurantScreen addResScreen = new AddRestaurantScreen(username);
 				addResScreen.setVisible(true);
 				dispose();
 			}
@@ -92,7 +95,7 @@ public class LoggedInScreen extends JFrame {
 		btnMyAcc.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MyAccountScreen myAccScreen = new MyAccountScreen();
+				MyAccountScreen myAccScreen = new MyAccountScreen(username);
 				myAccScreen.setVisible(true);
 				dispose();
 			}
@@ -126,5 +129,10 @@ public class LoggedInScreen extends JFrame {
 		lblicon.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/chef-2.png")));
 		lblicon.setBounds(187, 156, 542, 413);
 		getContentPane().add(lblicon);
+		
+		JLabel lblHi = new JLabel("Hi " + username + "!");
+		lblHi.setFont(new Font("Lantinghei SC", Font.PLAIN, 25));
+		lblHi.setBounds(804, 156, 302, 42);
+		getContentPane().add(lblHi);
 	}
 }
