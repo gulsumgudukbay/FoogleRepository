@@ -1,62 +1,37 @@
 package uiManagement;
-import java.awt.Dimension;
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.Component;
-
-import javax.swing.JRadioButton;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
-import javax.swing.JPasswordField;
-import java.awt.Button;
-import javax.swing.JButton;
-import java.awt.Toolkit;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.ImageIcon;
-import javax.swing.UIManager;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.JList;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.border.CompoundBorder;
-import javax.swing.JTree;
-import javax.swing.tree.DefaultTreeModel;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 import dataManagement.RestDB;
 import restaurantAndFoodManagement.Food;
 import restaurantAndFoodManagement.Ingredient;
-
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.JScrollPane;
-import java.awt.SystemColor;
-import javax.swing.border.TitledBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.DefaultListModel;
-
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.ButtonGroup;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import javax.swing.JProgressBar;
 public class MainMenu extends JFrame {
 
 	private JPanel contentPane;
@@ -80,12 +55,8 @@ public class MainMenu extends JFrame {
 	private JRadioButton btnWantedMeal;
 	private JLabel lblSelectMeal;
 	
-	private int index = 0;
-	private int maxIndex = 100;
-	
 	//Array lists for meal
 	private ArrayList<Object> wantedIngredientsMeal;
-	private ArrayList<Ingredient> testlistMeal;
 	private ArrayList<Object> unwantedIngredientsMeal;
 	
 	//Array lists for dessert
@@ -124,11 +95,12 @@ public class MainMenu extends JFrame {
 	
 	//FOR SEARCH RESULTS
 	DefaultListModel<Food> searchList = new DefaultListModel<Food>();
-	private ArrayList<Food> myTestIngList;
+	//private ArrayList<Food> myTestIngList;
 	private JList lstResultMeals;
 	private JScrollPane scrMeal;
 	private JButton btnFinish;
 	public RestDB restdb = RestDB.getSoleInstance();
+	public ArrayList<Food> hh = new ArrayList<Food>();
 
 	/**
 	 * Launch the application.
@@ -411,15 +383,10 @@ public class MainMenu extends JFrame {
 		//creating a test list model for placing all ingredients to the combo box
 		DefaultComboBoxModel testListModelMeal = (DefaultComboBoxModel) comboBoxForMeal.getModel();
 		
-		//test list for getting ingredient array list
-		testlistMeal = new ArrayList<Ingredient>();
-		testlistMeal.add(new Ingredient("domates"));
-		testlistMeal.add(new Ingredient("patlican"));
-		testlistMeal.add(new Ingredient("biber"));
-		testlistMeal.add(new Ingredient("havuc"));
-		
 		for(int i=0;i<restdb.getAllIngredients().size();i++)
 			testListModelMeal.addElement(restdb.getAllIngredients().get(i).getName());
+		
+		
 		
 		//FOR DESSERT TEST
 		
@@ -453,11 +420,11 @@ public class MainMenu extends JFrame {
 		
 		
 		//FOR SEARCH RESULTS
-		myTestIngList = new ArrayList<Food>();
-	    myTestIngList.add(new Food("waffle",5.25,testlistDessert));
-	    myTestIngList.add(new Food("tiramisu",10.25,testlistDessert));
-	    myTestIngList.add(new Food("kek",1.25,testlistDessert));
-		initSearchList(myTestIngList);
+//		myTestIngList = new ArrayList<Food>();
+//	    myTestIngList.add(new Food("waffle",5.25,testlistDessert));
+//	    myTestIngList.add(new Food("tiramisu",10.25,testlistDessert));
+//	    myTestIngList.add(new Food("kek",1.25,testlistDessert));
+//		initSearchList(myTestIngList);
 		
 	}
 	
@@ -625,6 +592,18 @@ public class MainMenu extends JFrame {
 				for(int i=0;i<unwantedIngredientsMeal.size();i++){
 					System.out.println(newListUnwantedMeal.get(i).getName());
 				}
+				
+				ArrayList<String> wanted = new ArrayList<String>();
+				ArrayList<String> unwanted = new ArrayList<String>();
+				for(int i=0;i<newListWantedMeal.size();i++)
+					wanted.add(newListWantedMeal.get(i).getName());
+					
+				for(int i=0;i<newListUnwantedMeal.size();i++)
+					unwanted.add(newListUnwantedMeal.get(i).getName());
+				
+				
+				hh = restdb.getFoodList(wanted, unwanted, "meal");
+				initSearchList(hh);
 				
 				mealpanel.setVisible(false);
 				checkBoxMeal.setEnabled(false);
