@@ -13,6 +13,12 @@ public class Restaurant {
 		this.name = "";
 		this.foods = new ArrayList<Food>();
 	}
+	
+	public Restaurant(String name) {
+		this.setName(name);
+		this.foods = new ArrayList<Food>();
+	}
+	
 	public Restaurant(String name, ArrayList<Food> foods) {
 		this.setName(name);
 		this.setFoods(foods);
@@ -89,7 +95,7 @@ public class Restaurant {
 		mySecondIngredients.add(myPotato);
 		
 		Food myFirstFood = new Food("donner", 10.0, myFirstIngredients);
-		Food mySecondFood = new Food("donmez", 8.0, mySecondIngredients); // dad jokes :D
+		Food mySecondFood = new Food("donmez", 8.0, mySecondIngredients);
 		
 		ArrayList<Food> myFoods = new ArrayList<Food>();
 		myFoods.add(myFirstFood);

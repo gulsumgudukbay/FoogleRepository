@@ -1,7 +1,13 @@
 package restaurantAndFoodManagement;
 
+import java.util.ArrayList;
+
+import dataManagement.RestDB;
+
 public class Ingredient {
 	String name;
+	boolean isConfirmed;
+	RestDB rdb = RestDB.getSoleInstance();
 	
 	public Ingredient() {
 		this.name = "";
@@ -16,4 +22,14 @@ public class Ingredient {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String toString(){
+		return name;
+	}
+	public boolean isConfirmed() {
+		return isConfirmed;
+	}
+	public void setConfirmed(boolean isConfirmed) {
+		this.isConfirmed = isConfirmed;
+	}
+	
 }

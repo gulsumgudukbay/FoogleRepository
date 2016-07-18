@@ -6,19 +6,22 @@ import java.util.*;
 public class Food {
 	// MARK: Properties
 	private String name;
-	private Double price;
+	private String cuisine;
+	private String type;
+	private double price;
 	private ArrayList<Ingredient> ingredients;
 	// TODO: private OtheringProcessor oip;
 	// TODO: private String otheringBuff; 
 	// TODO: enum type & cuisine
 	
 	// MARK: Constructors
-	public Food(String name, Double price, ArrayList<Ingredient> ingredients) {
+	public Food(String name, double price, ArrayList<Ingredient> ingredients) {
 		this.setName(name);
 		this.setPrice(price);
 		this.setIngredients(ingredients);
 	}
 	public Food() {
+		this.type = "";
 		this.name = "";
 		this.price = 0.0;
 		this.ingredients = new ArrayList<Ingredient>();
@@ -26,10 +29,22 @@ public class Food {
 	
 	// MARK: Methods
 	// Accessors and Mutators
+	public String getCuisine() {
+		return cuisine;
+	}
+	public void setCuisine(String cuisine) {
+		this.cuisine = cuisine;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public String getName() {
 		return this.name;
 	}
-	public Double getPrice() {
+	public double getPrice() {
 		return this.price;
 	}
 	public ArrayList<Ingredient> getIngredients() {
@@ -38,7 +53,7 @@ public class Food {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public void setPrice(Double price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	public void setIngredients(ArrayList<Ingredient> ingredients) {
@@ -46,6 +61,21 @@ public class Food {
 	}
 	
 	// Utility methods
+	public boolean searchInIngredients(String nameOfIngredient){
+		for(int i = 0; i < ingredients.size();i++)
+			if(ingredients.get(i).getName().equals(nameOfIngredient))
+				return true;
+		return false;
+	}
+	
+	public String toString(){
+		String result = "";
+		result+= name+" "+type+" "+price+" ingredients: ";
+		for(int i = 0; i < ingredients.size();i++)
+			result+= ingredients.get(i)+" ";
+		return result;
+	}
+	
 	// Finds the ingredient with given name, in ingredients array list and returns it
 	public Ingredient getIngredient(String name) {
 		for(Ingredient temp: ingredients) {

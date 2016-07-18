@@ -2,15 +2,28 @@ package userManagement;
 
 import java.util.ArrayList;
 
+<<<<<<< HEAD
 import restaurantAndFoodManagement.Restaurant;
+=======
+import dataManagement.RestDB;
+import dataManagement.UserDB;
+import restaurantAndFoodManagement.Food;
+import restaurantAndFoodManagement.Ingredient;
+import restaurantAndFoodManagement.Restaurant;
+import searchManagement.SearchController;
+>>>>>>> branch 'master' of https://github.com/gulsumgudukbay/FoogleRepository.git
 
 public class RestaurantOwner extends User {
+	RestDB rdb = RestDB.getSoleInstance();
+	UserDB udb = UserDB.getSoleInstance();
+	SearchController sc = new SearchController();
+	
 	// MARK: Properties
 	private String username;
 	private String password;
 	private String email;
 	private ArrayList<Restaurant> restaurants;
-	private Int restaurantNo;
+	private int restaurantNo;
 	
 	// MARK: Contructors
 	public RestaurantOwner() {
@@ -43,7 +56,7 @@ public class RestaurantOwner extends User {
 	public ArrayList<Restaurant> getRestaurants() {
 		return restaurants;
 	}
-	public Int getRestaurantNo() {
+	public int getRestaurantNo() {
 		return restaurantNo;
 	}
 	
@@ -59,25 +72,48 @@ public class RestaurantOwner extends User {
 	public void setRestaurants(ArrayList<Restaurant> restaurants) {
 		this.restaurants = restaurants;
 	}
-	public void setRestaurantNo(Int restaurantNo) {
+	public void setRestaurantNo(int restaurantNo) {
 		this.restaurantNo = restaurantNo;
 	}
 	
 	// Utility methods
-	public void addRestaurant(Restuarant restaurant) {
-		
+	// Creates a new restaurant by calling db method and appends it to restaurants list.
+	public void addRestaurant(Restaurant restaurant) {
+		rdb.createRestaurant(restaurant.getName(), this.getUsername());
+		restaurants.add(restaurant);
 	}
-	public void addFoodToRestaurant(Food food) {
-		
+	public void addFoodToRestaurant(Food food, Restaurant restaurant, ArrayList<Ingredient> ingredients) {
+		rdb.createFoodToExistingRestaurant(restaurant.getName(),this.getUsername(), food.getName(), food.getType(), food.getCuisine(), food.getPrice(), ingredients);
 	}
+	// FIXME: Ambiguous method decleration
 	// Foods of a specific restaurant? All restaurants?
 	public void viewFoods() {
-		
+		/*for(Restaurant restaurant: restaurants) {
+			rdb.getAllFoods(restaurant.getName());
+		}*/
 	}
 	public void viewRestaurants() {
-		
+		for(int i = 0; i < this.restaurants.size(); i++) {
+			System.out.println("Restaurant #" + i + "\t" + restaurants.get(i));
+		}
 	}
-	public void getRestaurant(name) {
-		
+	// Returns restaurant with the given name, in restaurants list.
+	public Restaurant getRestaurant(String name) {
+		for(Restaurant restaurant: restaurants) {
+			if(restaurant.getName() == name) {
+				return restaurant;
+			}
+		}
+		return null;
+	}
+	// Sign Up method
+	public void createRestaurantOwnerAccount(String username, String password, String email) {
+		udb.createRestaurantOwnerAccount(username, password, email);
+	}
+	// Login method
+	public void loginAsRestaurantOwner(String username, String password) {
+		if(udb.isAuthenticated(username, password)) {
+			System.out.println("Welcome back, " + username);
+		}
 	}
 }
