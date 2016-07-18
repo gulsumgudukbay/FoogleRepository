@@ -32,6 +32,7 @@ public class LoginScreen extends JFrame {
 	private JTextField userNameTextField;
 	private JPasswordField passwordField;
 	private JLabel bossImage;
+	private static String username;
 
 	/**
 	 * Launch the application.
@@ -150,6 +151,13 @@ public class LoginScreen extends JFrame {
 		
 	}
 	
+	public static String getUsername(){
+		return username;
+	}
+	
+	public static void resetUsername(){
+		username = null;
+	}
 	private void createEvents() {
 		
 		
@@ -157,8 +165,11 @@ public class LoginScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 //				if(isAuthenticated(userNameTextField.getText(),passwordField.getPassword()))
 //					JOptionPane.showMessageDialog(null,"Welcome " + userNameTextField.getText());
+//					username =userNameTextField.getText();
 			}
 		});
+		
+		
 		
 		btnback.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
