@@ -881,7 +881,7 @@ public class MainMenu extends JFrame {
 					unwantedBeverage.add(newListUnwantedBeverage.get(i).getName());
 				
 				
-				hhBeverage = restdb.getFoodList(wantedBeverage, unwantedBeverage, "dessert");
+				hhBeverage = restdb.getFoodList(wantedBeverage, unwantedBeverage, "beverage");
 				initSearchList(hhBeverage);
 				////////////////////
 				
