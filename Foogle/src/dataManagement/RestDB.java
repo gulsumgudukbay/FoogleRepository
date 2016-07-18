@@ -518,7 +518,7 @@ public class RestDB {
 		ings.add(ing1);
 		ings.add(ing2);
 
-		System.out.println(rdb.createFoodToExistingRestaurant("testRestaurant", "test2", "CREATEDFOOD", "meal", "Chinese", 19.99, ings));
+		rdb.createFoodToExistingRestaurant("testRestaurant", "test2", "CREATEDFOOD", "meal", "Chinese", 19.99, ings);
 
 		rdb.getFoodList(wanted, unwanted, "meal");
 
