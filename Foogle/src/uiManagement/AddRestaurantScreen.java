@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import dataManagement.RestDB;
+import javax.swing.JLabel;
 
 // IMAGE EKLENECEK
 // OLUŞAN RESTORAN DATABASEE EKLENECEK
@@ -24,6 +25,8 @@ public class AddRestaurantScreen extends JFrame {
 	private JTextField txtRestaurantName;
 	private JButton btnBack;
 	private static String username;
+	private JLabel lblRestaurantName;
+	private JLabel labelIcon;
 	
 	/**
 	 * Launch the application.
@@ -53,7 +56,7 @@ public class AddRestaurantScreen extends JFrame {
 	
 	public void initComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Add a new restaurant");
+		setTitle("Foogle");
 		setBounds(200, 200, 1440, 800);
 		
 		setResizable(false);
@@ -66,12 +69,13 @@ public class AddRestaurantScreen extends JFrame {
 		contentPane.setLayout(null);
 		
 		txtRestaurantName = new JTextField();
-		txtRestaurantName.setText("Enter Restaurant Name Here");
-		txtRestaurantName.setBounds(362, 103, 295, 45);
+		txtRestaurantName.setBounds(1103, 236, 295, 52);
 		contentPane.add(txtRestaurantName);
 		txtRestaurantName.setColumns(10);
 		
 		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.setIcon(new ImageIcon(AddRestaurantScreen.class.getResource("/resources/login.png")));
+		btnSubmit.setBounds(1205, 337, 193, 66);
 		
 		btnSubmit.addMouseListener(new MouseAdapter() {
 			@Override
@@ -90,13 +94,12 @@ public class AddRestaurantScreen extends JFrame {
 					
 			}
 		});
-		
-		btnSubmit.setBounds(540, 160, 117, 45);
 		contentPane.add(btnSubmit);
 		
 		btnSubmit.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		btnBack = new JButton("Back");
+		btnBack.setBounds(59, 43, 152, 76);
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -105,10 +108,19 @@ public class AddRestaurantScreen extends JFrame {
 				dispose();
 			}
 		});
-		btnBack.setBounds(59, 43, 145, 56);
 		contentPane.add(btnBack);
 		
 		btnBack.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
 		btnBack.setIcon(new ImageIcon(LoginScreen.class.getResource("/resources/back_64.png")));
+		
+		lblRestaurantName = new JLabel("Restaurant Name:");
+		lblRestaurantName.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
+		lblRestaurantName.setBounds(903, 235, 199, 52);
+		contentPane.add(lblRestaurantName);
+		
+		labelIcon = new JLabel("");
+		labelIcon.setBounds(184, 161, 604, 477);
+		labelIcon.setIcon(new ImageIcon(AddRestaurantScreen.class.getResource("/resources/table.png")));
+		contentPane.add(labelIcon);
 	}
 }

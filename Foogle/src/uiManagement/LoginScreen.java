@@ -45,7 +45,7 @@ public class LoginScreen extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LoginScreen frame = new LoginScreen();
+					LoginScreen frame = new LoginScreen(username);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,9 +56,10 @@ public class LoginScreen extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param string 
 	 */
-	public LoginScreen() {
-	
+	public LoginScreen(String username) {
+		this.username = username;
 		initComponents();
 		createEvents();
 		
@@ -157,10 +158,6 @@ public class LoginScreen extends JFrame {
 	
 	public static String getUsername(){
 		return username;
-	}
-	
-	public static void resetUsername(){
-		username = null;
 	}
 	
 	private void createEvents() {

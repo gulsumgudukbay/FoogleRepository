@@ -134,5 +134,18 @@ public class LoggedInScreen extends JFrame {
 		lblHi.setFont(new Font("Lantinghei SC", Font.PLAIN, 25));
 		lblHi.setBounds(804, 156, 302, 42);
 		getContentPane().add(lblHi);
+		
+		JButton button = new JButton("Back");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				LoginScreen loginScreen = new LoginScreen("");
+				loginScreen.setVisible(true);
+			}
+		});
+		button.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/back_64.png")));
+		button.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
+		button.setBounds(51, 24, 151, 76);
+		getContentPane().add(button);
 	}
 }
