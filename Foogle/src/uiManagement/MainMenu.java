@@ -465,45 +465,49 @@ public class MainMenu extends JFrame {
 	{
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				btnFinish.setVisible(true);
-				btnSearch.setVisible(false);
 				
-				if(!checkBoxMeal.isEnabled()){
-					mealpanel.setVisible(true);
-					scrMeal.setVisible(true);
-					lblSelectMeal.setVisible(false);
-					comboBoxForMeal.setVisible(false);
-					labelmealback.setVisible(false);
-					btnWantedMeal.setVisible(false);
-					btnUnwantedMeal.setVisible(false);
-					btnDontCareMeal.setVisible(false);
-					btnOkMeal.setVisible(false);
-				}
-				if (!checkBoxDessert.isEnabled()){
-					dessertpanel.setVisible(true);
-					scrDessert.setVisible(true);
-					lblSelectDessert.setVisible(false);
-					comboBoxForDessert.setVisible(false);
-					lbldessertback.setVisible(false);
-					btnWantedDessert.setVisible(false);
-					btnUnwantedDessert.setVisible(false);
-					btnDontCareDessert.setVisible(false);
-					btnOkDessert.setVisible(false);
-					
-				}
-				if (!checkBoxBeverage.isEnabled()){
-					beveragepanel.setVisible(true);
-					scrBeverage.setVisible(true);
-					lblSelectBeverage.setVisible(false);
-					comboBoxForBeverage.setVisible(false);
-					lblbeverageback.setVisible(false);
-					btnWantedBeverage.setVisible(false);
-					btnUnwantedBeverage.setVisible(false);
-					btnDontCareBeverage.setVisible(false);
-					btnOkBeverage.setVisible(false);
-				}
 				if(checkBoxBeverage.isEnabled() && checkBoxDessert.isEnabled() && checkBoxMeal.isEnabled() )
 					JOptionPane.showMessageDialog(null, "Please select at least one of food type and ingredients :)");
+				else{
+					btnFinish.setVisible(true);
+					btnSearch.setVisible(false);
+					
+					if(!checkBoxMeal.isEnabled()){
+						mealpanel.setVisible(true);
+						scrMeal.setVisible(true);
+						lblSelectMeal.setVisible(false);
+						comboBoxForMeal.setVisible(false);
+						labelmealback.setVisible(false);
+						btnWantedMeal.setVisible(false);
+						btnUnwantedMeal.setVisible(false);
+						btnDontCareMeal.setVisible(false);
+						btnOkMeal.setVisible(false);
+					
+					}
+					if (!checkBoxDessert.isEnabled()){
+						dessertpanel.setVisible(true);
+						scrDessert.setVisible(true);
+						lblSelectDessert.setVisible(false);
+						comboBoxForDessert.setVisible(false);
+						lbldessertback.setVisible(false);
+						btnWantedDessert.setVisible(false);
+						btnUnwantedDessert.setVisible(false);
+						btnDontCareDessert.setVisible(false);
+						btnOkDessert.setVisible(false);
+					
+					}
+					if (!checkBoxBeverage.isEnabled()){
+						beveragepanel.setVisible(true);
+						scrBeverage.setVisible(true);
+						lblSelectBeverage.setVisible(false);
+						comboBoxForBeverage.setVisible(false);
+						lblbeverageback.setVisible(false);
+						btnWantedBeverage.setVisible(false);
+						btnUnwantedBeverage.setVisible(false);
+						btnDontCareBeverage.setVisible(false);
+						btnOkBeverage.setVisible(false);
+					}
+				}	
 			}
 		});
 		

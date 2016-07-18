@@ -177,7 +177,7 @@ public class LoginScreen extends JFrame {
 					JOptionPane.showMessageDialog(null,"Welcome " + userNameTextField.getText());
 					username =userNameTextField.getText();
 					dispose();
-					LoginScreen loggedInScreen = new LoginScreen();
+					LoggedInScreen loggedInScreen = new LoggedInScreen();
 					loggedInScreen.setVisible(true);
 					
 				}
