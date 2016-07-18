@@ -1,5 +1,9 @@
 package userManagement;
 
+import java.util.ArrayList;
+
+import restaurantAndFoodManagement.Restaurant;
+
 public class RestaurantOwner extends User {
 	// MARK: Properties
 	private String username;

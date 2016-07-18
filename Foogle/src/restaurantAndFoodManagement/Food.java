@@ -58,6 +58,17 @@ public class Food {
 		System.out.println("Ingredient " + name + " not found.");
 		return null;
 	}
+	
+	public String listToString() {
+	    String result = "Ingredients: ";
+	    for (int i = 0; i < ingredients.size(); i++) {
+	    	if(i != ingredients.size() -1 )
+	    		result += ingredients.get(i).getName() + ",";
+	    	else
+	    		result += ingredients.get(i).getName();
+	    }
+	    return result;
+	}
 	// TODO: insertToPending(otheringBuf)
 	
 	// TEST

@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -27,6 +28,10 @@ public class LoginScreen extends JFrame {
 	private JLabel lblUserName;
 	private JLabel lblPassword;
 	private JButton btnback;
+	private JButton btnCreate;
+	private JTextField userNameTextField;
+	private JPasswordField passwordField;
+	private JLabel bossImage;
 
 	/**
 	 * Launch the application.
@@ -52,7 +57,6 @@ public class LoginScreen extends JFrame {
 		initComponents();
 		createEvents();
 		
-		
 	}
 
 	private void initComponents() {
@@ -66,10 +70,10 @@ public class LoginScreen extends JFrame {
 	    pack();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
-		JTextField userNameTextField = new JTextField();
+		userNameTextField = new JTextField();
 		userNameTextField.setColumns(10);
 		
-		JPasswordField passwordField = new JPasswordField();
+		passwordField = new JPasswordField();
 		
 		lblUserName = new JLabel("User Name:");
 		lblUserName.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
@@ -82,10 +86,10 @@ public class LoginScreen extends JFrame {
 		btnLogin.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
 		btnLogin.setIcon(new ImageIcon(LoginScreen.class.getResource("/resources/login.png")));
 		
-		JLabel bossImage = new JLabel("");
+		bossImage = new JLabel("");
 		bossImage.setIcon(new ImageIcon(LoginScreen.class.getResource("/resources/boss.png")));
 		
-		JButton btnCreate = new JButton("Don't have an account?");
+		btnCreate = new JButton("Don't have an account?\nGet one now!");
 		btnCreate.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
 		
 		btnback = new JButton("Back");
@@ -97,16 +101,13 @@ public class LoginScreen extends JFrame {
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-							.addGap(44)
-							.addComponent(btnback, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 764, Short.MAX_VALUE)
-							.addComponent(btnCreate, GroupLayout.PREFERRED_SIZE, 277, GroupLayout.PREFERRED_SIZE))
+					.addGap(43)
+					.addComponent(btnback, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addContainerGap()
+							.addGap(7)
 							.addComponent(bossImage)
-							.addGap(197)
+							.addGap(101)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 								.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
 								.addGroup(gl_contentPane.createSequentialGroup()
@@ -116,33 +117,34 @@ public class LoginScreen extends JFrame {
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addComponent(userNameTextField, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
-										.addComponent(passwordField, 219, 219, 219))))))
-					.addGap(174))
+										.addComponent(passwordField, 219, 219, 219)))))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(703)
+							.addComponent(btnCreate, GroupLayout.PREFERRED_SIZE, 357, GroupLayout.PREFERRED_SIZE)))
+					.addGap(176))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(29)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(btnCreate, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnback, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addGap(44)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnCreate, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnback))
+					.addPreferredGap(ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(71)
-							.addComponent(bossImage)
-							.addContainerGap())
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addGap(178)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblUserName)
-								.addComponent(userNameTextField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-							.addGap(68)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblPassword)
-								.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
-							.addGap(140)
-							.addComponent(btnLogin)
-							.addGap(150))))
+						.addComponent(lblUserName)
+						.addComponent(userNameTextField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+					.addGap(68)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblPassword)
+						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+					.addGap(140)
+					.addComponent(btnLogin)
+					.addGap(150))
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addContainerGap(181, Short.MAX_VALUE)
+					.addComponent(bossImage)
+					.addGap(97))
 		);
 		contentPane.setLayout(gl_contentPane);
 		
@@ -150,8 +152,11 @@ public class LoginScreen extends JFrame {
 	
 	private void createEvents() {
 		
+		
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+//				if(isAuthenticated(userNameTextField.getText(),passwordField.getPassword()))
+//					JOptionPane.showMessageDialog(null,"Welcome " + userNameTextField.getText());
 			}
 		});
 		
@@ -160,6 +165,14 @@ public class LoginScreen extends JFrame {
 				dispose();
 				MainMenu mainmenu = new MainMenu();
 				mainmenu.setVisible(true);
+			}
+		});
+		
+		btnCreate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				CreateAccountScreen createAccount = new CreateAccountScreen();
+				createAccount.setVisible(true);
 			}
 		});
 		
