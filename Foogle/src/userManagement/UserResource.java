@@ -11,9 +11,14 @@ import searchManagement.SearchController;
 public class UserResource {
 	// MARK: Properties
 	private ArrayList<User> users;
-	// TODO: Database instance
+	RestDB rdb = RestDB.getSoleInstance();
+	UserDB udb = UserDB.getSoleInstance();
+	SearchController sc = new SearchController();
 	
-	// TODO: Constructors
+	// MARK: Constructors
+	public UserResource() {
+		users = new ArrayList<User>();
+	}
 	
 	// MARK: Methods
 	// Accessors and Mutators
@@ -24,8 +29,16 @@ public class UserResource {
 		this.users = users;
 	}
 
-	// TODO: Utility methods ?
-	// listAllUsers
-	// getRestaurantOwner(username)
-	// searchFood(inputs)
+	// Utility methods 
+	public void listAllUsers() {
+		for(int i = 0; i < this.users.size(); i++) {
+			System.out.println("User #" + i + "\t" + users.get(i));
+		}
+	}
+	// FIXME: Both UserDB and RestDB has the same (getRestaurantOwnerID) method
+	// Returns restaurant owner's id with given name
+	public int getRestaurantOwner(String username) {
+		udb.getRestaurantOwnerID(username);
+	}
+	// TODO: Search method
 }
