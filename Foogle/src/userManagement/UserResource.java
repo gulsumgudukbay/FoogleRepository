@@ -41,4 +41,5 @@ public class UserResource {
 		udb.getRestaurantOwnerID(username);
 	}
 	// TODO: Search method
+	// Calls search controller's methods
 }
