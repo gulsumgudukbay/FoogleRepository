@@ -10,6 +10,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 // IMAGE EKLENECEK
 
@@ -44,7 +46,7 @@ public class LoggedInScreen extends JFrame {
 	
 	public void initComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Restaurant Owner");
+		setTitle("Foogle");
 		setBounds(200, 200, 1440, 800);
 		
 		setResizable(false);
@@ -53,6 +55,7 @@ public class LoggedInScreen extends JFrame {
 		getContentPane().setBackground(new Color(250, 240, 230));
 		
 		JButton btnAddRes = new JButton("Add a Restaurant");
+		btnAddRes.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/shop.png")));
 		btnAddRes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AddRestaurantScreen addResScreen = new AddRestaurantScreen();
@@ -61,11 +64,16 @@ public class LoggedInScreen extends JFrame {
 			}
 		});
 		
-		btnAddRes.setBounds(371, 149, 199, 56);
+		btnAddRes.setBounds(862, 270, 329, 86);
 		getContentPane().add(btnAddRes);
 		
 		
 		JButton btnAddFood = new JButton("Add Food");
+		btnAddFood.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnAddFood.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/hamburguer.png")));
 		btnAddFood.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -75,11 +83,12 @@ public class LoggedInScreen extends JFrame {
 			}
 		});
 		
-		btnAddFood.setBounds(371, 217, 199, 56);
+		btnAddFood.setBounds(862, 405, 329, 86);
 		getContentPane().add(btnAddFood);
 		
 		
 		JButton btnMyAcc = new JButton("My Account");
+		btnMyAcc.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/round-account-button-with-user-inside.png")));
 		btnMyAcc.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -89,11 +98,12 @@ public class LoggedInScreen extends JFrame {
 			}
 		});
 		
-		btnMyAcc.setBounds(1264, 20, 133, 42);
+		btnMyAcc.setBounds(1214, 24, 196, 76);
 		getContentPane().add(btnMyAcc);
 		
 		
 		JButton btnLogout = new JButton("Logout");
+		btnLogout.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/logout.png")));
 		btnLogout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -103,13 +113,18 @@ public class LoggedInScreen extends JFrame {
 			}
 		});
 		
-		btnLogout.setBounds(1264, 82, 133, 42);
+		btnLogout.setBounds(1214, 112, 196, 76);
 		getContentPane().add(btnLogout);
 		
 		
 		btnLogout.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		btnMyAcc.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		btnAddFood.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		btnAddRes.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		btnAddFood.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
+		btnAddRes.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
+		
+		JLabel lblicon = new JLabel("");
+		lblicon.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/chef-2.png")));
+		lblicon.setBounds(187, 156, 542, 413);
+		getContentPane().add(lblicon);
 	}
 }

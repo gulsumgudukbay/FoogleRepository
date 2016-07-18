@@ -465,7 +465,10 @@ public class MainMenu extends JFrame {
 	{
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!checkBoxMeal.isEnabled() || !checkBoxDessert.isEnabled() || !checkBoxBeverage.isEnabled() ){
+				btnFinish.setVisible(true);
+				btnSearch.setVisible(false);
+				
+				if(!checkBoxMeal.isEnabled()){
 					mealpanel.setVisible(true);
 					scrMeal.setVisible(true);
 					lblSelectMeal.setVisible(false);
@@ -475,9 +478,8 @@ public class MainMenu extends JFrame {
 					btnUnwantedMeal.setVisible(false);
 					btnDontCareMeal.setVisible(false);
 					btnOkMeal.setVisible(false);
-					btnFinish.setVisible(true);
-					btnSearch.setVisible(false);
-					
+				}
+				if (!checkBoxDessert.isEnabled()){
 					dessertpanel.setVisible(true);
 					scrDessert.setVisible(true);
 					lblSelectDessert.setVisible(false);
@@ -488,6 +490,8 @@ public class MainMenu extends JFrame {
 					btnDontCareDessert.setVisible(false);
 					btnOkDessert.setVisible(false);
 					
+				}
+				if (!checkBoxBeverage.isEnabled()){
 					beveragepanel.setVisible(true);
 					scrBeverage.setVisible(true);
 					lblSelectBeverage.setVisible(false);
@@ -497,9 +501,8 @@ public class MainMenu extends JFrame {
 					btnUnwantedBeverage.setVisible(false);
 					btnDontCareBeverage.setVisible(false);
 					btnOkBeverage.setVisible(false);
-			
 				}
-				else
+				if(checkBoxBeverage.isEnabled() || checkBoxDessert.isEnabled() || checkBoxMeal.isEnabled() )
 					JOptionPane.showMessageDialog(null, "Please select at least one of food type and ingredients :)");
 			}
 		});
