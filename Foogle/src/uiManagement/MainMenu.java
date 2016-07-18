@@ -35,6 +35,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeModel;
 
+import dataManagement.RestDB;
 import restaurantAndFoodManagement.Food;
 import restaurantAndFoodManagement.Ingredient;
 
@@ -127,6 +128,7 @@ public class MainMenu extends JFrame {
 	private JList lstResultMeals;
 	private JScrollPane scrMeal;
 	private JButton btnFinish;
+	public RestDB restdb = RestDB.getSoleInstance();
 
 	/**
 	 * Launch the application.
@@ -416,8 +418,8 @@ public class MainMenu extends JFrame {
 		testlistMeal.add(new Ingredient("biber"));
 		testlistMeal.add(new Ingredient("havuc"));
 		
-		for(int i=0;i<testlistMeal.size();i++)
-			testListModelMeal.addElement(testlistMeal.get(i).getName());
+		for(int i=0;i<restdb.getAllIngredients().size();i++)
+			testListModelMeal.addElement(restdb.getAllIngredients().get(i).getName());
 		
 		//FOR DESSERT TEST
 		
@@ -452,9 +454,9 @@ public class MainMenu extends JFrame {
 		
 		//FOR SEARCH RESULTS
 		myTestIngList = new ArrayList<Food>();
-	    myTestIngList.add(new Food("waffle",10.25,testlistDessert));
+	    myTestIngList.add(new Food("waffle",5.25,testlistDessert));
 	    myTestIngList.add(new Food("tiramisu",10.25,testlistDessert));
-	    myTestIngList.add(new Food("kek",10.25,testlistDessert));
+	    myTestIngList.add(new Food("kek",1.25,testlistDessert));
 		initSearchList(myTestIngList);
 		
 	}
