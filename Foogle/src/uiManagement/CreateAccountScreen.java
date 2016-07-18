@@ -22,6 +22,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.SoftBevelBorder;
+
+import dataManagement.UserDB;
+
 import javax.swing.border.BevelBorder;
 import javax.swing.UIManager;
 import javax.swing.border.MatteBorder;
@@ -39,6 +42,7 @@ public class CreateAccountScreen extends JFrame {
 	private JTextField textFieldEmail;
 	private JTextField textFieldUserName;
 	private JPasswordField passwordField;
+	public UserDB userdb = UserDB.getSoleInstance();
 
 	/**
 	 * Launch the application.
@@ -142,20 +146,19 @@ public class CreateAccountScreen extends JFrame {
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				String strPassword = String.valueOf(passwordField.getPassword());
+				
 				if(textFieldUserName.getText().isEmpty() || textFieldEmail.getText().isEmpty() || passwordField.getPassword().length == 0){
 					JOptionPane.showMessageDialog(null,"Please check if you enter all of the blanks! ");
 				}
-//				else if(!isUsernameValid(textFieldUserName.getText())){
-//					JOptionPane.showMessageDialog(null,"User name is not valid, please try again! ");	
-//				}
-//				else if(doesUsernameExist(textFieldUserName.getText())){
-//					JOptionPane.showMessageDialog(null,"User name already exists, please try another name or check if you already have an account! ");
-//				}
-//				else if(doesEmailExist(textFieldEmail.getText())){
-//					JOptionPane.showMessageDialog(null,"Email already exists, please try another mail or check if you already have an account! ");
-//				}
+				else if(userdb.doesUsernameExist(textFieldUserName.getText())){
+					JOptionPane.showMessageDialog(null,"User name already exists, please try another name or check if you already have an account! ");
+				}
+				else if(userdb.doesEmailExist(textFieldEmail.getText())){
+					JOptionPane.showMessageDialog(null,"Email already exists, please try another mail or check if you already have an account! ");
+				}
 				else{  
-					// createRestaurantOwner(textFieldUserName.getText(),passwordField.getPassword(), textFieldEmail.getText())
+					userdb.createRestaurantOwnerAccount(textFieldUserName.getText(),strPassword, textFieldEmail.getText());
 					JOptionPane.showMessageDialog(null,"Your account is created! :) ");
 					dispose();
 					MainMenu mainmenu = new MainMenu();

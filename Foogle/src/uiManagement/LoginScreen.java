@@ -7,6 +7,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import dataManagement.UserDB;
+
 import java.awt.Color;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -33,6 +36,7 @@ public class LoginScreen extends JFrame {
 	private JPasswordField passwordField;
 	private JLabel bossImage;
 	private static String username;
+	public UserDB userdb = UserDB.getSoleInstance();
 
 	/**
 	 * Launch the application.
@@ -158,18 +162,26 @@ public class LoginScreen extends JFrame {
 	public static void resetUsername(){
 		username = null;
 	}
+	
 	private void createEvents() {
 		
 		
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				if(isAuthenticated(userNameTextField.getText(),passwordField.getPassword()))
-//					JOptionPane.showMessageDialog(null,"Welcome " + userNameTextField.getText());
-//					username =userNameTextField.getText();
+				String strPassword = String.valueOf(passwordField.getPassword());
+				
+				if(userNameTextField.getText().isEmpty() || passwordField.getPassword().length == 0){
+					JOptionPane.showMessageDialog(null,"Please check if you enter all of the blanks! ");
+				}
+				if(userdb.isAuthenticated(userNameTextField.getText(), strPassword)){
+					JOptionPane.showMessageDialog(null,"Welcome " + userNameTextField.getText());
+					username =userNameTextField.getText();
+				}
+				else{
+					JOptionPane.showMessageDialog(null,"The username and password does not match, please try again!");
+				}
 			}
 		});
-		
-		
 		
 		btnback.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

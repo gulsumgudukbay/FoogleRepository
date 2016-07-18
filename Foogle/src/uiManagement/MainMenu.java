@@ -546,7 +546,7 @@ public class MainMenu extends JFrame {
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
-					((JLabel) renderer).setText(((Food) value).getName() + "-" + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
 				}
 				return renderer;
 			}
@@ -627,6 +627,7 @@ public class MainMenu extends JFrame {
 				}
 				
 				//TODO: CAVUSUN SEARCH CONTROLLER DAN PARAMETRE OLARAK IKI ING LIST TYPE ALAN VE FOOD ARRAYLIST DONDUREN METHOD CAGRILCAK TEST AMACLI
+				//varolan ing arraylistlerimi cavusun methoduna koyup hh meal inite koycam
 				ArrayList<String> wantedmeal = new ArrayList<String>();
 				ArrayList<String> unwantedmeal = new ArrayList<String>();
 				for(int i=0;i<newListWantedMeal.size();i++)
@@ -682,7 +683,7 @@ public class MainMenu extends JFrame {
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
-					((JLabel) renderer).setText(((Food) value).getName() + "-" + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
 				}
 				return renderer;
 			}
@@ -819,7 +820,7 @@ public class MainMenu extends JFrame {
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
-					((JLabel) renderer).setText(((Food) value).getName() + "-" + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
 				}
 				return renderer;
 			}
