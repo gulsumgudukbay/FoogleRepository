@@ -61,7 +61,6 @@ public class MainMenu extends JFrame {
 	
 	//Array lists for dessert
 	private ArrayList<Object> wantedIngredientsDessert;
-	private ArrayList<Ingredient> testlistDessert;
 	private ArrayList<Object> unwantedIngredientsDessert;
 	
 	//Array lists for beverage
@@ -94,13 +93,25 @@ public class MainMenu extends JFrame {
 	private JButton btnOkBeverage;
 	
 	//FOR SEARCH RESULTS
-	DefaultListModel<Food> searchList = new DefaultListModel<Food>();
+
 	//private ArrayList<Food> myTestIngList;
+	DefaultListModel<Food> searchListMeal = new DefaultListModel<Food>();
 	private JList lstResultMeals;
 	private JScrollPane scrMeal;
+	public ArrayList<Food> hhMeal = new ArrayList<Food>();
+	
 	private JButton btnFinish;
 	public RestDB restdb = RestDB.getSoleInstance();
-	public ArrayList<Food> hh = new ArrayList<Food>();
+	
+	DefaultListModel<Food> searchListBeverage = new DefaultListModel<Food>();
+	private JList lstResultBeverages;
+	private JScrollPane scrBeverage;
+	public ArrayList<Food> hhBeverage = new ArrayList<Food>();
+	
+	DefaultListModel<Food> searchListDessert = new DefaultListModel<Food>();
+	private JList lstResultDesserts;
+	private JScrollPane scrDessert;
+	public ArrayList<Food> hhDessert = new ArrayList<Food>();
 
 	/**
 	 * Launch the application.
@@ -259,7 +270,7 @@ public class MainMenu extends JFrame {
 		mealpanel.add(scrMeal);
 		scrMeal.setVisible(false);
 		
-		lstResultMeals = new JList(searchList);
+		lstResultMeals = new JList(searchListMeal);
 		scrMeal.setViewportView(lstResultMeals);
 		
 		dessertpanel = new JPanel();
@@ -308,6 +319,13 @@ public class MainMenu extends JFrame {
 		btnOkDessert.setBounds(317, 379, 75, 29);
 		dessertpanel.add(btnOkDessert);
 		
+		scrDessert = new JScrollPane();
+		scrDessert.setBounds(6, 19, 386, 389);
+		dessertpanel.add(scrDessert);
+		
+		lstResultDesserts = new JList(searchListDessert);
+		scrDessert.setViewportView(lstResultDesserts);
+		
 		beveragepanel = new JPanel();
 		beveragepanel.setVisible(false);
 		beveragepanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Beverage Ingredients", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -353,6 +371,13 @@ public class MainMenu extends JFrame {
 		btnOkBeverage = new JButton("OK!");
 		btnOkBeverage.setBounds(317, 379, 75, 29);
 		beveragepanel.add(btnOkBeverage);
+		
+		scrBeverage = new JScrollPane();
+		scrBeverage.setBounds(6, 19, 386, 389);
+		beveragepanel.add(scrBeverage);
+		
+		lstResultBeverages = new JList(searchListBeverage);
+		scrBeverage.setViewportView(lstResultBeverages);
 		contentPane.setLayout(null);
 		contentPane.add(lblMeal);
 		contentPane.add(checkBoxMeal);
@@ -379,45 +404,25 @@ public class MainMenu extends JFrame {
 		contentPane.add(btnFinish);
 		
 		//FOR MEAL TEST
-		
 		//creating a test list model for placing all ingredients to the combo box
 		DefaultComboBoxModel testListModelMeal = (DefaultComboBoxModel) comboBoxForMeal.getModel();
 		
 		for(int i=0;i<restdb.getAllIngredients().size();i++)
 			testListModelMeal.addElement(restdb.getAllIngredients().get(i).getName());
 		
-		
-		
 		//FOR DESSERT TEST
-		
 		//creating a test list model for placing all ingredients to the combo box
 		DefaultComboBoxModel testListModelDessert = (DefaultComboBoxModel) comboBoxForDessert.getModel();
 				
-		//test list for getting ingredient array list
-		testlistDessert = new ArrayList<Ingredient>();
-		testlistDessert.add(new Ingredient("dondurma"));
-		testlistDessert.add(new Ingredient("cikolata"));
-		testlistDessert.add(new Ingredient("krokan"));
-		testlistDessert.add(new Ingredient("karamel"));
-				
-		for(int i=0;i<testlistDessert.size();i++)
-			testListModelDessert.addElement(testlistDessert.get(i).getName());
+		for(int i=0;i<restdb.getAllIngredients().size();i++)
+			testListModelDessert.addElement(restdb.getAllIngredients().get(i).getName());
 		
 		//FOR BEVERAGE TEST
-		
 		//creating a test list model for placing all ingredients to the combo box
 		DefaultComboBoxModel testListModelBeverage = (DefaultComboBoxModel) comboBoxForBeverage.getModel();
 						
-		//test list for getting ingredient array list
-		testlistBeverage = new ArrayList<Ingredient>();
-		testlistBeverage.add(new Ingredient("cilek"));
-		testlistBeverage.add(new Ingredient("muz"));
-		testlistBeverage.add(new Ingredient("nane"));
-		testlistBeverage.add(new Ingredient("limon"));
-						
-		for(int i=0;i<testlistBeverage.size();i++)
-			testListModelBeverage.addElement(testlistBeverage.get(i).getName());
-		
+		for(int i=0;i<restdb.getAllIngredients().size();i++)
+			testListModelBeverage.addElement(restdb.getAllIngredients().get(i).getName());
 		
 		//FOR SEARCH RESULTS
 //		myTestIngList = new ArrayList<Food>();
@@ -430,7 +435,7 @@ public class MainMenu extends JFrame {
 	
 	private void initSearchList(ArrayList<Food> ingList) {
 		for(int i=0;i<ingList.size();i++)
-			searchList.addElement(new Food(ingList.get(i).getName(),ingList.get(i).getPrice(),ingList.get(i).getIngredients()));
+			searchListMeal.addElement(new Food(ingList.get(i).getName(),ingList.get(i).getPrice(),ingList.get(i).getIngredients()));
 	}
 
 	
@@ -451,18 +456,6 @@ public class MainMenu extends JFrame {
 	//////////////////////////////////////////////////////////////
 	private void createEvents() 
 	{
-		
-		lstResultMeals.setCellRenderer(new DefaultListCellRenderer(){
-			@Override
-			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
-				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
-				if(renderer instanceof JLabel && value instanceof Food){
-					((JLabel) renderer).setText(((Food) value).getName() + "-" + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
-				}
-				return renderer;
-			}
-			});
-		
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!checkBoxMeal.isEnabled() || !checkBoxDessert.isEnabled() || !checkBoxBeverage.isEnabled() ){
@@ -519,6 +512,18 @@ public class MainMenu extends JFrame {
 		////////////////////////////////////////////////////////////////
 		// 				THE MEAL PART OF THE EVENTS					///
 		//////////////////////////////////////////////////////////////
+		
+		lstResultMeals.setCellRenderer(new DefaultListCellRenderer(){
+			@Override
+			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
+				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
+				if(renderer instanceof JLabel && value instanceof Food){
+					((JLabel) renderer).setText(((Food) value).getName() + "-" + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+				}
+				return renderer;
+			}
+			});
+		
 		//selection of wanted ingredients for meal
 		btnWantedMeal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -593,17 +598,19 @@ public class MainMenu extends JFrame {
 					System.out.println(newListUnwantedMeal.get(i).getName());
 				}
 				
-				ArrayList<String> wanted = new ArrayList<String>();
-				ArrayList<String> unwanted = new ArrayList<String>();
+				//TODO: CAVUSUN SEARCH CONTROLLER DAN PARAMETRE OLARAK IKI ING LIST TYPE ALAN VE FOOD ARRAYLIST DONDUREN METHOD CAGRILCAK TEST AMACLI
+				ArrayList<String> wantedmeal = new ArrayList<String>();
+				ArrayList<String> unwantedmeal = new ArrayList<String>();
 				for(int i=0;i<newListWantedMeal.size();i++)
-					wanted.add(newListWantedMeal.get(i).getName());
+					wantedmeal.add(newListWantedMeal.get(i).getName());
 					
 				for(int i=0;i<newListUnwantedMeal.size();i++)
-					unwanted.add(newListUnwantedMeal.get(i).getName());
+					unwantedmeal.add(newListUnwantedMeal.get(i).getName());
 				
 				
-				hh = restdb.getFoodList(wanted, unwanted, "meal");
-				initSearchList(hh);
+				hhMeal = restdb.getFoodList(wantedmeal, unwantedmeal, "meal");
+				initSearchList(hhMeal);
+				////////////////////
 				
 				mealpanel.setVisible(false);
 				checkBoxMeal.setEnabled(false);
@@ -641,6 +648,17 @@ public class MainMenu extends JFrame {
 		////////////////////////////////////////////////////////////////
 		// 				THE DESSERT PART OF THE EVENTS				///
 		//////////////////////////////////////////////////////////////
+		
+		lstResultDesserts.setCellRenderer(new DefaultListCellRenderer(){
+			@Override
+			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
+				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
+				if(renderer instanceof JLabel && value instanceof Food){
+					((JLabel) renderer).setText(((Food) value).getName() + "-" + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+				}
+				return renderer;
+			}
+			});
 		
 		//selection of wanted ingredients for dessert
 		btnWantedDessert.addActionListener(new ActionListener() {
@@ -716,6 +734,20 @@ public class MainMenu extends JFrame {
 					System.out.println(newListUnwantedDessert.get(i).getName());
 				}
 				
+				//TODO: CAVUSUN SEARCH CONTROLLER DAN PARAMETRE OLARAK IKI ING LIST TYPE ALAN VE FOOD ARRAYLIST DONDUREN METHOD CAGRILCAK TEST AMACLI
+				ArrayList<String> wantedDessert = new ArrayList<String>();
+				ArrayList<String> unwantedDessert = new ArrayList<String>();
+				for(int i=0;i<newListWantedDessert.size();i++)
+					wantedDessert.add(newListWantedDessert.get(i).getName());
+					
+				for(int i=0;i<newListUnwantedDessert.size();i++)
+					unwantedDessert.add(newListUnwantedDessert.get(i).getName());
+				
+				
+				hhDessert = restdb.getFoodList(wantedDessert, unwantedDessert, "dessert");
+				initSearchList(hhDessert);
+				////////////////////
+				
 				dessertpanel.setVisible(false);
 				checkBoxDessert.setEnabled(false);
 				JOptionPane.showMessageDialog(null,"Your dessert ingredients are saved! :) ");
@@ -753,6 +785,17 @@ public class MainMenu extends JFrame {
 		////////////////////////////////////////////////////////////////
 		// 				THE BEVERAGE PART OF THE EVENTS				///
 		//////////////////////////////////////////////////////////////
+		
+		lstResultBeverages.setCellRenderer(new DefaultListCellRenderer(){
+			@Override
+			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
+				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
+				if(renderer instanceof JLabel && value instanceof Food){
+					((JLabel) renderer).setText(((Food) value).getName() + "-" + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+				}
+				return renderer;
+			}
+			});
 		
 		//selection of wanted ingredients for beverage
 		btnWantedBeverage.addActionListener(new ActionListener() {
@@ -827,6 +870,20 @@ public class MainMenu extends JFrame {
 				for(int i=0;i<unwantedIngredientsBeverage.size();i++){
 					System.out.println(newListUnwantedBeverage.get(i).getName());
 				}
+				
+				//TODO: CAVUSUN SEARCH CONTROLLER DAN PARAMETRE OLARAK IKI ING LIST TYPE ALAN VE FOOD ARRAYLIST DONDUREN METHOD CAGRILCAK TEST AMACLI
+				ArrayList<String> wantedBeverage= new ArrayList<String>();
+				ArrayList<String> unwantedBeverage = new ArrayList<String>();
+				for(int i=0;i<newListWantedBeverage.size();i++)
+					wantedBeverage.add(newListWantedBeverage.get(i).getName());
+					
+				for(int i=0;i<newListUnwantedBeverage.size();i++)
+					unwantedBeverage.add(newListUnwantedBeverage.get(i).getName());
+				
+				
+				hhBeverage = restdb.getFoodList(wantedBeverage, unwantedBeverage, "dessert");
+				initSearchList(hhBeverage);
+				////////////////////
 				
 				beveragepanel.setVisible(false);
 				checkBoxBeverage.setEnabled(false);
