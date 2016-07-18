@@ -176,6 +176,10 @@ public class LoginScreen extends JFrame {
 				if(userdb.isAuthenticated(userNameTextField.getText(), strPassword)){
 					JOptionPane.showMessageDialog(null,"Welcome " + userNameTextField.getText());
 					username =userNameTextField.getText();
+					dispose();
+					LoginScreen loggedInScreen = new LoginScreen();
+					loggedInScreen.setVisible(true);
+					
 				}
 				else{
 					JOptionPane.showMessageDialog(null,"The username and password does not match, please try again!");
