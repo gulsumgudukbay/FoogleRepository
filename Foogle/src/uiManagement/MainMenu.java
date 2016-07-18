@@ -433,9 +433,16 @@ public class MainMenu extends JFrame {
 		
 	}
 	
-	private void initSearchList(ArrayList<Food> ingList) {
-		for(int i=0;i<ingList.size();i++)
-			searchListMeal.addElement(new Food(ingList.get(i).getName(),ingList.get(i).getPrice(),ingList.get(i).getIngredients()));
+	private void initSearchList(ArrayList<Food> foodList,String foodtype) {
+		
+		for(int i=0;i<foodList.size();i++)
+			if(foodtype.equals("meal"))
+				searchListMeal.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+			else if(foodtype.equals("dessert"))
+				searchListDessert.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+			else
+				searchListBeverage.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+				
 	}
 
 	
@@ -470,6 +477,27 @@ public class MainMenu extends JFrame {
 					btnOkMeal.setVisible(false);
 					btnFinish.setVisible(true);
 					btnSearch.setVisible(false);
+					
+					dessertpanel.setVisible(true);
+					scrDessert.setVisible(true);
+					lblSelectDessert.setVisible(false);
+					comboBoxForDessert.setVisible(false);
+					lbldessertback.setVisible(false);
+					btnWantedDessert.setVisible(false);
+					btnUnwantedDessert.setVisible(false);
+					btnDontCareDessert.setVisible(false);
+					btnOkDessert.setVisible(false);
+					
+					beveragepanel.setVisible(true);
+					scrBeverage.setVisible(true);
+					lblSelectBeverage.setVisible(false);
+					comboBoxForBeverage.setVisible(false);
+					lblbeverageback.setVisible(false);
+					btnWantedBeverage.setVisible(false);
+					btnUnwantedBeverage.setVisible(false);
+					btnDontCareBeverage.setVisible(false);
+					btnOkBeverage.setVisible(false);
+			
 				}
 				else
 					JOptionPane.showMessageDialog(null, "Please select at least one of food type and ingredients :)");
@@ -609,7 +637,7 @@ public class MainMenu extends JFrame {
 				
 				
 				hhMeal = restdb.getFoodList(wantedmeal, unwantedmeal, "meal");
-				initSearchList(hhMeal);
+				initSearchList(hhMeal,"meal");
 				////////////////////
 				
 				mealpanel.setVisible(false);
@@ -745,7 +773,7 @@ public class MainMenu extends JFrame {
 				
 				
 				hhDessert = restdb.getFoodList(wantedDessert, unwantedDessert, "dessert");
-				initSearchList(hhDessert);
+				initSearchList(hhDessert,"dessert");
 				////////////////////
 				
 				dessertpanel.setVisible(false);
@@ -882,7 +910,7 @@ public class MainMenu extends JFrame {
 				
 				
 				hhBeverage = restdb.getFoodList(wantedBeverage, unwantedBeverage, "beverage");
-				initSearchList(hhBeverage);
+				initSearchList(hhBeverage,"beverage");
 				////////////////////
 				
 				beveragepanel.setVisible(false);
