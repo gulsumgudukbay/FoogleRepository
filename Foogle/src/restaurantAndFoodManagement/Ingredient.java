@@ -7,7 +7,7 @@ import dataManagement.RestDB;
 public class Ingredient {
 	String name;
 	boolean isConfirmed;
-	RestDB rdb = RestDB.getSoleInstance();
+	//RestDB rdb = RestDB.getSoleInstance();
 	
 	public Ingredient() {
 		this.name = "";
