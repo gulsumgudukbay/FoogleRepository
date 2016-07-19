@@ -3,6 +3,10 @@ package dataManagement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+import restaurantAndFoodManagement.Ingredient;
+import restaurantAndFoodManagement.Restaurant;
 
 public class UserDB {
 	private static UserDB udb = new UserDB();
@@ -12,7 +16,31 @@ public class UserDB {
 	public static UserDB getSoleInstance() {
 		return udb;
 	}
+	
+	
+	public ArrayList<Restaurant> getAllRestaurantsOfARestaurantOwner(String username){
+		ArrayList<Restaurant> rests = new ArrayList<Restaurant>();
+		ResultSet rset = null;
+		Statement stmtgar = DatabaseManager.createStmt();
 
+		int roID = getRestaurantOwnerID(username);
+		String query = "select * from Restaurants where Restaurant_Owners_id = '" + roID + "'";
+		try {
+
+			rset = stmtgar.executeQuery(query);
+			while (rset.next()) {
+				Restaurant rest = new Restaurant();
+				rest.setName(rset.getString("name"));
+				rests.add(rest);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+		return rests;
+	}
+	
 	public int getRestaurantOwnerID(String username) {
 		int id = -1;
 		String query = "select * from Restaurant_Owners where username = '" + username + "'";
@@ -44,7 +72,7 @@ public class UserDB {
 		}
 
 	}
-
+	
 	
 	public boolean isAuthenticated(String username, String password) {
 		if (password == null || password.equals(""))
@@ -68,6 +96,9 @@ public class UserDB {
 
 	}
 
+	
+	
+	
 	public boolean createRestaurantOwnerAccount(String username, String password, String email) {
 		if (doesUsernameExist(username) || username == null || password == null || email == null)
 			return false;
