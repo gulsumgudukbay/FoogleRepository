@@ -187,7 +187,6 @@ public class MainMenu extends JFrame {
 		checkBoxMeal = new JCheckBox("");
 		checkBoxMeal.setBounds(160, 195, 28, 23);
 		
-		
 		checkBoxDessert = new JCheckBox("");
 		checkBoxDessert.setBounds(677, 195, 28, 23);
 
