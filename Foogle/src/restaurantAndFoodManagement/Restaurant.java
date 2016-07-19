@@ -7,6 +7,7 @@ public class Restaurant {
 	// MARK: Properties
 	private String name;
 	private ArrayList<Food> foods;
+	private boolean isConfirmed;
 	
 	// MARK: Constructors
 	public Restaurant() {
@@ -38,6 +39,12 @@ public class Restaurant {
 	public void setFoods(ArrayList<Food> foods) {
 		this.foods = foods;
 	}
+	public boolean isConfirmed() {
+		return isConfirmed;
+	}
+	public void setConfirmed(boolean isConfirmed) {
+		this.isConfirmed = isConfirmed;
+	}
 	
 	// Utility methods
 	// Returns the food with the given name
@@ -65,12 +72,12 @@ public class Restaurant {
 	
 	// Creates a new food with given parameters, and adds the food to foods list (if it's not already on the list)
 	// FIXME: right now it only accepts name, price and ingredients. CHECKFOODOCCURANCE
-	public void addFood(String name, Double price, ArrayList<Ingredient> ingredients) {
+	public void addFood(String name, String cuisine, Double price, ArrayList<Ingredient> ingredients) {
 		if (this.checkFoodOccurance(name)) {
 			// TEST
 			System.out.println("Food " + name + " is already on the list");
 		} else {
-			Food temp = new Food(name, price, ingredients);
+			Food temp = new Food(name, cuisine, price, ingredients);
 			this.foods.add(temp);
 			// TEST
 			System.out.println("Food " + name + " is added to the list");
@@ -94,16 +101,16 @@ public class Restaurant {
 		mySecondIngredients.add(myLettuce);
 		mySecondIngredients.add(myPotato);
 		
-		Food myFirstFood = new Food("donner", 10.0, myFirstIngredients);
-		Food mySecondFood = new Food("donmez", 8.0, mySecondIngredients);
+		//Food myFirstFood = new Food("donner", 10.0, myFirstIngredients);
+		//Food mySecondFood = new Food("donmez", 8.0, mySecondIngredients);
 		
 		ArrayList<Food> myFoods = new ArrayList<Food>();
-		myFoods.add(myFirstFood);
-		myFoods.add(mySecondFood);
+		//myFoods.add(myFirstFood);
+		//myFoods.add(mySecondFood);
 		
 		Restaurant myRestaurant = new Restaurant("hd iskender", myFoods);
 		
 		myRestaurant.getFood("donner");
-		myRestaurant.addFood("kumpir", 8.5, myFirstIngredients);
+		//myRestaurant.addFood("kumpir", 8.5, myFirstIngredients);
 	}
 }
