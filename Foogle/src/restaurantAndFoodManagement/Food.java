@@ -17,11 +17,12 @@ public class Food {
 	// TODO: private String otheringBuff; 
 	
 	// MARK: Constructors
-	public Food(String name, String cuisine, double price, ArrayList<Ingredient> ingredients) {
+	public Food(String name, String cuisine, String type, double price, ArrayList<Ingredient> ingredients) {
 		this.setCuisine(cuisine);
 		this.setName(name);
 		this.setPrice(price);
 		this.setIngredients(ingredients);
+		this.setType(type);
 	}
 	public Food() {
 		this.cuisine = "";

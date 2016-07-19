@@ -71,13 +71,12 @@ public class Restaurant {
 	}
 	
 	// Creates a new food with given parameters, and adds the food to foods list (if it's not already on the list)
-	// FIXME: right now it only accepts name, price and ingredients. CHECKFOODOCCURANCE
-	public void addFood(String name, String cuisine, Double price, ArrayList<Ingredient> ingredients) {
+	public void addFood(String name, String cuisine, String type, Double price, ArrayList<Ingredient> ingredients) {
 		if (this.checkFoodOccurance(name)) {
 			// TEST
 			System.out.println("Food " + name + " is already on the list");
 		} else {
-			Food temp = new Food(name, cuisine, price, ingredients);
+			Food temp = new Food(name, cuisine, type, price, ingredients);
 			this.foods.add(temp);
 			// TEST
 			System.out.println("Food " + name + " is added to the list");
