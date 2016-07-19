@@ -6,8 +6,6 @@ import restaurantAndFoodManagement.Ingredient;
 import restaurantAndFoodManagement.Restaurant;
 
 public class Admin extends User{
-	/*
-	
 	// MARK: Properties
 	private ArrayList<Ingredient> pendingIngredients;
 	private ArrayList<Restaurant> pendingRestaurants;
@@ -41,5 +39,4 @@ public class Admin extends User{
 	// TODO: confirmIngredient
 	// TODO: confirmRestaurant
 	
-	*/
 }

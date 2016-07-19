@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import dataManagement.RestDB;
 
 public class Ingredient {
-	String name;
-	boolean isConfirmed;
+	private String name;
+	private boolean isConfirmed;
 	//RestDB rdb = RestDB.getSoleInstance();
 	
 	public Ingredient() {
