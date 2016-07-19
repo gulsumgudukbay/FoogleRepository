@@ -14,30 +14,31 @@ public class UserResource {
 	UserDB udb = UserDB.getSoleInstance();
 	SearchController sc = new SearchController();
 	
-	// TODO: Get owners from UserDB
+	// FIXME: Get owners from UserDB. Waiting for database methods
 	static ArrayList<RestaurantOwner> owners;
 	Customer customer;
 	Admin admin;
+	// FIXME: Customer has the same property. From database or from customer?
 	ArrayList<Ingredient> allIngredients = rdb.getAllIngredients();
 	
 	// MARK: Constructors
 	public UserResource() {
-		owners = new ArrayList<RestaurantOwner>();
+		// TODO: Set owners and other properties
 	}
 	
 	// MARK: Methods
 	// Accessors and Mutators
 	public ArrayList<RestaurantOwner> getOwners() {
-		return this.owners;
+		return owners;
 	}
-	public void setOwners(ArrayList<RestaurantOwner> owners) {
-		this.owners = owners;
+	public void setOwners(ArrayList<RestaurantOwner> theOwners) {
+		owners = theOwners;
 	}
 
 	// Utility methods 
 	// Display users
 	public void listAllOwners() {
-		for(int i = 0; i < this.owners.size(); i++) {
+		for(int i = 0; i < owners.size(); i++) {
 			System.out.println("Owner #" + i + "\t" + owners.get(i));
 		}
 	}
