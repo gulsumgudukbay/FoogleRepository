@@ -120,7 +120,7 @@ public class Restaurant {
 		//myFoods.add(myFirstFood);
 		//myFoods.add(mySecondFood);
 		
-		Restaurant myRestaurant = new Restaurant("hd iskender", myFoods);
+		//Restaurant myRestaurant = new Restaurant("hd iskender", myFoods);
 		
 		myRestaurant.getFood("donner");
 		//myRestaurant.addFood("kumpir", 8.5, myFirstIngredients);

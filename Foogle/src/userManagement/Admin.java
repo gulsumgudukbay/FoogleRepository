@@ -3,9 +3,12 @@ package userManagement;
 import java.util.ArrayList;
 
 import restaurantAndFoodManagement.Ingredient;
+import dataManagement.PendingDB;
 import restaurantAndFoodManagement.Restaurant;
 
 public class Admin extends User{
+	PendingDB pdb = PendingDB.getSoleInstance();
+	
 	// MARK: Properties
 	private ArrayList<Ingredient> pendingIngredients;
 	private ArrayList<Restaurant> pendingRestaurants;
@@ -36,7 +39,33 @@ public class Admin extends User{
 	}
 	
 	// Utility methods
-	// TODO: confirmIngredient
-	// TODO: confirmRestaurant
+	public void confirmIngredients() {
+		// Call respective methods depending on whether it's isConfirmed() or not
+		for(Ingredient ingredient: pendingIngredients) {
+			if(ingredient.isConfirmed()) {
+				pdb.confirmIngredient(ingredient.getName());
+			} else {
+				pdb.rejectIngredient(ingredient.getName());
+			}
+		}
+		
+		if(pdb.isAllIngredientsProcessed()) {
+			// TODO: Call the method here
+		}
+	}
+	public void confirmRestaurants() {
+		// Call respective methods depending on whether it's isConfirmed() or not
+		for(Restaurant restaurant: pendingRestaurants) {
+			if(restaurant.isConfirmed()) {
+				pdb.confirmRestaurant(restaurant.getName());
+			} else {
+				pdb.rejectRestaurant(restaurant.getName());
+			}
+		}
+		
+		if(pdb.isAllRestaurantsProcessed()) {
+			// TODO: Call the method here
+		}
+	}
 	
 }
