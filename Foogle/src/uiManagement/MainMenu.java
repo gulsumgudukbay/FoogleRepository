@@ -112,6 +112,8 @@ public class MainMenu extends JFrame {
 	private JList lstResultDesserts;
 	private JScrollPane scrDessert;
 	public ArrayList<Food> hhDessert = new ArrayList<Food>();
+	
+	private static String username;
 
 	/**
 	 * Launch the application.
@@ -437,11 +439,11 @@ public class MainMenu extends JFrame {
 		
 		for(int i=0;i<foodList.size();i++)
 			if(foodtype.equals("meal"))
-				searchListMeal.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+				searchListMeal.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
 			else if(foodtype.equals("dessert"))
-				searchListDessert.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+				searchListDessert.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
 			else
-				searchListBeverage.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+				searchListBeverage.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
 				
 	}
 
@@ -969,7 +971,7 @@ public class MainMenu extends JFrame {
 		CreateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				CreateAccountScreen createAccount = new CreateAccountScreen();
+				CreateAccountScreen createAccount = new CreateAccountScreen(username);
 				createAccount.setVisible(true);
 			}
 		});
