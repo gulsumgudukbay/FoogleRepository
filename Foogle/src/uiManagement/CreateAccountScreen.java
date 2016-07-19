@@ -24,6 +24,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.SoftBevelBorder;
 
 import dataManagement.UserDB;
+import userManagement.RestaurantOwner;
 
 import javax.swing.border.BevelBorder;
 import javax.swing.UIManager;
@@ -43,7 +44,7 @@ public class CreateAccountScreen extends JFrame {
 	private JTextField textFieldUserName;
 	private JPasswordField passwordField;
 	private static String username;
-	public UserDB userdb = UserDB.getSoleInstance();
+	public RestaurantOwner restOwner = new RestaurantOwner();
 
 	/**
 	 * Launch the application.
@@ -152,14 +153,14 @@ public class CreateAccountScreen extends JFrame {
 				if(textFieldUserName.getText().isEmpty() || textFieldEmail.getText().isEmpty() || passwordField.getPassword().length == 0){
 					JOptionPane.showMessageDialog(null,"Please check if you enter all of the blanks! ");
 				}
-				else if(userdb.doesUsernameExist(textFieldUserName.getText())){
+				else if(restOwner.doesUsernameExist(textFieldUserName.getText())){
 					JOptionPane.showMessageDialog(null,"User name already exists, please try another name or check if you already have an account! ");
 				}
-				else if(userdb.doesEmailExist(textFieldEmail.getText())){
+				else if(restOwner.doesEmailExist(textFieldEmail.getText())){
 					JOptionPane.showMessageDialog(null,"Email already exists, please try another mail or check if you already have an account! ");
 				}
 				else{  
-					userdb.createRestaurantOwnerAccount(textFieldUserName.getText(),strPassword, textFieldEmail.getText());
+					restOwner.createRestaurantOwnerAccount(textFieldUserName.getText(),strPassword, textFieldEmail.getText());
 					JOptionPane.showMessageDialog(null,"Your account is created! :) ");
 					dispose();
 					MainMenu mainmenu = new MainMenu();

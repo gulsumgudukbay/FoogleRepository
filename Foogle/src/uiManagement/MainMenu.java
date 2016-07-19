@@ -32,6 +32,7 @@ import javax.swing.border.TitledBorder;
 import dataManagement.RestDB;
 import restaurantAndFoodManagement.Food;
 import restaurantAndFoodManagement.Ingredient;
+import userManagement.UserResource;
 public class MainMenu extends JFrame {
 
 	private JPanel contentPane;
@@ -101,7 +102,7 @@ public class MainMenu extends JFrame {
 	public ArrayList<Food> hhMeal = new ArrayList<Food>();
 	
 	private JButton btnFinish;
-	public RestDB restdb = RestDB.getSoleInstance();
+	public UserResource uR = new UserResource();
 	
 	DefaultListModel<Food> searchListBeverage = new DefaultListModel<Food>();
 	private JList lstResultBeverages;
@@ -408,22 +409,22 @@ public class MainMenu extends JFrame {
 		//creating a test list model for placing all ingredients to the combo box
 		DefaultComboBoxModel testListModelMeal = (DefaultComboBoxModel) comboBoxForMeal.getModel();
 		
-		for(int i=0;i<restdb.getAllIngredients().size();i++)
-			testListModelMeal.addElement(restdb.getAllIngredients().get(i).getName());
+		for(int i=0;i<uR.getAllIngredients().size();i++)
+			testListModelMeal.addElement(uR.getAllIngredients().get(i).getName());
 		
 		//FOR DESSERT TEST
 		//creating a test list model for placing all ingredients to the combo box
 		DefaultComboBoxModel testListModelDessert = (DefaultComboBoxModel) comboBoxForDessert.getModel();
 				
-		for(int i=0;i<restdb.getAllIngredients().size();i++)
-			testListModelDessert.addElement(restdb.getAllIngredients().get(i).getName());
+		for(int i=0;i<uR.getAllIngredients().size();i++)
+			testListModelDessert.addElement(uR.getAllIngredients().get(i).getName());
 		
 		//FOR BEVERAGE TEST
 		//creating a test list model for placing all ingredients to the combo box
 		DefaultComboBoxModel testListModelBeverage = (DefaultComboBoxModel) comboBoxForBeverage.getModel();
 						
-		for(int i=0;i<restdb.getAllIngredients().size();i++)
-			testListModelBeverage.addElement(restdb.getAllIngredients().get(i).getName());
+		for(int i=0;i<uR.getAllIngredients().size();i++)
+			testListModelBeverage.addElement(uR.getAllIngredients().get(i).getName());
 		
 		//FOR SEARCH RESULTS
 //		myTestIngList = new ArrayList<Food>();
@@ -634,19 +635,8 @@ public class MainMenu extends JFrame {
 				for(int i=0;i<unwantedIngredientsMeal.size();i++){
 					System.out.println(newListUnwantedMeal.get(i).getName());
 				}
-				
-				//TODO: CAVUSUN SEARCH CONTROLLER DAN PARAMETRE OLARAK IKI ING LIST TYPE ALAN VE FOOD ARRAYLIST DONDUREN METHOD CAGRILCAK TEST AMACLI
-				//varolan ing arraylistlerimi cavusun methoduna koyup hh meal inite koycam
-				ArrayList<String> wantedmeal = new ArrayList<String>();
-				ArrayList<String> unwantedmeal = new ArrayList<String>();
-				for(int i=0;i<newListWantedMeal.size();i++)
-					wantedmeal.add(newListWantedMeal.get(i).getName());
-					
-				for(int i=0;i<newListUnwantedMeal.size();i++)
-					unwantedmeal.add(newListUnwantedMeal.get(i).getName());
-				
-				
-				hhMeal = restdb.getFoodList(wantedmeal, unwantedmeal, "meal");
+								
+				hhMeal = uR.searchFood(newListWantedMeal, newListUnwantedMeal, "meal");
 				initSearchList(hhMeal,"meal");
 				////////////////////
 				
@@ -772,17 +762,7 @@ public class MainMenu extends JFrame {
 					System.out.println(newListUnwantedDessert.get(i).getName());
 				}
 				
-				//TODO: CAVUSUN SEARCH CONTROLLER DAN PARAMETRE OLARAK IKI ING LIST TYPE ALAN VE FOOD ARRAYLIST DONDUREN METHOD CAGRILCAK TEST AMACLI
-				ArrayList<String> wantedDessert = new ArrayList<String>();
-				ArrayList<String> unwantedDessert = new ArrayList<String>();
-				for(int i=0;i<newListWantedDessert.size();i++)
-					wantedDessert.add(newListWantedDessert.get(i).getName());
-					
-				for(int i=0;i<newListUnwantedDessert.size();i++)
-					unwantedDessert.add(newListUnwantedDessert.get(i).getName());
-				
-				
-				hhDessert = restdb.getFoodList(wantedDessert, unwantedDessert, "dessert");
+				hhDessert = uR.searchFood(newListWantedDessert, newListUnwantedDessert, "dessert");
 				initSearchList(hhDessert,"dessert");
 				////////////////////
 				
@@ -908,18 +888,8 @@ public class MainMenu extends JFrame {
 				for(int i=0;i<unwantedIngredientsBeverage.size();i++){
 					System.out.println(newListUnwantedBeverage.get(i).getName());
 				}
-				
-				//TODO: CAVUSUN SEARCH CONTROLLER DAN PARAMETRE OLARAK IKI ING LIST TYPE ALAN VE FOOD ARRAYLIST DONDUREN METHOD CAGRILCAK TEST AMACLI
-				ArrayList<String> wantedBeverage= new ArrayList<String>();
-				ArrayList<String> unwantedBeverage = new ArrayList<String>();
-				for(int i=0;i<newListWantedBeverage.size();i++)
-					wantedBeverage.add(newListWantedBeverage.get(i).getName());
-					
-				for(int i=0;i<newListUnwantedBeverage.size();i++)
-					unwantedBeverage.add(newListUnwantedBeverage.get(i).getName());
-				
-				
-				hhBeverage = restdb.getFoodList(wantedBeverage, unwantedBeverage, "beverage");
+			
+				hhBeverage = uR.searchFood(newListWantedBeverage, newListUnwantedBeverage, "beverage");
 				initSearchList(hhBeverage,"beverage");
 				////////////////////
 				

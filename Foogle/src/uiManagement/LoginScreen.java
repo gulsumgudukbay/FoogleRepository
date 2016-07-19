@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import dataManagement.UserDB;
+import userManagement.RestaurantOwner;
 
 import java.awt.Color;
 import javax.swing.GroupLayout;
@@ -36,7 +37,7 @@ public class LoginScreen extends JFrame {
 	private JPasswordField passwordField;
 	private JLabel bossImage;
 	private static String username;
-	public UserDB userdb = UserDB.getSoleInstance();
+	public RestaurantOwner restOwner = new RestaurantOwner();
 
 	/**
 	 * Launch the application.
@@ -170,7 +171,7 @@ public class LoginScreen extends JFrame {
 				if(userNameTextField.getText().isEmpty() || passwordField.getPassword().length == 0){
 					JOptionPane.showMessageDialog(null,"Please check if you enter all of the blanks! ");
 				}
-				if(userdb.isAuthenticated(userNameTextField.getText(), strPassword)){
+				if(restOwner.loginAsRestaurantOwner(userNameTextField.getText(), strPassword)){
 					JOptionPane.showMessageDialog(null,"Welcome " + userNameTextField.getText());
 					username =userNameTextField.getText();
 					dispose();
