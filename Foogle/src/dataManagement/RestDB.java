@@ -4,10 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 import restaurantAndFoodManagement.Food;
 import restaurantAndFoodManagement.Ingredient;
+import restaurantAndFoodManagement.Restaurant;
 
 public class RestDB {
 	private static RestDB rdb = new RestDB();
@@ -206,19 +206,16 @@ public class RestDB {
 		if (result != null) {
 
 			for (int i = 0; i < result.size(); i++)
-				if (!(result.get(i).getType()).equals(type)) {
+				if (!(result.get(i).getType()).equals(type)) 
 					result.remove(i--);
-				}
+				
 
-			for (int i = 0; i < unwanted.size(); i++) {
-				for (int j = 0; j < result.size(); j++) {
+			for (int i = 0; i < unwanted.size(); i++) 
+				for (int j = 0; j < result.size(); j++) 
 					if (result.get(j).searchInIngredients(unwanted.get(i))) {
 						result.remove(j);
 						j--;
 					}
-
-				}
-			}
 			
 		
 			for(int i = 0; i < result.size();i++){
@@ -227,15 +224,11 @@ public class RestDB {
 						result.remove(i);
 						//i--;
 					}
-					else if(result.get(i).searchInIngredients(wanted.get(j))){
+					else if(result.get(i).searchInIngredients(wanted.get(j)))
 						break;
-					}
-			
-				
 				}
 			}
 			
-
 			finalresult = new ArrayList<Food>();
 			// removing duplicates
 			for (int i = 0; i < result.size(); i++)
@@ -249,6 +242,32 @@ public class RestDB {
 		return finalresult;
 	}
 
+	//Return all the restaurants that the food is in
+	private ArrayList<Restaurant> getAllRestaurantsOfFood(String foodName){
+		if (doesFoodExist(foodName)) {
+			ArrayList<Restaurant> rests = new ArrayList<Restaurant>();
+			ResultSet rset = null;
+
+			int foodID = getFoodID(foodName);
+			String query = "select * from Foods where foodName = '" + foodName + "'";
+			try {
+
+				rset = stmt.executeQuery(query);
+				while (rset.next()) {
+					Restaurant rest = new Restaurant();
+					rest.setName(udb.getRestaurantOwnerUN(rset.getInt("Restaurant_Owners_id")));
+					rests.add(rest);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			}
+
+			return rests;
+		} else
+			return null;
+	}
+	
 	// Searches for an ingredient in an ingredient arraylist
 	private boolean searchInIngredientArrayList(ArrayList<Ingredient> ings, Ingredient ing) {
 		for (int i = 0; i < ings.size(); i++)

@@ -29,6 +29,23 @@ public class UserDB {
 
 	}
 
+	public String getRestaurantOwnerUN(int id) {
+		String un = "";
+		String query = "select * from Restaurant_Owners where idRestaurant_Owners = " + id ;
+		ResultSet rset;
+		try {
+			rset = stmt.executeQuery(query);
+			if (rset.next())
+				un = rset.getString("username");
+			return un;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return un;
+		}
+
+	}
+
+	
 	public boolean isAuthenticated(String username, String password) {
 		if (password == null || password.equals(""))
 			return false;
