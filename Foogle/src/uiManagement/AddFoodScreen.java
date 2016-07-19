@@ -170,5 +170,6 @@ public class AddFoodScreen extends JFrame {
 		);
 		foodAddingPanel.setLayout(gl_foodAddingPanel);
 		getContentPane().setLayout(groupLayout);
+		
 	}
 }
