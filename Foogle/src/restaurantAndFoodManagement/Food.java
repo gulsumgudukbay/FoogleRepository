@@ -91,7 +91,7 @@ public class Food {
 	// Finds the ingredient with given name, in ingredients array list and returns it
 	public Ingredient getIngredient(String name) {
 		for(Ingredient temp: ingredients) {
-			if(temp.name == name) {
+			if(temp.getName() == name) {
 				// TEST
 				System.out.println("Found: " + name);
 				return temp;

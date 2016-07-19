@@ -34,14 +34,19 @@ public class UserResource {
 	}
 
 	// Utility methods 
-	public void listAllUsers() {
+	// Display users
+	public void listAllOwners() {
 		for(int i = 0; i < this.owners.size(); i++) {
-			System.out.println("User #" + i + "\t" + owners.get(i));
+			System.out.println("Owner #" + i + "\t" + owners.get(i));
 		}
 	}
-	
 	// Search method, returns list of food
 	public ArrayList<Food> searchFood(ArrayList<Ingredient> wanted, ArrayList<Ingredient> unwanted, String types) {
 		return sc.showResults(wanted, unwanted, types);
 	}
+	// Get all ingredients for GUI
+	public ArrayList<Ingredient> getAllIngredients() {
+		return this.allIngredients;
+	}
+	
 }
