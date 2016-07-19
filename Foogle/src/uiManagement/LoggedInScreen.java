@@ -13,8 +13,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-// IMAGE EKLENECEK
-
 public class LoggedInScreen extends JFrame {
 	
 	private JPanel contentPane;
