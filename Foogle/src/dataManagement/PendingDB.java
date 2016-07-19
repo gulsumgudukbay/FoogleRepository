@@ -137,4 +137,77 @@ public class PendingDB {
 		}
 		
 	}
+	
+	
+	public boolean isAllIngredientsProcessed(){
+		ResultSet rset = null;
+    	Statement stmtp = DatabaseManager.createStmt();
+
+		String query = "select * from Pending_Ingredients";	
+	
+		try{
+			rset = stmtp.executeQuery(query);
+			boolean b = true;
+			while(rset.next()){
+				if(!rset.getString("isConfirmed").equals("T") && !rset.getString("isConfirmed").equals("F"))
+					b = false;
+			}
+			return b;
+			
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+	
+	public boolean isAllRestaurantsProcessed(){
+		ResultSet rset = null;
+    	Statement stmtrp = DatabaseManager.createStmt();
+
+		String query = "select * from Pending_Restaurants";	
+	
+		try{
+			rset = stmtrp.executeQuery(query);
+			boolean b = true;
+			while(rset.next()){
+				if(!rset.getString("isConfirmed").equals("T") && !rset.getString("isConfirmed").equals("F"))
+					b = false;
+			}
+			return b;
+			
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+	
+	public void removeAllPendingRestaurants(){
+    	Statement stmtremr = DatabaseManager.createStmt();
+		String query = "DELETE from Pending_Restaurants";	
+
+		try{
+			stmtremr.executeUpdate(query);			
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void removeAllPendingIngredients(){
+    	Statement stmtremi = DatabaseManager.createStmt();
+		String query = "DELETE from Pending_Ingredients";	
+	
+		try{
+			stmtremi.executeUpdate(query);			
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+	}
 }
