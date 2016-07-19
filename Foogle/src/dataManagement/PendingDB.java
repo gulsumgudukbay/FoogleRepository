@@ -11,7 +11,6 @@ public class PendingDB {
 	public static PendingDB getSoleInstance(){
 		return pdb;
 	}
-
 	
 	public static void main(String[] args){
 		PendingDB pdb = PendingDB.getSoleInstance();
@@ -19,6 +18,18 @@ public class PendingDB {
 	}
 	
 	public void confirmIngredient(String name){
+		
+	}
+	
+    public void confirmRestaurant(String name){
+		
+	}
+    
+    public void rejectIngredient(String name){
+		
+	}
+	
+    public void rejectRestaurant(String name){
 		
 	}
 	

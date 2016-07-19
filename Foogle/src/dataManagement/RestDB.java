@@ -247,15 +247,16 @@ public class RestDB {
 		if (doesFoodExist(foodName)) {
 			ArrayList<Restaurant> rests = new ArrayList<Restaurant>();
 			ResultSet rset = null;
+			Statement stmtgarf = DatabaseManager.createStmt();
 
 			int foodID = getFoodID(foodName);
-			String query = "select * from Foods where foodName = '" + foodName + "'";
+			String query = "select * from Foods where name = '" + foodName + "'";
 			try {
 
-				rset = stmt.executeQuery(query);
+				rset = stmtgarf.executeQuery(query);
 				while (rset.next()) {
 					Restaurant rest = new Restaurant();
-					rest.setName(udb.getRestaurantOwnerUN(rset.getInt("Restaurant_Owners_id")));
+					rest.setName(rdb.getRestaurantName(rset.getInt("Restaurants_id")));
 					rests.add(rest);
 				}
 			} catch (SQLException e) {
@@ -268,6 +269,21 @@ public class RestDB {
 			return null;
 	}
 	
+	private String getRestaurantName(int id) {
+		String name = "";
+		String query = "select * from Restaurants where id = " + id ;
+		ResultSet rset;
+		try {
+			rset = stmt.executeQuery(query);
+			if (rset.next())
+				name = rset.getString("name");
+			return name;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	// Searches for an ingredient in an ingredient arraylist
 	private boolean searchInIngredientArrayList(ArrayList<Ingredient> ings, Ingredient ing) {
 		for (int i = 0; i < ings.size(); i++)
