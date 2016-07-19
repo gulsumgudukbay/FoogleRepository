@@ -9,16 +9,16 @@ import restaurantAndFoodManagement.Ingredient;
 public class OtherIngredientProcessor {
 
 	private StringTokenizer st;
-	private String otherBuffer;
-	
-	public OtherIngredientProcessor(String ings) {
-		otherBuffer = ings;
+	public static void main(String[] args){
+		OtherIngredientProcessor oip = new OtherIngredientProcessor();
+		ArrayList<Ingredient> arr= oip.insertToPending("cilek sut misir");
+		System.out.println(arr.toString());
 	}
 	
 	public ArrayList<Ingredient> insertToPending(String ings) {
 		ArrayList<Ingredient> ingsSeperated = new ArrayList<Ingredient> ();
 			
-		st = new StringTokenizer(ings);
+		st = new StringTokenizer(ings, " ");
 		while(st.hasMoreTokens()){
 			ingsSeperated.add(new Ingredient(st.nextToken()));
 		}
