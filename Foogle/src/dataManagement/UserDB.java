@@ -5,8 +5,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import restaurantAndFoodManagement.Ingredient;
 import restaurantAndFoodManagement.Restaurant;
+import userManagement.RestaurantOwner;
 
 public class UserDB {
 	private static UserDB udb = new UserDB();
@@ -17,6 +17,31 @@ public class UserDB {
 		return udb;
 	}
 	
+	
+	public ArrayList<RestaurantOwner> getAllRestOwners(){
+		ArrayList<RestaurantOwner> owners = new ArrayList<RestaurantOwner>();
+		ResultSet rset = null;
+		Statement stmtgar = DatabaseManager.createStmt();
+
+		String query = "select * from Restaurant_Owners";
+		try {
+
+			rset = stmtgar.executeQuery(query);
+			while (rset.next()) {
+				RestaurantOwner owner = new RestaurantOwner();
+				owner.setUsername(rset.getString("username"));
+				owner.setEmail(rset.getString("email"));
+				owner.setPassword("password");
+				owner.setRestaurants(getAllRestaurantsOfARestaurantOwner(owner.getUsername()));
+				owners.add(owner);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+		return owners;
+	}
 	
 	public ArrayList<Restaurant> getAllRestaurantsOfARestaurantOwner(String username){
 		ArrayList<Restaurant> rests = new ArrayList<Restaurant>();
@@ -177,6 +202,9 @@ public class UserDB {
 		System.out.println(udb.isUsernameValid("adasfdf"));
 		System.out.println(udb.doesUsernameExist("test3"));
 		System.out.println(udb.doesEmailExist("asdasdfdf"));
+		ArrayList<RestaurantOwner> arr = udb.getAllRestOwners();
+		for(int i = 0; i < arr.size();i++)
+			System.out.println(arr.get(i).getUsername());
 
 	}
 
