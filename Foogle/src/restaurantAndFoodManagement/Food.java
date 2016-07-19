@@ -110,6 +110,20 @@ public class Food {
 	    }
 	    return result;
 	}
+	
+	public String listToRestaurant(){
+		String result = "Restaurants: ";
+		ArrayList<Restaurant> restaurantsForFood = getAllRestaurantsOfFood(this.getName()); 
+		for (int i = 0; i < restaurantsForFood.size(); i++) {
+	    	if(i != restaurantsForFood.size() -1 )
+	    		result += restaurantsForFood.get(i).getName() + ",";
+	    	else
+	    		result += restaurantsForFood.get(i).getName();
+	    }
+	    return result;
+		
+	}
+	
 	// TODO: insertToPending(otheringBuf)
 	
 	// TEST
