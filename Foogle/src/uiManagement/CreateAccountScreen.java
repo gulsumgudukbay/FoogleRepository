@@ -42,6 +42,7 @@ public class CreateAccountScreen extends JFrame {
 	private JTextField textFieldEmail;
 	private JTextField textFieldUserName;
 	private JPasswordField passwordField;
+	private static String username;
 	public UserDB userdb = UserDB.getSoleInstance();
 
 	/**
@@ -51,7 +52,7 @@ public class CreateAccountScreen extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CreateAccountScreen frame = new CreateAccountScreen();
+					CreateAccountScreen frame = new CreateAccountScreen(username);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -63,8 +64,8 @@ public class CreateAccountScreen extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CreateAccountScreen() {
-		
+	public CreateAccountScreen(String username) {
+		this.username = username;
 		initComponents();
 		createEvents();
 
@@ -171,7 +172,7 @@ public class CreateAccountScreen extends JFrame {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				LoginScreen loginScreen = new LoginScreen();
+				LoginScreen loginScreen = new LoginScreen(username);
 				loginScreen.setVisible(true);
 			}
 		});
