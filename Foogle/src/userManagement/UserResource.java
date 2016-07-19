@@ -41,10 +41,7 @@ public class UserResource {
 		udb.getRestaurantOwnerID(username);
 	}
 	// Search method, returns list of food
-	public ArrayList<Food> searchFood(ArrayList<Integer> guiInput, String types) {
-		ArrayList<String> unwanted = sc.getUnwantedIngredients(guiInput);
-		ArrayList<String> wanted = sc.getWantedIngredients(guiInput);
-		
+	public ArrayList<Food> searchFood(ArrayList<Ingredient> wanted, ArrayList<Ingredient> unwanted, String types) {
 		return sc.showResults(wanted, unwanted, types);
 	}
 }

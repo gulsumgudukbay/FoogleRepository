@@ -12,7 +12,6 @@ public class Food {
 	private ArrayList<Ingredient> ingredients;
 	// TODO: private OtheringProcessor oip;
 	// TODO: private String otheringBuff; 
-	// TODO: enum type & cuisine
 	
 	// MARK: Constructors
 	public Food(String name, String cuisine, double price, ArrayList<Ingredient> ingredients) {
