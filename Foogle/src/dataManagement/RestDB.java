@@ -242,8 +242,8 @@ public class RestDB {
 		return finalresult;
 	}
 
-	//Return all the restaurants that the food is in
-	private ArrayList<Restaurant> getAllRestaurantsOfFood(String foodName){
+	//Return all the restaurants that the food is in TODO: TEST
+	public ArrayList<Restaurant> getAllRestaurantsOfFood(String foodName){
 		if (doesFoodExist(foodName)) {
 			ArrayList<Restaurant> rests = new ArrayList<Restaurant>();
 			ResultSet rset = null;

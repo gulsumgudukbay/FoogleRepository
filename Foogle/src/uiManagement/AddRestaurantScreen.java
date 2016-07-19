@@ -16,9 +16,6 @@ import javax.swing.border.EmptyBorder;
 import dataManagement.RestDB;
 import javax.swing.JLabel;
 
-// IMAGE EKLENECEK
-// OLUŞAN RESTORAN DATABASEE EKLENECEK
-
 public class AddRestaurantScreen extends JFrame {
 
 	private JPanel contentPane;
@@ -27,6 +24,7 @@ public class AddRestaurantScreen extends JFrame {
 	private static String username;
 	private JLabel lblRestaurantName;
 	private JLabel labelIcon;
+	
 	
 	/**
 	 * Launch the application.
