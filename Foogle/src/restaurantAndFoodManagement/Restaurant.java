@@ -1,13 +1,23 @@
 package restaurantAndFoodManagement;
 
-import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+
+import dataManagement.RestDB;
+import dataManagement.UserDB;
+import restaurantAndFoodManagement.Food;
+import restaurantAndFoodManagement.Ingredient;
+import restaurantAndFoodManagement.Restaurant;
+import restaurantAndFoodManagement.Restaurant;
+import userManagement.UserResource;
+import userManagement.RestaurantOwner;
+import searchManagement.SearchController;
 
 public class Restaurant {
 	// MARK: Properties
 	private String name;
 	private ArrayList<Food> foods;
 	private boolean isConfirmed;
+	public static RestaurantOwner owner;
 	
 	// MARK: Constructors
 	public Restaurant() {
@@ -20,9 +30,10 @@ public class Restaurant {
 		this.foods = new ArrayList<Food>();
 	}
 	
-	public Restaurant(String name, ArrayList<Food> foods) {
+	public Restaurant(String name, ArrayList<Food> foods, RestaurantOwner owner) {
 		this.setName(name);
 		this.setFoods(foods);
+		this.owner = owner;
 	}
 	
 	// MARK: Methods
