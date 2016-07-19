@@ -17,8 +17,7 @@ public class UserResource {
 	static ArrayList<RestaurantOwner> owners = udb.getAllRestOwners();
 	Customer customer = new Customer();
 	Admin admin = new Admin();
-	// FIXME: Customer has the same property. From database or from customer?
-	ArrayList<Ingredient> allIngredients = rdb.getAllIngredients();
+	ArrayList<Ingredient> allIngredients = customer.getAllIngredients();
 	
 	// MARK: Methods
 	// Accessors and Mutators
