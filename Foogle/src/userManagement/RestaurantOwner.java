@@ -104,6 +104,7 @@ public class RestaurantOwner extends User {
 		return null;
 	}
 	// Sign Up method
+	// TODO: Append it to Users owners list
 	public void createRestaurantOwnerAccount(String username, String password, String email) {
 		udb.createRestaurantOwnerAccount(username, password, email);
 	}
@@ -113,5 +114,11 @@ public class RestaurantOwner extends User {
 			System.out.println("Welcome back, " + username);
 		}
 	}
-	// TODO: Username and Email Check
+	// Username and Email Checks
+	public boolean doesUsernameExist(String username) {
+		return udb.doesUsernameExist(username);
+	}
+	public boolean doesEmailExist(String email) {
+		return udb.doesEmailExist(email);
+	}
 }

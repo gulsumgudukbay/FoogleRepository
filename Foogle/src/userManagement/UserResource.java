@@ -14,7 +14,8 @@ public class UserResource {
 	UserDB udb = UserDB.getSoleInstance();
 	SearchController sc = new SearchController();
 	
-	private ArrayList<RestaurantOwner> owners;
+	// TODO: Get owners from UserDB
+	ArrayList<RestaurantOwner> owners;
 	Customer customer;
 	Admin admin;
 	ArrayList<Ingredient> allIngredients = rdb.getAllIngredients();
