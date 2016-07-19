@@ -35,11 +35,7 @@ public class UserResource {
 			System.out.println("User #" + i + "\t" + users.get(i));
 		}
 	}
-	// FIXME: Both UserDB and RestDB has the same (getRestaurantOwnerID) method
-	// Returns restaurant owner's id with given name
-	public int getRestaurantOwner(String username) {
-		udb.getRestaurantOwnerID(username);
-	}
+	
 	// Search method, returns list of food
 	public ArrayList<Food> searchFood(ArrayList<Ingredient> wanted, ArrayList<Ingredient> unwanted, String types) {
 		return sc.showResults(wanted, unwanted, types);

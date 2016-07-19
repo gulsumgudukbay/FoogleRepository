@@ -11,16 +11,13 @@ public class Customer extends User {
 	RestDB rdb = RestDB.getSoleInstance();
 	SearchController sc = new SearchController();
 	
-	// TODO: Uncomment the property below
-	// private Event input;
-	
 	// TODO: Constructors?
 	
 	public ArrayList<Ingredient> getAllIngredients(){
 		return rdb.getAllIngredients();
 	}
 	
-	public ArrayList<Food> search(ArrayList<String> wanted, ArrayList<String> unwanted, String types){
+	public ArrayList<Food> search(ArrayList<Ingredient> wanted, ArrayList<Ingredient> unwanted, String types){
 		return sc.showResults(wanted, unwanted, types);
 	}
 }		

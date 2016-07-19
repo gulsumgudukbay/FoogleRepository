@@ -36,8 +36,19 @@ public class SearchController {
 	}
 	
 	
-	
-	public ArrayList<Food> showResults(ArrayList<String> wanted, ArrayList<String> unwanted, String types){
-		return rdb.getFoodList(wanted, unwanted, types);
+	// Gets lists of Ingredients and calls search controller's method with lists of Strings (Ingredient names)
+	public ArrayList<Food> showResults(ArrayList<Ingredient> wanted, ArrayList<Ingredient> unwanted, String types){
+		ArrayList<String> wantedList = new ArrayList<String>();
+		ArrayList<String> unwantedList = new ArrayList<String>();
+		
+		for(Ingredient ingredient: wanted) {
+			wantedList.add(ingredient.getName());
+		}
+		
+		for(Ingredient ingredient: unwanted) {
+			unwantedList.add(ingredient.getName());
+		}
+		
+		return rdb.getFoodList(wantedList, unwantedList, types);
 	}
 }

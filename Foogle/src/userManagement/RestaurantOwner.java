@@ -78,6 +78,7 @@ public class RestaurantOwner extends User {
 		rdb.createRestaurant(restaurant.getName(), this.getUsername());
 		restaurants.add(restaurant);
 	}
+	// TODO: Check if the food is confirmed using PendingDB, using loop
 	public void addFoodToRestaurant(Food food, Restaurant restaurant, ArrayList<Ingredient> ingredients) {
 		rdb.createFoodToExistingRestaurant(restaurant.getName(),this.getUsername(), food.getName(), food.getType(), food.getCuisine(), food.getPrice(), ingredients);
 	}
