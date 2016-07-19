@@ -1,29 +1,46 @@
 package uiManagement;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JLabel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JRadioButton;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 
 public class AddFoodScreen extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textFieldName;
-	private JTextField textFieldPrice;
-	private JTextField textFieldCuisine;
-
+	private JTextField textFieldName = new JTextField();
+	private JTextField textFieldPrice = new JTextField();
+	private JTextField textFieldCuisine = new JTextField();
+	private	JPanel foodAddingPanel = new JPanel();
+	private JPanel ingChoosingPanel = new JPanel();
+	private JLabel lblSelectRestaurant = new JLabel("Please select the restaurant you want to add food ");
+	private JLabel lblIngredient = new JLabel("Please select the ingredient from list and click 'add' button to add that ingredient to the food");
+	private JComboBox restaurantsBox = new JComboBox();
+	private JLabel lblFoodName = new JLabel("Please enter the name of the food you want to add ");
+	private JLabel lblTypeSelect = new JLabel("Please select the type of the food ");
+	private JComboBox typeBox = new JComboBox();
+	private JLabel lblPrice = new JLabel("Please enter the price of the food ");
+	private JLabel lblCuisine = new JLabel("If food belongs to a cuisine please enter it below ");
+	private JLabel lblCuisineDefault = new JLabel("Otherwise, leave the text field blank");
+	private JList list = new JList();
+	private JButton btnAdd = new JButton("Add");
+	private JLabel lblOthers = new JLabel("If you want to add a new ingredient or ingredients, please enter them below");
+	private JLabel lblOthersBlank = new JLabel("Please leave a one character blank between two seperate ingredients");
+	private JTextField textFieldOthers = new JTextField();
+	private JButton btnSubmit = new JButton("Submit");
+	
 	/**
 	 * Launch the application.
 	 */
@@ -44,6 +61,7 @@ public class AddFoodScreen extends JFrame {
 	 * Create the frame.
 	 */
 	public AddFoodScreen() {
+		textFieldOthers.setColumns(10);
 		initComponents();
 	}
 	
@@ -55,10 +73,7 @@ public class AddFoodScreen extends JFrame {
 		setResizable(false);
 		getContentPane().setBackground(Color.LIGHT_GRAY);
 		
-		JPanel foodAddingPanel = new JPanel();
 		foodAddingPanel.setBackground(new Color(250, 240, 230));
-		
-		JPanel ingChoosingPanel = new JPanel();
 		ingChoosingPanel.setBackground(new Color(250, 240, 230));
 		
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
@@ -80,42 +95,56 @@ public class AddFoodScreen extends JFrame {
 						.addComponent(foodAddingPanel, GroupLayout.PREFERRED_SIZE, 735, GroupLayout.PREFERRED_SIZE))
 					.addGap(24))
 		);
+		
 		GroupLayout gl_ingChoosingPanel = new GroupLayout(ingChoosingPanel);
 		gl_ingChoosingPanel.setHorizontalGroup(
 			gl_ingChoosingPanel.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 700, Short.MAX_VALUE)
+				.addGroup(gl_ingChoosingPanel.createSequentialGroup()
+					.addGroup(gl_ingChoosingPanel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_ingChoosingPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnSubmit, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE))
+						.addGroup(Alignment.LEADING, gl_ingChoosingPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnAdd, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE))
+						.addGroup(Alignment.LEADING, gl_ingChoosingPanel.createSequentialGroup()
+							.addGap(29)
+							.addGroup(gl_ingChoosingPanel.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(list, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(lblIngredient, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(lblOthers, Alignment.LEADING)
+								.addComponent(lblOthersBlank, Alignment.LEADING)
+								.addComponent(textFieldOthers, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 608, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap(63, Short.MAX_VALUE))
 		);
 		gl_ingChoosingPanel.setVerticalGroup(
 			gl_ingChoosingPanel.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 735, Short.MAX_VALUE)
+				.addGroup(gl_ingChoosingPanel.createSequentialGroup()
+					.addGap(32)
+					.addComponent(lblIngredient)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(list, GroupLayout.PREFERRED_SIZE, 312, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnAdd)
+					.addGap(28)
+					.addComponent(lblOthers)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblOthersBlank)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(textFieldOthers, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(58)
+					.addComponent(btnSubmit, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(75, Short.MAX_VALUE))
 		);
 		ingChoosingPanel.setLayout(gl_ingChoosingPanel);
 		
-		JLabel lblSelectRestaurant = new JLabel("Please select the restaurant you want to add food ");
+		textFieldName.setColumns(10);		
+		textFieldPrice.setColumns(10);
+		textFieldCuisine.setColumns(10);
 		
-		JComboBox restaurantsBox = new JComboBox();
-		
-		JLabel lblFoodName = new JLabel("Please enter the name of the food you want to add ");
-		
-		textFieldName = new JTextField();
-		textFieldName.setColumns(10);
-		
-		JLabel lblTypeSelect = new JLabel("Please select the type of the food ");
-		
-		JComboBox typeBox = new JComboBox();
 		typeBox.setModel(new DefaultComboBoxModel(new String[] {"Meal", "Dessert", "Beverage"}));
 		
-		JLabel lblPrice = new JLabel("Please enter the price of the food ");
-		
-		textFieldPrice = new JTextField();
-		textFieldPrice.setColumns(10);
-		
-		JLabel lblCuisine = new JLabel("If food belongs to a cuisine please enter it below ");
-		
-		JLabel lblCuisineDefault = new JLabel("Otherwise, leave the text field blank");
-		
-		textFieldCuisine = new JTextField();
-		textFieldCuisine.setColumns(10);
+		btnSubmit.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
 		
 		GroupLayout gl_foodAddingPanel = new GroupLayout(foodAddingPanel);
 		gl_foodAddingPanel.setHorizontalGroup(
@@ -170,6 +199,5 @@ public class AddFoodScreen extends JFrame {
 		);
 		foodAddingPanel.setLayout(gl_foodAddingPanel);
 		getContentPane().setLayout(groupLayout);
-		
 	}
 }
