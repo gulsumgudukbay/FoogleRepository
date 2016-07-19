@@ -10,12 +10,14 @@ import searchManagement.SearchController;
 
 public class UserResource {
 	// MARK: Properties
-	private ArrayList<RestaurantOwner> owners;
-	Customer customer;
-	Admin admin;
 	RestDB rdb = RestDB.getSoleInstance();
 	UserDB udb = UserDB.getSoleInstance();
 	SearchController sc = new SearchController();
+	
+	private ArrayList<RestaurantOwner> owners;
+	Customer customer;
+	Admin admin;
+	ArrayList<Ingredient> allIngredients = rdb.getAllIngredients();
 	
 	// MARK: Constructors
 	public UserResource() {
