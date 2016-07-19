@@ -13,6 +13,8 @@ import userManagement.RestaurantOwner;
 import searchManagement.SearchController;
 
 public class Restaurant {
+	RestDB rdb = RestDB.getSoleInstance();
+	
 	// MARK: Properties
 	private String name;
 	private ArrayList<Food> foods;
@@ -80,7 +82,6 @@ public class Restaurant {
 		}
 		return false;
 	}
-	// TODO: OWNER VS RESTAURANT
 	// Creates a new food with given parameters, and adds the food to foods list (if it's not already on the list)
 	public void addFood(String name, String cuisine, String type, Double price, ArrayList<Ingredient> ingredients) {
 		if (this.checkFoodOccurance(name)) {
@@ -89,6 +90,7 @@ public class Restaurant {
 		} else {
 			Food temp = new Food(name, cuisine, type, price, ingredients);
 			this.foods.add(temp);
+			rdb.createFoodToExistingRestaurant(this.getName(), owner.getUsername(), temp.getName(), temp.getType(), temp.getCuisine(), temp.getPrice(), ingredients);
 			// TEST
 			System.out.println("Food " + name + " is added to the list");
 		}

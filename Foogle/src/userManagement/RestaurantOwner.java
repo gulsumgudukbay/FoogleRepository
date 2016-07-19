@@ -70,10 +70,9 @@ public class RestaurantOwner extends User {
 		rdb.createRestaurant(restaurant.getName(), this.getUsername());
 		restaurants.add(restaurant);
 	}
-	// TODO: OWNER VS RESTAURANT
 	// TODO: Check if the food is confirmed using PendingDB, using loop
 	public void addFoodToRestaurant(Food food, Restaurant restaurant, ArrayList<Ingredient> ingredients) {
-		rdb.createFoodToExistingRestaurant(restaurant.getName(),this.getUsername(), food.getName(), food.getType(), food.getCuisine(), food.getPrice(), ingredients);
+		restaurant.addFood(food.getName(), food.getCuisine(), food.getType(), food.getPrice(), ingredients);
 	}
 	// FIXME: Ambiguous method decleration
 	// Foods of a specific restaurant? All restaurants?
