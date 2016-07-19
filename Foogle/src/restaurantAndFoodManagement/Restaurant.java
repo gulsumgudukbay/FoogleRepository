@@ -69,7 +69,7 @@ public class Restaurant {
 		}
 		return false;
 	}
-	
+	// TODO: OWNER VS RESTAURANT
 	// Creates a new food with given parameters, and adds the food to foods list (if it's not already on the list)
 	public void addFood(String name, String cuisine, String type, Double price, ArrayList<Ingredient> ingredients) {
 		if (this.checkFoodOccurance(name)) {
