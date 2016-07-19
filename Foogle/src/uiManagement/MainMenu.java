@@ -687,7 +687,7 @@ public class MainMenu extends JFrame {
 				return renderer;
 			}
 			});
-		
+	
 		//selection of wanted ingredients for dessert
 		btnWantedDessert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
