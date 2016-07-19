@@ -2,9 +2,11 @@ package userManagement;
 
 import java.util.ArrayList;
 
+import restaurantAndFoodManagement.Food;
 import restaurantAndFoodManagement.Ingredient;
 import dataManagement.PendingDB;
 import restaurantAndFoodManagement.Restaurant;
+import userManagement.RestaurantOwner;
 
 public class Admin extends User{
 	PendingDB pdb = PendingDB.getSoleInstance();
@@ -39,7 +41,9 @@ public class Admin extends User{
 	}
 	
 	// Utility methods
-	public void confirmIngredients() {
+	// FIXME: Needs checking
+	// Returns merged list
+	public ArrayList<Ingredient> confirmIngredients(ArrayList<Food> foods, ArrayList<Ingredient> guiList, ArrayList<Ingredient> otherList) {
 		// Call respective methods depending on whether it's isConfirmed() or not
 		for(Ingredient ingredient: pendingIngredients) {
 			if(ingredient.isConfirmed()) {
@@ -50,9 +54,12 @@ public class Admin extends User{
 		}
 		
 		if(pdb.isAllIngredientsProcessed()) {
-			// TODO: Call the method here
+			pdb.removeAllPendingIngredients();
+			return RestaurantOwner.mergeLists(foods, guiList, otherList);
 		}
+		return null;	
 	}
+	// FIXME: Needs checking
 	public void confirmRestaurants() {
 		// Call respective methods depending on whether it's isConfirmed() or not
 		for(Restaurant restaurant: pendingRestaurants) {
@@ -63,9 +70,7 @@ public class Admin extends User{
 			}
 		}
 		
-		if(pdb.isAllRestaurantsProcessed()) {
-			// TODO: Call the method here
-		}
+		pdb.removeAllPendingRestaurants();
 	}
 	
 }

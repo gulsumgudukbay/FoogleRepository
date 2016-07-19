@@ -122,7 +122,7 @@ public class Restaurant {
 		
 		//Restaurant myRestaurant = new Restaurant("hd iskender", myFoods);
 		
-		myRestaurant.getFood("donner");
+		//myRestaurant.getFood("donner");
 		//myRestaurant.addFood("kumpir", 8.5, myFirstIngredients);
 	}
 }

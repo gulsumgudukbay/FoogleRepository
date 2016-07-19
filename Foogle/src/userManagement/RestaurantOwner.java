@@ -1,6 +1,7 @@
 package userManagement;
 import java.util.ArrayList;
 
+import dataManagement.PendingDB;
 import dataManagement.RestDB;
 import dataManagement.UserDB;
 import restaurantAndFoodManagement.Food;
@@ -13,6 +14,7 @@ import searchManagement.SearchController;
 public class RestaurantOwner extends User {
 	RestDB rdb = RestDB.getSoleInstance();
 	UserDB udb = UserDB.getSoleInstance();
+	PendingDB pdb = PendingDB.getSoleInstance();
 	SearchController sc = new SearchController();
 	
 	// MARK: Properties
@@ -95,7 +97,6 @@ public class RestaurantOwner extends User {
 		}
 		return null;
 	}
-	
 	// Sign Up method
 	// Append it to Users owners list
 	public void createRestaurantOwnerAccount(String username, String password, String email) {
@@ -103,18 +104,37 @@ public class RestaurantOwner extends User {
 		UserResource.appendOwner(owner);
 		udb.createRestaurantOwnerAccount(username, password, email);
 	}
-	
-	
 	// Login method
-	public boolean loginAsRestaurantOwner(String username, String password) {
-		return udb.isAuthenticated(username, password);
+	public void loginAsRestaurantOwner(String username, String password) {
+		if(udb.isAuthenticated(username, password)) {
+			System.out.println("Welcome back, " + username);
+		}
 	}
-	
 	// Username and Email Checks
 	public boolean doesUsernameExist(String username) {
 		return udb.doesUsernameExist(username);
 	}
 	public boolean doesEmailExist(String email) {
 		return udb.doesEmailExist(email);
+	}
+	
+	// Merge lists
+	public static ArrayList<Ingredient> mergeLists(ArrayList<Food> foods, ArrayList<Ingredient> guiList, ArrayList<Ingredient> otherList) {
+		ArrayList<Ingredient> result;		
+		for(Food food: foods) {
+			if(pdb.isAllOtherIngredientsConfirmedFor(food.getName())) {
+				if(otherList == null && guiList != null) {
+					return guiList;
+				} else if(otherList != null && guiList == null) {
+					return otherList;
+				} else if(otherList != null && guiList != null) {
+					result = guiList;
+					result.addAll(otherList);
+					return result;
+				}
+				
+			}
+		}
+		return null;
 	}
 }
