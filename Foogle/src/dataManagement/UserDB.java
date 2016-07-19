@@ -96,9 +96,6 @@ public class UserDB {
 
 	}
 
-	
-	
-	
 	public boolean createRestaurantOwnerAccount(String username, String password, String email) {
 		if (doesUsernameExist(username) || username == null || password == null || email == null)
 			return false;
