@@ -95,6 +95,7 @@ public class RestaurantOwner extends User {
 		}
 		return null;
 	}
+	
 	// Sign Up method
 	// Append it to Users owners list
 	public void createRestaurantOwnerAccount(String username, String password, String email) {

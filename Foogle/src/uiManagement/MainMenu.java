@@ -104,6 +104,7 @@ public class MainMenu extends JFrame {
 	private JButton btnFinish;
 	public UserResource uR = new UserResource();
 	
+	
 	DefaultListModel<Food> searchListBeverage = new DefaultListModel<Food>();
 	private JList lstResultBeverages;
 	private JScrollPane scrBeverage;
