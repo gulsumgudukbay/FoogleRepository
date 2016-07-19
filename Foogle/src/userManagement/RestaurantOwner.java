@@ -106,6 +106,7 @@ public class RestaurantOwner extends User {
 	}
 	
 	
+	
 	// Login method
 	public boolean loginAsRestaurantOwner(String username, String password) {
 		return udb.isAuthenticated(username, password);
