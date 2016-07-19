@@ -117,12 +117,6 @@ public class LoggedInScreen extends JFrame {
 		btnLogout.setBounds(1214, 112, 196, 76);
 		getContentPane().add(btnLogout);
 		
-		
-		btnLogout.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		btnMyAcc.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		btnAddFood.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
-		btnAddRes.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
-		
 		JLabel lblicon = new JLabel("");
 		lblicon.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/chef-2.png")));
 		lblicon.setBounds(187, 156, 542, 413);
@@ -133,17 +127,22 @@ public class LoggedInScreen extends JFrame {
 		lblHi.setBounds(804, 156, 302, 42);
 		getContentPane().add(lblHi);
 		
-		JButton button = new JButton("Back");
-		button.addActionListener(new ActionListener() {
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				LoginScreen loginScreen = new LoginScreen("");
 				loginScreen.setVisible(true);
 			}
 		});
-		button.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/back_64.png")));
-		button.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
-		button.setBounds(51, 24, 151, 76);
-		getContentPane().add(button);
+		btnBack.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/back_64.png")));
+		btnBack.setBounds(51, 24, 151, 76);
+		getContentPane().add(btnBack);
+		
+		btnBack.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
+		btnLogout.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		btnMyAcc.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		btnAddFood.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
+		btnAddRes.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
 	}
 }
