@@ -6,6 +6,7 @@ import dataManagement.RestDB;
 import dataManagement.UserDB;
 import restaurantAndFoodManagement.Food;
 import restaurantAndFoodManagement.Ingredient;
+import restaurantAndFoodManagement.Restaurant;
 import searchManagement.SearchController;
 
 public class UserResource {
@@ -47,4 +48,13 @@ public class UserResource {
 	public static void appendOwner(RestaurantOwner owner) {
 		owners.add(owner);
 	}
+	// Returns restaurant owner with the given name, in owners list.
+		public RestaurantOwner getRestaurantOwner(String name) {
+			for(RestaurantOwner owner: owners) {
+				if(owner.getUsername() == name) {
+					return owner;
+				}
+			}
+			return null;
+		}
 }
