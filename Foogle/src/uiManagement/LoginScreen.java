@@ -39,7 +39,6 @@ public class LoginScreen extends JFrame {
 	private static String username;
 	public RestaurantOwner restOwner = new RestaurantOwner();
 
-	
 	/**
 	 * Launch the application.
 	 */

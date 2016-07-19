@@ -142,6 +142,7 @@ public class CreateAccountScreen extends JFrame {
 		contentPane.add(btnRegister);
 	}
 	
+	
 	private void createEvents() {
 		
 		btnRegister.addActionListener(new ActionListener() {
