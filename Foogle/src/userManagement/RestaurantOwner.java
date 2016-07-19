@@ -20,7 +20,6 @@ public class RestaurantOwner extends User {
 	private String password;
 	private String email;
 	private ArrayList<Restaurant> restaurants;
-	private int restaurantNo;
 	
 	// MARK: Contructors
 	public RestaurantOwner() {
@@ -28,7 +27,6 @@ public class RestaurantOwner extends User {
 		this.password = "";
 		this.email = "";
 		this.restaurants = new ArrayList<Restaurant>();
-		this.restaurantNo = 0;
 	}
 	public RestaurantOwner(String username, String password, String email) {
 		this.setUsername(username);
@@ -36,7 +34,6 @@ public class RestaurantOwner extends User {
 		this.setEmail(email);
 		
 		this.restaurants = new ArrayList<Restaurant>();
-		this.restaurantNo = 0;
 	}
 	
 	// MARK: Methods
@@ -53,9 +50,6 @@ public class RestaurantOwner extends User {
 	public ArrayList<Restaurant> getRestaurants() {
 		return restaurants;
 	}
-	public int getRestaurantNo() {
-		return restaurantNo;
-	}
 	
 	public void setUsername(String username) {
 		this.username = username;
@@ -68,9 +62,6 @@ public class RestaurantOwner extends User {
 	}
 	public void setRestaurants(ArrayList<Restaurant> restaurants) {
 		this.restaurants = restaurants;
-	}
-	public void setRestaurantNo(int restaurantNo) {
-		this.restaurantNo = restaurantNo;
 	}
 	
 	// Utility methods
