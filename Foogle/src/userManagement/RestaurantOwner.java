@@ -7,6 +7,7 @@ import restaurantAndFoodManagement.Food;
 import restaurantAndFoodManagement.Ingredient;
 import restaurantAndFoodManagement.Restaurant;
 import restaurantAndFoodManagement.Restaurant;
+import userManagement.UserResource;
 import searchManagement.SearchController;
 
 public class RestaurantOwner extends User {
@@ -104,8 +105,10 @@ public class RestaurantOwner extends User {
 		return null;
 	}
 	// Sign Up method
-	// TODO: Append it to Users owners list
+	// Append it to Users owners list
 	public void createRestaurantOwnerAccount(String username, String password, String email) {
+		RestaurantOwner owner = new RestaurantOwner(username, password, email);
+		UserResource.appendOwner(owner);
 		udb.createRestaurantOwnerAccount(username, password, email);
 	}
 	// Login method

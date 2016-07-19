@@ -49,5 +49,8 @@ public class UserResource {
 	public ArrayList<Ingredient> getAllIngredients() {
 		return this.allIngredients;
 	}
-	
+	// Appends new owner to owners list
+	public static void appendOwner(RestaurantOwner owner) {
+		this.owners.add(owner);
+	}
 }
