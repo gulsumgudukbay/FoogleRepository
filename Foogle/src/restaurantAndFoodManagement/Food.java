@@ -3,6 +3,8 @@ package restaurantAndFoodManagement;
 import java.io.*;
 import java.util.*;
 
+import dataManagement.RestDB;
+
 public class Food {
 	// MARK: Properties
 	private String name;
@@ -10,6 +12,7 @@ public class Food {
 	private String type;
 	private double price;
 	private ArrayList<Ingredient> ingredients;
+	public RestDB rdb = RestDB.getSoleInstance();
 	// TODO: private OtheringProcessor oip;
 	// TODO: private String otheringBuff; 
 	
@@ -30,6 +33,11 @@ public class Food {
 	
 	// MARK: Methods
 	// Accessors and Mutators
+	
+	public ArrayList<Restaurant> getAllRestaurantsOfFood(String foodName){
+		return rdb.getAllRestaurantsOfFood(foodName);
+	}
+	
 	public String getCuisine() {
 		System.out.println("CUISINE "+ cuisine);
 		return cuisine;
@@ -102,6 +110,20 @@ public class Food {
 	    }
 	    return result;
 	}
+	
+	public String listToRestaurant(){
+		String result = "Restaurants: ";
+		ArrayList<Restaurant> restaurantsForFood = getAllRestaurantsOfFood(this.getName()); 
+		for (int i = 0; i < restaurantsForFood.size(); i++) {
+	    	if(i != restaurantsForFood.size() -1 )
+	    		result += restaurantsForFood.get(i).getName() + ",";
+	    	else
+	    		result += restaurantsForFood.get(i).getName();
+	    }
+	    return result;
+		
+	}
+	
 	// TODO: insertToPending(otheringBuf)
 	
 	// TEST

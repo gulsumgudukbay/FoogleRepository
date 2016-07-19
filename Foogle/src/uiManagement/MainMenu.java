@@ -554,7 +554,7 @@ public class MainMenu extends JFrame {
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
 					System.out.println(((Food)value).getCuisine());
-					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
 			}
