@@ -15,7 +15,7 @@ public class UserResource {
 	SearchController sc = new SearchController();
 	
 	// TODO: Get owners from UserDB
-	ArrayList<RestaurantOwner> owners;
+	static ArrayList<RestaurantOwner> owners;
 	Customer customer;
 	Admin admin;
 	ArrayList<Ingredient> allIngredients = rdb.getAllIngredients();
@@ -51,6 +51,6 @@ public class UserResource {
 	}
 	// Appends new owner to owners list
 	public static void appendOwner(RestaurantOwner owner) {
-		this.owners.add(owner);
+		owners.add(owner);
 	}
 }
