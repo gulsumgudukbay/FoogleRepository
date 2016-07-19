@@ -10,29 +10,29 @@ import searchManagement.SearchController;
 
 public class UserResource {
 	// MARK: Properties
-	private ArrayList<User> users;
+	private ArrayList<RestaurantOwner> owners;
 	RestDB rdb = RestDB.getSoleInstance();
 	UserDB udb = UserDB.getSoleInstance();
 	SearchController sc = new SearchController();
 	
 	// MARK: Constructors
 	public UserResource() {
-		users = new ArrayList<User>();
+		owners = new ArrayList<RestaurantOwner>();
 	}
 	
 	// MARK: Methods
 	// Accessors and Mutators
-	public ArrayList<User> getUsers() {
-		return this.users;
+	public ArrayList<RestaurantOwner> getOwners() {
+		return this.owners;
 	}
-	public void setUsers(ArrayList<User> users) {
-		this.users = users;
+	public void setOwners(ArrayList<RestaurantOwner> owners) {
+		this.owners = owners;
 	}
 
 	// Utility methods 
 	public void listAllUsers() {
-		for(int i = 0; i < this.users.size(); i++) {
-			System.out.println("User #" + i + "\t" + users.get(i));
+		for(int i = 0; i < this.owners.size(); i++) {
+			System.out.println("User #" + i + "\t" + owners.get(i));
 		}
 	}
 	
