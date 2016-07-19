@@ -140,7 +140,6 @@ public class CreateAccountScreen extends JFrame {
 		btnRegister.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
 		btnRegister.setBounds(999, 599, 170, 76);
 		contentPane.add(btnRegister);
-		
 	}
 	
 	private void createEvents() {
