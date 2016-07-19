@@ -10,21 +10,15 @@ import searchManagement.SearchController;
 
 public class UserResource {
 	// MARK: Properties
-	RestDB rdb = RestDB.getSoleInstance();
-	UserDB udb = UserDB.getSoleInstance();
+	static RestDB rdb = RestDB.getSoleInstance();
+	static UserDB udb = UserDB.getSoleInstance();
 	SearchController sc = new SearchController();
 	
-	// FIXME: Get owners from UserDB. Waiting for database methods
-	static ArrayList<RestaurantOwner> owners;
-	Customer customer;
-	Admin admin;
+	static ArrayList<RestaurantOwner> owners = udb.getAllRestOwners();
+	Customer customer = new Customer();
+	Admin admin = new Admin();
 	// FIXME: Customer has the same property. From database or from customer?
 	ArrayList<Ingredient> allIngredients = rdb.getAllIngredients();
-	
-	// MARK: Constructors
-	public UserResource() {
-		// TODO: Set owners and other properties
-	}
 	
 	// MARK: Methods
 	// Accessors and Mutators
