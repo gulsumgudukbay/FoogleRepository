@@ -14,7 +14,7 @@ import searchManagement.SearchController;
 public class RestaurantOwner extends User {
 	RestDB rdb = RestDB.getSoleInstance();
 	UserDB udb = UserDB.getSoleInstance();
-	PendingDB pdb = PendingDB.getSoleInstance();
+	static PendingDB pdb = PendingDB.getSoleInstance();
 	SearchController sc = new SearchController();
 	
 	// MARK: Properties
@@ -105,10 +105,11 @@ public class RestaurantOwner extends User {
 		udb.createRestaurantOwnerAccount(username, password, email);
 	}
 	// Login method
-	public void loginAsRestaurantOwner(String username, String password) {
+	public boolean loginAsRestaurantOwner(String username, String password) {
 		if(udb.isAuthenticated(username, password)) {
-			System.out.println("Welcome back, " + username);
+			return true;
 		}
+		else return false;
 	}
 	// Username and Email Checks
 	public boolean doesUsernameExist(String username) {
