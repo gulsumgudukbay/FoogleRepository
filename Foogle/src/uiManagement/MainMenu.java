@@ -526,6 +526,7 @@ public class MainMenu extends JFrame {
 			
 	}
 	
+	
 	//add elements to list of GUI by using the searched food list from database and foodtype
 	private void initSearchList(ArrayList<Food> foodList,String foodtype) {
 		
