@@ -36,6 +36,9 @@ public class AddFoodScreen extends JFrame {
 	private JComboBox comboBoxForRestaurant;
 	public UserResource uR = UserResource.getSoleInstance();
 	public RestaurantOwner restOwner = new RestaurantOwner();
+	public String foodName;
+	public Double foodPrice;
+	public ArrayList<Ingredient> foodIngredients;
 	private static String username;
 	private JPanel foodTypePanel;
 	private JPanel restSelectionpanel;
@@ -49,6 +52,12 @@ public class AddFoodScreen extends JFrame {
 	private JPanel ingredientPanel;
 	private JTextArea lblInfoOtherIng;
 	private JTextField textFieldOtherIng;
+	private JTextField textFieldFoodName;
+	private JComboBox comboBoxForIngredients;
+	private JCheckBox checkBoxForAddIngredient;
+	private JLabel lblInfoIngredient;
+	private JFormattedTextField formattedTextField;
+	private JCheckBox chckbxAddTheNew;
 
 	/**
 	 * Launch the application.
@@ -119,11 +128,11 @@ public class AddFoodScreen extends JFrame {
 		ingredientPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Ingredients", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		ingredientPanel.setBackground(new Color(250, 240, 230));
 		
-		JComboBox comboBoxForIngredients = new JComboBox();
+		comboBoxForIngredients = new JComboBox();
 		
-		JCheckBox checkBoxForAddIngredient = new JCheckBox("Add this ingredient to the new food");
+		checkBoxForAddIngredient = new JCheckBox("Add this ingredient to the new food");
 		
-		JLabel lblInfoIngredient = new JLabel("Please select the ingredients you want to add your new food");
+		lblInfoIngredient = new JLabel("Please select the ingredients you want to add your new food");
 		GroupLayout gl_ingredientPanel = new GroupLayout(ingredientPanel);
 		gl_ingredientPanel.setHorizontalGroup(
 			gl_ingredientPanel.createParallelGroup(Alignment.LEADING)
@@ -192,7 +201,7 @@ public class AddFoodScreen extends JFrame {
 	    formatter.setAllowsInvalid(false);
 	    // If you want the value to be committed on each keystroke instead of focus lost
 	    formatter.setCommitsOnValidEdit(true);
-		JFormattedTextField formattedTextField = new JFormattedTextField(formatter);
+		formattedTextField = new JFormattedTextField(formatter);
 		
 		GroupLayout gl_foodPricePanel = new GroupLayout(foodPricePanel);
 		gl_foodPricePanel.setHorizontalGroup(
@@ -211,21 +220,22 @@ public class AddFoodScreen extends JFrame {
 		);
 		foodPricePanel.setLayout(gl_foodPricePanel);
 		
-		JTextArea textArea = new JTextArea();
+		textFieldFoodName = new JTextField();
+		textFieldFoodName.setColumns(10);
 		GroupLayout gl_foodNamePanel = new GroupLayout(foodNamePanel);
 		gl_foodNamePanel.setHorizontalGroup(
 			gl_foodNamePanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_foodNamePanel.createSequentialGroup()
-					.addGap(32)
-					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(212, Short.MAX_VALUE))
+					.addGap(39)
+					.addComponent(textFieldFoodName, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(208, Short.MAX_VALUE))
 		);
 		gl_foodNamePanel.setVerticalGroup(
 			gl_foodNamePanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_foodNamePanel.createSequentialGroup()
-					.addGap(18)
-					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(26, Short.MAX_VALUE))
+					.addGap(15)
+					.addComponent(textFieldFoodName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(28, Short.MAX_VALUE))
 		);
 		foodNamePanel.setLayout(gl_foodNamePanel);
 		GroupLayout gl_foodTypePanel = new GroupLayout(foodTypePanel);
@@ -263,7 +273,7 @@ public class AddFoodScreen extends JFrame {
 		
 		lblInfoRest = new JLabel("Please select the restaurants for the new food to be added");
 		
-		JCheckBox chckbxAddTheNew = new JCheckBox("Add the new food to this restaurant");
+		chckbxAddTheNew = new JCheckBox("Add the new food to this restaurant");
 		GroupLayout gl_restSelectionpanel = new GroupLayout(restSelectionpanel);
 		gl_restSelectionpanel.setHorizontalGroup(
 			gl_restSelectionpanel.createParallelGroup(Alignment.LEADING)

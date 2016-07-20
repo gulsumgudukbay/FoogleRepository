@@ -51,7 +51,6 @@ public class UserResource {
 	}
 	// Get all ingredients for GUI
 	public ArrayList<Ingredient> getAllIngredients() {
-		System.out.println(" ********" + allIngredients);
 		return this.allIngredients;
 	}
 	// Appends new owner to owners list
