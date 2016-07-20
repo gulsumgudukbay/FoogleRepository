@@ -122,7 +122,8 @@ public class MyAccountScreen extends JFrame {
 					.addContainerGap())
 		);
 		
-		restaurantsBox.setModel(new DefaultComboBoxModel<ArrayList<Restaurant>>((ArrayList<Restaurant>[]) rests.toArray()));
+		Restaurant[] restsArray = listToArray(rests);
+		restaurantsBox.setModel(new DefaultComboBoxModel (restsArray));
 				
 		GroupLayout gl_restaurants = new GroupLayout(restaurants);
 		gl_restaurants.setHorizontalGroup(
@@ -186,6 +187,17 @@ public class MyAccountScreen extends JFrame {
 		restaurants.setLayout(gl_restaurants);
 		contentPane.setLayout(gl_contentPane);
 
+	}
+	
+	private Restaurant[] listToArray(ArrayList<Restaurant> restsList) {
+		int x = restsList.size();
+		Restaurant[] restsToReturn = new Restaurant[x];
+		
+		for(int i = 0; i < x; i++) {
+			restsToReturn[i] = restsList.get(i);
+		}
+		
+		return restsToReturn;
 	}
 }
 
