@@ -1003,7 +1003,7 @@ public class MainMenu extends JFrame {
 				initSearchList(searchedfoodListMealFrench,"meal");
 				initSearchList(searchedfoodListMealRussian,"meal");
 				initSearchList(searchedfoodListMealOther,"meal");
-				
+			
 				////////////////////
 				
 				mealpanel.setVisible(false);
