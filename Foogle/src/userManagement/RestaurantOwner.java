@@ -120,21 +120,16 @@ public class RestaurantOwner extends User {
 	}
 	
 	// Merge lists
-	public static ArrayList<Ingredient> mergeLists(ArrayList<Food> foods, ArrayList<Ingredient> guiList, ArrayList<Ingredient> otherList) {
+	public static ArrayList<Ingredient> mergeLists(ArrayList<Ingredient> guiList, ArrayList<Ingredient> otherList) {
 		ArrayList<Ingredient> result;		
-		for(Food food: foods) {
-			if(pdb.isAllOtherIngredientsConfirmedFor(food.getName())) {
-				if(otherList == null && guiList != null) {
-					return guiList;
-				} else if(otherList != null && guiList == null) {
-					return otherList;
-				} else if(otherList != null && guiList != null) {
-					result = guiList;
-					result.addAll(otherList);
-					return result;
-				}
-				
-			}
+		if(otherList == null && guiList != null) {
+			return guiList;
+		} else if(otherList != null && guiList == null) {
+			return otherList;
+		} else if(otherList != null && guiList != null) {
+			result = guiList;
+			result.addAll(otherList);
+			return result;
 		}
 		return null;
 	}

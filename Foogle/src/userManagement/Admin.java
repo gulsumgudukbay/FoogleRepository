@@ -49,7 +49,7 @@ public class Admin extends User{
 	// Utility methods
 	// FIXME: Needs checking
 	// Returns merged list
-	public ArrayList<Ingredient> confirmIngredients(ArrayList<Food> foods, ArrayList<Ingredient> guiList, ArrayList<Ingredient> otherList) {
+	public void confirmIngredients(ArrayList<Food> foods, ArrayList<Ingredient> guiList, ArrayList<Ingredient> otherList) {
 		// Call respective methods depending on whether it's isConfirmed() or not
 		for(Ingredient ingredient: pendingIngredients) {
 			if(ingredient.isConfirmed()) {
@@ -60,10 +60,12 @@ public class Admin extends User{
 		}
 		
 		if(pdb.isAllIngredientsProcessed()) {
-			pdb.removeAllPendingIngredients();
-			return RestaurantOwner.mergeLists(foods, guiList, otherList);
-		}
-		return null;	
+			for( Food food: foods) {
+				ArrayList<Ingredient> newList = RestaurantOwner.mergeLists(guiList, otherList);
+				food.setIngredients(newList);
+			}
+			pdb.removeAllPendingIngredients();	
+		}	
 	}
 	// FIXME: Needs checking
 	public void confirmRestaurants() {
