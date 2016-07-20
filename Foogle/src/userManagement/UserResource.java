@@ -8,6 +8,8 @@ import restaurantAndFoodManagement.Food;
 import restaurantAndFoodManagement.Ingredient;
 import restaurantAndFoodManagement.Restaurant;
 import searchManagement.SearchController;
+import userManagement.Admin;
+import userManagement.Customer;
 
 public class UserResource {
 	// MARK: Properties
@@ -16,6 +18,8 @@ public class UserResource {
 	SearchController sc = new SearchController();
 	
 	static ArrayList<RestaurantOwner> owners = udb.getAllRestOwners();
+	Customer customer = Customer.getSoleInstance();
+	Admin admin = Admin.getSoleInstance();
 	ArrayList<Ingredient> allIngredients = customer.getAllIngredients();
 	
 	// MARK: Methods
