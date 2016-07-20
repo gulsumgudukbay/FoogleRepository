@@ -10,6 +10,11 @@ import searchManagement.SearchController;
 public class Customer extends User {
 	RestDB rdb = RestDB.getSoleInstance();
 	SearchController sc = new SearchController();
+	private static Customer c = new Customer();
+	
+	public static Customer getSoleInstance() {
+		return c;
+	}
 	
 	// TODO: Constructors?
 	

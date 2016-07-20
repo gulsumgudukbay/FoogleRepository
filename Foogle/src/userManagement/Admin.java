@@ -10,6 +10,12 @@ import userManagement.RestaurantOwner;
 
 public class Admin extends User{
 	PendingDB pdb = PendingDB.getSoleInstance();
+	private static Admin a = new Admin();
+	
+	public static Admin getSoleInstance() {
+		return a;
+	}
+	
 	
 	// MARK: Properties
 	private ArrayList<Ingredient> pendingIngredients;
