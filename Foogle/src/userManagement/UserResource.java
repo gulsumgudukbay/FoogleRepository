@@ -49,12 +49,12 @@ public class UserResource {
 		owners.add(owner);
 	}
 	// Returns restaurant owner with the given name, in owners list.
-		public RestaurantOwner getRestaurantOwner(String name) {
-			for(RestaurantOwner owner: owners) {
-				if(owner.getUsername() == name) {
-					return owner;
-				}
+	public RestaurantOwner getRestaurantOwner(String name) {
+		for(RestaurantOwner owner: owners) {
+			if(owner.getUsername().equals(name)) {
+				return owner;
 			}
-			return null;
 		}
+		return null;
+	}
 }

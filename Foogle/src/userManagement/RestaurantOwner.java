@@ -138,13 +138,4 @@ public class RestaurantOwner extends User {
 		}
 		return null;
 	}
-	// Get restaurant owner from username
-	public static RestaurantOwner getOwner(String username) {
-		for(RestaurantOwner owner: udb.getAllRestOwners()) {
-			if(owner.getUsername() == username) {
-				return owner;
-			}
-		}
-		return null;
-	}
 }
