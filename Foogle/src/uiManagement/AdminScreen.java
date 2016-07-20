@@ -59,13 +59,13 @@ public class AdminScreen extends JFrame {
 		
 		final DefaultListModel ingModel = new DefaultListModel();
 		for (int i = 0; i < pendingIngList.size(); i++) {
-		  ingModel.addElement(pendingIngList.get(i));
+		  ingModel.addElement(pendingIngList.get(i).getName());
 		}
 		ingList = new JList(ingModel);
 		
 		final DefaultListModel resModel = new DefaultListModel();
 		for (int i = 0; i < pendingResList.size(); i++) {
-		  ingModel.addElement(pendingResList.get(i));
+		  ingModel.addElement(pendingResList.get(i).getName());
 		}
 		ingList = new JList(ingModel);
 		

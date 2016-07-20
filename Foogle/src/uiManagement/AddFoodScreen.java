@@ -4,31 +4,36 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.NumberFormatter;
 
+import restaurantAndFoodManagement.Ingredient;
+import restaurantAndFoodManagement.Restaurant;
 import userManagement.RestaurantOwner;
 import userManagement.UserResource;
-
-import javax.swing.JComboBox;
-import javax.swing.JRadioButton;
-import javax.swing.border.EtchedBorder;
-import javax.swing.JTextField;
-import javax.swing.JFormattedTextField;
-import javax.swing.JTextArea;
-import javax.swing.JCheckBox;
-import javax.swing.JButton;
-import java.awt.Font;
+import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AddFoodScreen extends JFrame {
 
@@ -36,9 +41,13 @@ public class AddFoodScreen extends JFrame {
 	private JComboBox comboBoxForRestaurant;
 	public UserResource uR = UserResource.getSoleInstance();
 	public RestaurantOwner restOwner = new RestaurantOwner();
+	
 	public String foodName;
 	public Double foodPrice;
-	public ArrayList<Ingredient> foodIngredients;
+	public ArrayList<Object> existingFoodIngredientsObject = new ArrayList<Object>();
+	public ArrayList<Object> pendingFoodIngredientsObject = new ArrayList<Object>();
+	public ArrayList<Object> foodRestaurantsObject = new ArrayList<Object>();
+	
 	private static String username;
 	private JPanel foodTypePanel;
 	private JPanel restSelectionpanel;
@@ -57,7 +66,13 @@ public class AddFoodScreen extends JFrame {
 	private JCheckBox checkBoxForAddIngredient;
 	private JLabel lblInfoIngredient;
 	private JFormattedTextField formattedTextField;
-	private JCheckBox chckbxAddTheNew;
+	private JCheckBox checkBoxForAddToRest;
+	private JButton btnBack;
+	private JRadioButton btnFarEastern;
+	private JRadioButton btnFrench;
+	private JRadioButton btnRussian;
+	private JRadioButton btnOther;
+	private JButton btnComplete;
 
 	/**
 	 * Launch the application.
@@ -129,6 +144,11 @@ public class AddFoodScreen extends JFrame {
 		ingredientPanel.setBackground(new Color(250, 240, 230));
 		
 		comboBoxForIngredients = new JComboBox();
+
+		DefaultComboBoxModel comboBoxModelIngredient = (DefaultComboBoxModel) comboBoxForIngredients.getModel();
+		
+		for(int i=0;i<uR.getAllIngredients().size();i++)
+			comboBoxModelIngredient.addElement(uR.getAllIngredients().get(i).getName());
 		
 		checkBoxForAddIngredient = new JCheckBox("Add this ingredient to the new food");
 		
@@ -190,7 +210,8 @@ public class AddFoodScreen extends JFrame {
 		);
 		otherIngredientPanel.setLayout(gl_otherIngredientPanel);
 		
-		JButton btnComplete = new JButton("Add!1!1");
+		btnComplete = new JButton("Add!1!1");
+
 		btnComplete.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		
 		NumberFormat format = NumberFormat.getInstance();
@@ -273,14 +294,15 @@ public class AddFoodScreen extends JFrame {
 		
 		lblInfoRest = new JLabel("Please select the restaurants for the new food to be added");
 		
-		chckbxAddTheNew = new JCheckBox("Add the new food to this restaurant");
+		checkBoxForAddToRest = new JCheckBox("Add the new food to this restaurant");
+
 		GroupLayout gl_restSelectionpanel = new GroupLayout(restSelectionpanel);
 		gl_restSelectionpanel.setHorizontalGroup(
 			gl_restSelectionpanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_restSelectionpanel.createSequentialGroup()
 					.addGap(23)
 					.addGroup(gl_restSelectionpanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(chckbxAddTheNew)
+						.addComponent(checkBoxForAddToRest)
 						.addComponent(lblInfoRest)
 						.addComponent(comboBoxForRestaurant, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE))
 					.addGap(25))
@@ -293,46 +315,116 @@ public class AddFoodScreen extends JFrame {
 					.addGap(30)
 					.addComponent(comboBoxForRestaurant, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(29)
-					.addComponent(chckbxAddTheNew)
+					.addComponent(checkBoxForAddToRest)
 					.addGap(69))
 		);
 		restSelectionpanel.setLayout(gl_restSelectionpanel);
+		
+		btnBack = new JButton("Back");
+
+		btnBack.setIcon(new ImageIcon(AddFoodScreen.class.getResource("/resources/back_64.png")));
+		btnBack.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
+		
+		JPanel foodCuisinePanel = new JPanel();
+		foodCuisinePanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Food Cuisine", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		foodCuisinePanel.setBackground(new Color(250, 240, 230));
+		
+		JTextArea txtrPleaseSelectOne = new JTextArea();
+		txtrPleaseSelectOne.setText("Please select one of the cuisines below for your new food\n");
+		txtrPleaseSelectOne.setLineWrap(true);
+		txtrPleaseSelectOne.setEditable(false);
+		txtrPleaseSelectOne.setBackground(new Color(250, 240, 230));
+		
+		JRadioButton rdbtnTurkish = new JRadioButton("Turkish");
+		
+		btnFarEastern = new JRadioButton("Far Eastern");
+		
+		btnFrench = new JRadioButton("French");
+		
+		btnRussian = new JRadioButton("Russian");
+		
+		btnOther = new JRadioButton("Other");
+		GroupLayout gl_foodCuisinePanel = new GroupLayout(foodCuisinePanel);
+		gl_foodCuisinePanel.setHorizontalGroup(
+			gl_foodCuisinePanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_foodCuisinePanel.createSequentialGroup()
+					.addGroup(gl_foodCuisinePanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_foodCuisinePanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(txtrPleaseSelectOne, GroupLayout.PREFERRED_SIZE, 373, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_foodCuisinePanel.createSequentialGroup()
+							.addGap(35)
+							.addGroup(gl_foodCuisinePanel.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnFarEastern)
+								.addComponent(rdbtnTurkish)
+								.addComponent(btnFrench)
+								.addComponent(btnRussian)
+								.addComponent(btnOther))))
+					.addContainerGap(47, Short.MAX_VALUE))
+		);
+		gl_foodCuisinePanel.setVerticalGroup(
+			gl_foodCuisinePanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_foodCuisinePanel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(txtrPleaseSelectOne, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(rdbtnTurkish)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnFarEastern)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnFrench)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnRussian)
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(btnOther))
+		);
+		foodCuisinePanel.setLayout(gl_foodCuisinePanel);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(254)
+					.addGap(48)
+					.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
+					.addGap(55)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(foodNamePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(foodTypePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(foodPricePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(restSelectionpanel, GroupLayout.PREFERRED_SIZE, 438, GroupLayout.PREFERRED_SIZE))
 					.addGap(39)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-							.addComponent(ingredientPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(otherIngredientPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addComponent(btnComplete))
-					.addGap(128))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(foodCuisinePanel, GroupLayout.PREFERRED_SIZE, 438, GroupLayout.PREFERRED_SIZE)
+						.addComponent(ingredientPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(otherIngredientPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(72)
+							.addComponent(btnComplete)))
+					.addGap(67))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(23)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(foodNamePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(6)
-							.addComponent(foodTypePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(6)
-							.addComponent(foodPricePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(6)
-							.addComponent(restSelectionpanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(23)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(foodNamePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addGap(6)
+									.addComponent(foodTypePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addGap(6)
+									.addComponent(foodPricePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addGap(6)
+									.addComponent(restSelectionpanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(ingredientPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addGap(6)
+									.addComponent(otherIngredientPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(foodCuisinePanel, 0, 0, Short.MAX_VALUE))))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(ingredientPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(6)
-							.addComponent(otherIngredientPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(56)
+							.addGap(326)
 							.addComponent(btnComplete)))
 					.addContainerGap(47, Short.MAX_VALUE))
 		);
@@ -340,9 +432,61 @@ public class AddFoodScreen extends JFrame {
 		
 	}
 
+	//object list from the user desires to ingredient list 	
+	private ArrayList<Ingredient> sendIngList(ArrayList<Object> ingredientList) {
+		
+		ArrayList<Ingredient> ingListToSend = new ArrayList<Ingredient>();
+		for(int i=0;i<ingredientList.size();i++){
+			ingListToSend.add(new Ingredient(ingredientList.get(i).toString()));
+		}
+		
+		return ingListToSend;
+		
+	}
 	
 	private void createEvents() {
-		// TODO Auto-generated method stub
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				LoggedInScreen loggedInScreen= new LoggedInScreen(username);
+				loggedInScreen.setVisible(true);
+				
+			}
+		});
+		
+		checkBoxForAddIngredient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Object selected = comboBoxForIngredients.getSelectedItem();
+				if(checkBoxForAddIngredient.isSelected() && !existingFoodIngredientsObject.contains(selected)){
+					existingFoodIngredientsObject.add(selected);
+				}
+				if(!checkBoxForAddIngredient.isSelected() && existingFoodIngredientsObject.contains(selected)){
+					existingFoodIngredientsObject.remove(selected);
+				}
+				System.out.println("Selected Existing Ingredients");
+				System.out.println(existingFoodIngredientsObject.toString());
+			}
+		});
+		
+		
+		btnComplete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ArrayList<Ingredient> existingFoodIngredientsIng= new ArrayList<Ingredient>(); 
+				existingFoodIngredientsIng = sendIngList(existingFoodIngredientsObject);
+				for(int i=0;i<existingFoodIngredientsIng.size();i++){
+					System.out.println(existingFoodIngredientsIng .get(i).getName());
+				}
+				
+			}
+		});
+		
+		comboBoxForIngredients.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				checkBoxForAddIngredient.setSelected(false);
+			}
+		});
 		
 	}
 }
