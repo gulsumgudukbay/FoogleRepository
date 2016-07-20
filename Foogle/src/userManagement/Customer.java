@@ -17,9 +17,6 @@ public class Customer extends User {
 		return c;
 	}
 	
-	// TODO: Constructors?
-
-	
 	public ArrayList<Ingredient> getAllIngredients(){
 		System.out.println("HERE"+ings.toString());
 		return rdb.getAllIngredients();

@@ -13,8 +13,6 @@ public class Food {
 	private double price;
 	private ArrayList<Ingredient> ingredients;
 	public RestDB rdb = RestDB.getSoleInstance();
-	// TODO: private OtheringProcessor oip;
-	// TODO: private String otheringBuff; 
 	
 	// MARK: Constructors
 	public Food(String name, String cuisine, String type, double price, ArrayList<Ingredient> ingredients) {
@@ -124,8 +122,6 @@ public class Food {
 	    return result;
 		
 	}
-	
-	// TODO: insertToPending(otheringBuf)
 	
 	// TEST
 	public static void main(String[] args) {
