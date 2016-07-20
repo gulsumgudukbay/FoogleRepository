@@ -96,7 +96,7 @@ public class MainMenu extends JFrame {
 	//FOR SEARCH RESULTS
 	
 	private JButton btnFinish;
-	public UserResource uR = UserResource.getSoleInstance();;
+	public UserResource uR = UserResource.getSoleInstance();
 	
 	////////////////////////////////////////////////////////////////
 	// 					THE MEAL PART OF SEARCH					///

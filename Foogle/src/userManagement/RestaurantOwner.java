@@ -65,6 +65,10 @@ public class RestaurantOwner extends User {
 		this.restaurants = restaurants;
 	}
 	
+	public ArrayList <Restaurant> getAllRestaurantsOfARestaurantOwner(String username){
+		return udb.getAllRestaurantsOfARestaurantOwner(username);
+	}
+	
 	// Utility methods
 	// Creates a new restaurant by calling db method and appends it to restaurants list.
 	public void addRestaurant(Restaurant restaurant) {
