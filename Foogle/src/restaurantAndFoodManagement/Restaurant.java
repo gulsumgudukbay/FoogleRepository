@@ -2,28 +2,22 @@ package restaurantAndFoodManagement;
 
 import java.util.ArrayList;
 
+import dataManagement.PendingDB;
 import dataManagement.RestDB;
-import dataManagement.UserDB;
-import restaurantAndFoodManagement.Food;
-import restaurantAndFoodManagement.Ingredient;
-import restaurantAndFoodManagement.Restaurant;
-import restaurantAndFoodManagement.Restaurant;
-import userManagement.UserResource;
 import userManagement.RestaurantOwner;
-import searchManagement.SearchController;
 
 public class Restaurant {
 	RestDB rdb = RestDB.getSoleInstance();
-	
 	// MARK: Properties
 	private String name;
-	private ArrayList<Food> foods = rdb.getAllFoods(name, owner.getUsername());
+	private ArrayList<Food> foods;
 	private boolean isConfirmed;
-	public static RestaurantOwner owner;
 	
 	// MARK: Constructors
 	public Restaurant() {
 		this.name = "";
+		foods = null;
+		isConfirmed = false;
 	}
 	
 	public Restaurant(String name) {
@@ -32,8 +26,8 @@ public class Restaurant {
 	
 	public Restaurant(String name, ArrayList<Food> foods, RestaurantOwner owner) {
 		this.setName(name);
-		this.setFoods(foods);
-		this.owner = owner;
+		this.setFoods(rdb.getAllFoods(name, owner.getUsername()));
+		this.setConfirmed(false);
 	}
 	
 	// MARK: Methods
@@ -82,16 +76,19 @@ public class Restaurant {
 		return false;
 	}
 	// Creates a new food with given parameters, and adds the food to foods list (if it's not already on the list)
-	public void addFood(String name, String cuisine, String type, Double price, ArrayList<Ingredient> ingredients) {
+	public void addFood(String name, String restOwner, String cuisine, String type, Double price, ArrayList<Ingredient> ingredients) {
 		if (this.checkFoodOccurance(name)) {
 			// TEST
 			System.out.println("Food " + name + " is already on the list");
 		} else {
-			Food temp = new Food(name, cuisine, type, price, ingredients);
-			rdb.createFoodToExistingRestaurant(this.getName(), owner.getUsername(), temp.getName(), temp.getType(), temp.getCuisine(), temp.getPrice(), ingredients);
+			
 			// TEST
 			System.out.println("Food " + name + " is added to the list");
 		}
+		Food temp = new Food(name, cuisine, type, price, ingredients);
+		temp.setIngredients(rdb.getAllIngredientsForAFood(name));
+		rdb.createFoodToExistingRestaurant(this.getName(), restOwner, temp.getName(), temp.getType(), temp.getCuisine(), temp.getPrice(), ingredients);
+
 	}
 	
 	// TEST

@@ -21,18 +21,20 @@ public class RestaurantOwner extends User {
 	private String username;
 	private String password;
 	private String email;
-	private ArrayList<Restaurant> restaurants = udb.getAllRestaurantsOfARestaurantOwner(username);
+	private ArrayList<Restaurant> restaurants;
 	
 	// MARK: Contructors
 	public RestaurantOwner() {
 		this.username = "";
 		this.password = "";
 		this.email = "";
+		this.restaurants = null;
 	}
 	public RestaurantOwner(String username, String password, String email) {
 		this.setUsername(username);
 		this.setPassword(password);
 		this.setEmail(email);
+		this.setRestaurants(udb.getAllRestaurantsOfARestaurantOwner(username));
 	}
 	
 	// MARK: Methods
@@ -70,7 +72,7 @@ public class RestaurantOwner extends User {
 	}
 	// TODO: Check if the food is confirmed using PendingDB, using loop
 	public void addFoodToRestaurant(Food food, Restaurant restaurant, ArrayList<Ingredient> ingredients) {
-		restaurant.addFood(food.getName(), food.getCuisine(), food.getType(), food.getPrice(), ingredients);
+		restaurant.addFood(food.getName(), username, food.getCuisine(), food.getType(), food.getPrice(), ingredients);
 	}
 	// FIXME: Ambiguous method decleration
 	// Foods of a specific restaurant? All restaurants?

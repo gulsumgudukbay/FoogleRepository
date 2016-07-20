@@ -27,8 +27,9 @@ public class AddRestaurantScreen extends JFrame {
 	private static String username;
 	private JLabel lblRestaurantName;
 	private JLabel labelIcon;
-	private UserResource ur = new UserResource();
-	private final RestaurantOwner ro = ur.getRestaurantOwner(username);
+	private UserResource ur = UserResource.getSoleInstance();
+	private  RestaurantOwner ro = new RestaurantOwner();
+	
 	
 	
 	/**
@@ -59,7 +60,7 @@ public class AddRestaurantScreen extends JFrame {
 	
 	
 	public void initComponents() {
-		
+		ro = ur.getRestaurantOwner(username);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Foogle");
 		setBounds(200, 200, 1440, 800);
@@ -85,10 +86,13 @@ public class AddRestaurantScreen extends JFrame {
 		btnSubmit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				System.out.println(ro.getUsername());
 				String newRes = txtRestaurantName.getText();
 				Restaurant resToAdd = new Restaurant(newRes);
-					
+				System.out.println(ro.getUsername());
+				System.out.println(ro.getRestaurants().toString());
 				ro.addRestaurant(resToAdd);
+				
 				JOptionPane.showMessageDialog(null, "The new restaurant is successfully created!");
 				dispose();
 				LoggedInScreen loggedInScreen = new LoggedInScreen(username);

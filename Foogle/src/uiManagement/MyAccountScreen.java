@@ -43,7 +43,7 @@ public class MyAccountScreen extends JFrame {
 	private JLabel lblRestaurant = new JLabel("Restaurant:");
 	private JLabel lblFood = new JLabel("Food:");
 	private static String username;
-	private UserResource ur = new UserResource();
+	public UserResource ur = UserResource.getSoleInstance();
 	private final RestaurantOwner ro = ur.getRestaurantOwner(username);
 	
 	/**

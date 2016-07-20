@@ -96,7 +96,7 @@ public class MainMenu extends JFrame {
 	//FOR SEARCH RESULTS
 	
 	private JButton btnFinish;
-	public UserResource uR = new UserResource();
+	public UserResource uR = UserResource.getSoleInstance();;
 	
 	////////////////////////////////////////////////////////////////
 	// 					THE MEAL PART OF SEARCH					///
@@ -143,13 +143,13 @@ public class MainMenu extends JFrame {
 	public ArrayList<Food> searchedfoodListDessertRussian = new ArrayList<Food>();
 	public ArrayList<Food> searchedfoodListDessertOther = new ArrayList<Food>();	
 	
-	public ArrayList<Food> searchedTest = new ArrayList<Food>();
+	/*public ArrayList<Food> searchedTest = new ArrayList<Food>();
 	public ArrayList<Ingredient> searchedTestIng = new ArrayList<Ingredient>();
 	public ArrayList<Food> searchedfoodListTestTurkish = new ArrayList<Food>();
 	public ArrayList<Food> searchedfoodListTestFarEastern = new ArrayList<Food>();
 	public ArrayList<Food> searchedfoodListTestFrench = new ArrayList<Food>();
 	public ArrayList<Food> searchedfoodListTestRussian = new ArrayList<Food>();
-	public ArrayList<Food> searchedfoodListTestOther = new ArrayList<Food>();
+	public ArrayList<Food> searchedfoodListTestOther = new ArrayList<Food>();*/
 	private static String username;
 
 	/**
@@ -441,7 +441,7 @@ public class MainMenu extends JFrame {
 		btnFinish.setVisible(false);
 		contentPane.add(btnFinish);
 		
-		//FOR MEAL TEST
+	/*	//FOR MEAL TEST
 		//creating a test list model for placing all ingredients to the combo box
 		DefaultComboBoxModel testListModelMeal = (DefaultComboBoxModel) comboBoxForMeal.getModel();
 		
@@ -478,7 +478,7 @@ public class MainMenu extends JFrame {
 		
 		for(int i=0;i<searchedfoodListTestFarEastern.size();i++)
 			System.out.println(searchedfoodListTestFarEastern.get(i).getCuisine() + searchedfoodListTestFarEastern.get(i).getName());
-		
+		*/
 	}
 	
 	

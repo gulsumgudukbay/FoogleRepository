@@ -25,6 +25,7 @@ import javax.swing.border.SoftBevelBorder;
 
 import dataManagement.UserDB;
 import userManagement.RestaurantOwner;
+import userManagement.UserResource;
 
 import javax.swing.border.BevelBorder;
 import javax.swing.UIManager;
@@ -45,7 +46,7 @@ public class CreateAccountScreen extends JFrame {
 	private JPasswordField passwordField;
 	private static String username;
 	public RestaurantOwner restOwner = new RestaurantOwner();
-
+	UserResource ur = UserResource.getSoleInstance();
 	/**
 	 * Launch the application.
 	 */

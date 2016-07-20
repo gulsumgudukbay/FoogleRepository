@@ -11,14 +11,17 @@ public class Customer extends User {
 	RestDB rdb = RestDB.getSoleInstance();
 	SearchController sc = new SearchController();
 	private static Customer c = new Customer();
+	ArrayList<Ingredient> ings = rdb.getAllIngredients();
 	
 	public static Customer getSoleInstance() {
 		return c;
 	}
 	
 	// TODO: Constructors?
+
 	
 	public ArrayList<Ingredient> getAllIngredients(){
+		System.out.println("HERE"+ings.toString());
 		return rdb.getAllIngredients();
 	}
 	
