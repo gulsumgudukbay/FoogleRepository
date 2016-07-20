@@ -101,9 +101,14 @@ public class MainMenu extends JFrame {
 	////////////////////////////////////////////////////////////////
 	// 					THE MEAL PART OF SEARCH					///
 	//////////////////////////////////////////////////////////////
-	DefaultListModel<Food> searchListMeal = new DefaultListModel<Food>();
-	private JList lstResultMeals;
-	private JScrollPane scrMeal;
+	DefaultListModel<Food> searchListMealTurkish = new DefaultListModel<Food>();
+	DefaultListModel<Food> searchListMealFarEastern = new DefaultListModel<Food>();
+	DefaultListModel<Food> searchListMealRussian = new DefaultListModel<Food>();
+	DefaultListModel<Food> searchListMealFrench = new DefaultListModel<Food>();
+	DefaultListModel<Food> searchListMealOther = new DefaultListModel<Food>();
+	
+	private JList lstResultMealTurkish;
+	private JScrollPane scrMealTurkish;
 	public ArrayList<Food> searchedFoodListMeal = new ArrayList<Food>();
 	
 	//CUISINE BASED LISTS OF MEAL
@@ -113,12 +118,26 @@ public class MainMenu extends JFrame {
 	public ArrayList<Food> searchedfoodListMealRussian = new ArrayList<Food>();
 	public ArrayList<Food> searchedfoodListMealOther = new ArrayList<Food>();
 	
+	private JScrollPane scrMealFarEastern;
+	private JScrollPane scrMealFrench;
+	private JScrollPane scrMealRussian;
+	private JScrollPane scrMealOther;
+	private JList lstResultMealFarEastern;
+	private JList lstResultMealFrench;
+	private JList lstResultMealRussian;
+	private JList lstResultMealOther;
+	
 	////////////////////////////////////////////////////////////////
 	// 					THE BEVERAGE PART OF SEARCH				///
 	//////////////////////////////////////////////////////////////
-	DefaultListModel<Food> searchListBeverage = new DefaultListModel<Food>();
-	private JList lstResultBeverages;
-	private JScrollPane scrBeverage;
+	DefaultListModel<Food> searchListBeverageTurkish = new DefaultListModel<Food>();
+	DefaultListModel<Food> searchListBeverageFarEastern = new DefaultListModel<Food>();
+	DefaultListModel<Food> searchListBeverageRussian = new DefaultListModel<Food>();
+	DefaultListModel<Food> searchListBeverageFrench = new DefaultListModel<Food>();
+	DefaultListModel<Food> searchListBeverageOther = new DefaultListModel<Food>();
+	
+	private JList lstResultBeverageTurkish;
+	private JScrollPane scrBeverageTurkish;
 	public ArrayList<Food> searchedFoodListBeverage = new ArrayList<Food>();
 	
 	//CUISINE BASED LISTS OF BEVERAGE
@@ -131,9 +150,23 @@ public class MainMenu extends JFrame {
 	////////////////////////////////////////////////////////////////
 	// 					THE DESSERT PART OF SEARCH				///
 	//////////////////////////////////////////////////////////////
-	DefaultListModel<Food> searchListDessert = new DefaultListModel<Food>();
-	private JList lstResultDesserts;
-	private JScrollPane scrDessert;
+	DefaultListModel<Food> searchListDessertTurkish = new DefaultListModel<Food>();
+	DefaultListModel<Food> searchListDessertFarEastern = new DefaultListModel<Food>();
+	DefaultListModel<Food> searchListDessertFrench = new DefaultListModel<Food>();
+	DefaultListModel<Food> searchListDessertRussian = new DefaultListModel<Food>();
+	DefaultListModel<Food> searchListDessertOther = new DefaultListModel<Food>();
+	
+	private JScrollPane scrDessertFarEastern;
+	private JScrollPane scrDessertFrench;
+	private JScrollPane scrDessertRussian;
+	private JScrollPane scrDessertOther;
+	private JList lstResultDessertFarEastern;
+	private JList lstResultDessertFrench;
+	private JList lstResultDessertRussian;
+	private JList lstResultDessertOther;
+	
+	private JList lstResultDessertTurkish;
+	private JScrollPane scrDessertTurkish;
 	public ArrayList<Food> searchedFoodListDessert = new ArrayList<Food>();
 	
 	//CUISINE BASED LISTS OF DESSERT
@@ -142,6 +175,15 @@ public class MainMenu extends JFrame {
 	public ArrayList<Food> searchedfoodListDessertFrench = new ArrayList<Food>();
 	public ArrayList<Food> searchedfoodListDessertRussian = new ArrayList<Food>();
 	public ArrayList<Food> searchedfoodListDessertOther = new ArrayList<Food>();	
+	
+	private JScrollPane scrBeverageFarEastern;
+	private JScrollPane scrBeverageFrench;
+	private JScrollPane scrBeverageRussian;
+	private JScrollPane scrBeverageOther;
+	private JList lstResultBeverageFarEastern;
+	private JList lstResultBeverageRussian;
+	private JList lstResultBeverageFrench;
+	private JList lstResultBeverageOther;
 
 	private static String username;
 
@@ -296,13 +338,50 @@ public class MainMenu extends JFrame {
 		labelmealback.setBounds(60, 73, 273, 256);
 		mealpanel.add(labelmealback);
 		
-		scrMeal = new JScrollPane();
-		scrMeal.setBounds(6, 18, 392, 390);
-		mealpanel.add(scrMeal);
-		scrMeal.setVisible(false);
+		scrMealTurkish = new JScrollPane();
+		scrMealTurkish.setViewportBorder(new TitledBorder(null, "Turkish", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		scrMealTurkish.setBounds(6, 18, 392, 75);
+		mealpanel.add(scrMealTurkish);
+		scrMealTurkish.setVisible(false);
 		
-		lstResultMeals = new JList(searchListMeal);
-		scrMeal.setViewportView(lstResultMeals);
+		lstResultMealTurkish = new JList(searchListMealTurkish);
+		scrMealTurkish.setViewportView(lstResultMealTurkish);
+		
+		scrMealFarEastern = new JScrollPane();
+		scrMealFarEastern.setViewportBorder(new TitledBorder(null, "Far Eastern", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		scrMealFarEastern.setBounds(6, 95, 392, 77);
+		mealpanel.add(scrMealFarEastern);
+		scrMealFarEastern.setVisible(false);
+		
+		lstResultMealFarEastern = new JList(searchListMealFarEastern);
+		scrMealFarEastern.setViewportView(lstResultMealFarEastern);
+		
+		scrMealFrench = new JScrollPane();
+		scrMealFrench.setViewportBorder(new TitledBorder(null, "French", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		scrMealFrench.setBounds(6, 174, 392, 75);
+		mealpanel.add(scrMealFrench);
+		scrMealFrench.setVisible(false);
+		
+		lstResultMealFrench = new JList(searchListMealFrench);
+		scrMealFrench.setViewportView(lstResultMealFrench);
+		
+		scrMealRussian = new JScrollPane();
+		scrMealRussian.setViewportBorder(new TitledBorder(null, "Russian", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		scrMealRussian.setBounds(6, 252, 392, 77);
+		mealpanel.add(scrMealRussian);
+		scrMealRussian.setVisible(false);
+		
+		lstResultMealRussian = new JList(searchListMealRussian);
+		scrMealRussian.setViewportView(lstResultMealRussian);
+		
+		scrMealOther = new JScrollPane();
+		scrMealOther.setViewportBorder(new TitledBorder(null, "Other", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		scrMealOther.setBounds(6, 331, 392, 77);
+		mealpanel.add(scrMealOther);
+		scrMealOther.setVisible(false);
+		
+		lstResultMealOther = new JList(searchListMealOther);
+		scrMealOther.setViewportView(lstResultMealOther);
 		
 		dessertpanel = new JPanel();
 		dessertpanel.setVisible(false);
@@ -350,12 +429,49 @@ public class MainMenu extends JFrame {
 		btnOkDessert.setBounds(317, 379, 75, 29);
 		dessertpanel.add(btnOkDessert);
 		
-		scrDessert = new JScrollPane();
-		scrDessert.setBounds(6, 19, 386, 389);
-		dessertpanel.add(scrDessert);
+		scrDessertTurkish = new JScrollPane();
+		scrDessertTurkish.setViewportBorder(new TitledBorder(null, "Turkish", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		scrDessertTurkish.setBounds(6, 19, 386, 72);
+		dessertpanel.add(scrDessertTurkish);
+		scrDessertTurkish.setVisible(false);
 		
-		lstResultDesserts = new JList(searchListDessert);
-		scrDessert.setViewportView(lstResultDesserts);
+		lstResultDessertTurkish = new JList(searchListDessertTurkish);
+		scrDessertTurkish.setViewportView(lstResultDessertTurkish);
+		
+		scrDessertFarEastern = new JScrollPane();
+		scrDessertFarEastern.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Far Eastern", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		scrDessertFarEastern.setBounds(6, 92, 386, 78);
+		dessertpanel.add(scrDessertFarEastern);
+		scrDessertFarEastern.setVisible(false);
+		
+		lstResultDessertFarEastern = new JList(searchListDessertFarEastern);
+		scrDessertFarEastern.setViewportView(lstResultDessertFarEastern);
+		
+		scrDessertFrench = new JScrollPane();
+		scrDessertFrench.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "French", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		scrDessertFrench.setBounds(6, 169, 386, 78);
+		dessertpanel.add(scrDessertFrench);
+		scrDessertFrench.setVisible(false);
+		
+		lstResultDessertFrench = new JList(searchListDessertFrench);
+		scrDessertFrench.setViewportView(lstResultDessertFrench);
+		
+		scrDessertRussian = new JScrollPane();
+		scrDessertRussian.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Russian", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		scrDessertRussian.setBounds(6, 250, 386, 77);
+		dessertpanel.add(scrDessertRussian);
+		
+		lstResultDessertRussian = new JList(searchListDessertRussian);
+		scrDessertRussian.setViewportView(lstResultDessertRussian);
+		
+		scrDessertOther = new JScrollPane();
+		scrDessertOther.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Other", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		scrDessertOther.setBounds(6, 330, 386, 78);
+		dessertpanel.add(scrDessertOther);
+		scrDessertOther.setVisible(false);
+		
+		lstResultDessertOther = new JList(searchListDessertOther);
+		scrDessertOther.setViewportView(lstResultDessertOther);
 		
 		beveragepanel = new JPanel();
 		beveragepanel.setVisible(false);
@@ -403,12 +519,51 @@ public class MainMenu extends JFrame {
 		btnOkBeverage.setBounds(317, 379, 75, 29);
 		beveragepanel.add(btnOkBeverage);
 		
-		scrBeverage = new JScrollPane();
-		scrBeverage.setBounds(6, 19, 386, 389);
-		beveragepanel.add(scrBeverage);
+		scrBeverageTurkish = new JScrollPane();
+		scrBeverageTurkish.setViewportBorder(new TitledBorder(null, "Turkish", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		scrBeverageTurkish.setBounds(6, 19, 386, 75);
+		beveragepanel.add(scrBeverageTurkish);
+		scrBeverageTurkish.setVisible(false);
 		
-		lstResultBeverages = new JList(searchListBeverage);
-		scrBeverage.setViewportView(lstResultBeverages);
+		lstResultBeverageTurkish = new JList(searchListBeverageTurkish);
+		scrBeverageTurkish.setViewportView(lstResultBeverageTurkish);
+		
+		scrBeverageFarEastern = new JScrollPane();
+		scrBeverageFarEastern.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Far Eastern", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		scrBeverageFarEastern.setBounds(6, 95, 386, 75);
+		beveragepanel.add(scrBeverageFarEastern);
+		scrBeverageFarEastern.setVisible(false);
+		
+		lstResultBeverageFarEastern = new JList(searchListDessertFarEastern);
+		scrBeverageFarEastern.setViewportView(lstResultBeverageFarEastern);
+		
+		scrBeverageFrench = new JScrollPane();
+		scrBeverageFrench.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "French", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		scrBeverageFrench.setBounds(6, 173, 386, 75);
+		beveragepanel.add(scrBeverageFrench);
+		scrBeverageFrench.setVisible(false);
+		
+		lstResultBeverageFrench = new JList(searchListDessertFrench);
+		scrBeverageFrench.setViewportView(lstResultBeverageFrench);
+		
+		scrBeverageRussian = new JScrollPane();
+		scrBeverageRussian.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Russian", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		scrBeverageRussian.setBounds(6, 251, 386, 81);
+		beveragepanel.add(scrBeverageRussian);
+		scrBeverageRussian.setVisible(false);
+		
+		lstResultBeverageRussian = new JList(searchListDessertRussian);
+		scrBeverageRussian.setViewportView(lstResultBeverageRussian);
+		
+		scrBeverageOther = new JScrollPane();
+		scrBeverageOther.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Other", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		scrBeverageOther.setBounds(6, 333, 386, 75);
+		beveragepanel.add(scrBeverageOther);
+		scrBeverageOther.setVisible(false);
+		
+		lstResultBeverageOther = new JList(searchListDessertOther);
+		scrBeverageOther.setViewportView(lstResultBeverageOther);
+		
 		contentPane.setLayout(null);
 		contentPane.add(lblMeal);
 		contentPane.add(checkBoxMeal);
@@ -528,12 +683,58 @@ public class MainMenu extends JFrame {
 	private void initSearchList(ArrayList<Food> foodList,String foodtype) {
 		
 		for(int i=0;i<foodList.size();i++)
-			if(foodtype.equals("meal"))
-				searchListMeal.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
-			else if(foodtype.equals("dessert"))
-				searchListDessert.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
-			else
-				searchListBeverage.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+			if(foodtype.equals("meal")){
+				if(foodList.get(i).getCuisine().equals("Turkish")){
+					searchListMealTurkish.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+				}
+				else if(foodList.get(i).getCuisine().equals("Far Eastern")){
+					searchListMealFarEastern.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+				}
+				else if(foodList.get(i).getCuisine().equals("French")){
+					searchListMealFrench.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+				}
+				else if(foodList.get(i).getCuisine().equals("Russian")){
+					searchListMealRussian.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+				}
+				else{
+					searchListMealOther.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+				}
+			}	
+			else if(foodtype.equals("dessert")){
+				if(foodList.get(i).getCuisine().equals("Turkish")){
+					searchListDessertTurkish.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+				}
+				else if(foodList.get(i).getCuisine().equals("Far Eastern")){
+					searchListDessertFarEastern.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+				}
+				else if(foodList.get(i).getCuisine().equals("French")){
+					searchListDessertFrench.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+				}
+				else if(foodList.get(i).getCuisine().equals("Russian")){
+					searchListDessertRussian.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+				}
+				else{
+					searchListDessertOther.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+				}
+			}
+			else{
+				if(foodList.get(i).getCuisine().equals("Turkish")){
+					searchListBeverageTurkish.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+				}
+				else if(foodList.get(i).getCuisine().equals("Far Eastern")){
+					searchListBeverageFarEastern.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+				}
+				else if(foodList.get(i).getCuisine().equals("French")){
+					searchListBeverageFrench.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+				}
+				else if(foodList.get(i).getCuisine().equals("Russian")){
+					searchListBeverageRussian.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+				}
+				else{
+					searchListBeverageOther.addElement(new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients()));
+				}
+				
+			}
 				
 	}
 
@@ -567,7 +768,6 @@ public class MainMenu extends JFrame {
 					
 					if(!checkBoxMeal.isEnabled()){
 						mealpanel.setVisible(true);
-						scrMeal.setVisible(true);
 						lblSelectMeal.setVisible(false);
 						comboBoxForMeal.setVisible(false);
 						labelmealback.setVisible(false);
@@ -575,11 +775,18 @@ public class MainMenu extends JFrame {
 						btnUnwantedMeal.setVisible(false);
 						btnDontCareMeal.setVisible(false);
 						btnOkMeal.setVisible(false);
+						
+						scrMealTurkish.setVisible(true);
+						scrMealFarEastern.setVisible(true);
+						scrMealRussian.setVisible(true);
+						scrMealFrench.setVisible(true);
+						scrMealOther.setVisible(true);
+						mealpanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Search Results For Meal", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 					
 					}
 					if (!checkBoxDessert.isEnabled()){
 						dessertpanel.setVisible(true);
-						scrDessert.setVisible(true);
+						scrDessertTurkish.setVisible(true);
 						lblSelectDessert.setVisible(false);
 						comboBoxForDessert.setVisible(false);
 						lbldessertback.setVisible(false);
@@ -587,11 +794,18 @@ public class MainMenu extends JFrame {
 						btnUnwantedDessert.setVisible(false);
 						btnDontCareDessert.setVisible(false);
 						btnOkDessert.setVisible(false);
+						
+						scrDessertTurkish.setVisible(true);
+						scrDessertFarEastern.setVisible(true);
+						scrDessertRussian.setVisible(true);
+						scrDessertFrench.setVisible(true);
+						scrDessertOther.setVisible(true);
+						dessertpanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Search Results For Dessert", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 					
 					}
 					if (!checkBoxBeverage.isEnabled()){
 						beveragepanel.setVisible(true);
-						scrBeverage.setVisible(true);
+						scrBeverageTurkish.setVisible(true);
 						lblSelectBeverage.setVisible(false);
 						comboBoxForBeverage.setVisible(false);
 						lblbeverageback.setVisible(false);
@@ -599,6 +813,13 @@ public class MainMenu extends JFrame {
 						btnUnwantedBeverage.setVisible(false);
 						btnDontCareBeverage.setVisible(false);
 						btnOkBeverage.setVisible(false);
+						
+						scrBeverageTurkish.setVisible(true);
+						scrBeverageFarEastern.setVisible(true);
+						scrBeverageRussian.setVisible(true);
+						scrBeverageFrench.setVisible(true);
+						scrBeverageOther.setVisible(true);
+						beveragepanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Search Results For Beverage", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 					}
 				}	
 			}
@@ -641,7 +862,55 @@ public class MainMenu extends JFrame {
 		// 				THE MEAL PART OF THE EVENTS					///
 		//////////////////////////////////////////////////////////////
 		
-		lstResultMeals.setCellRenderer(new DefaultListCellRenderer(){
+		lstResultMealTurkish.setCellRenderer(new DefaultListCellRenderer(){
+			@Override
+			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
+				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
+				if(renderer instanceof JLabel && value instanceof Food){
+					System.out.println(((Food)value).getCuisine());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
+				}
+				return renderer;
+			}
+			});
+		
+		lstResultMealFarEastern.setCellRenderer(new DefaultListCellRenderer(){
+			@Override
+			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
+				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
+				if(renderer instanceof JLabel && value instanceof Food){
+					System.out.println(((Food)value).getCuisine());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
+				}
+				return renderer;
+			}
+			});
+		
+		lstResultMealFrench.setCellRenderer(new DefaultListCellRenderer(){
+			@Override
+			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
+				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
+				if(renderer instanceof JLabel && value instanceof Food){
+					System.out.println(((Food)value).getCuisine());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
+				}
+				return renderer;
+			}
+			});
+		
+		lstResultMealRussian.setCellRenderer(new DefaultListCellRenderer(){
+			@Override
+			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
+				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
+				if(renderer instanceof JLabel && value instanceof Food){
+					System.out.println(((Food)value).getCuisine());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
+				}
+				return renderer;
+			}
+			});
+		
+		lstResultMealOther.setCellRenderer(new DefaultListCellRenderer(){
 			@Override
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
@@ -774,7 +1043,51 @@ public class MainMenu extends JFrame {
 		// 				THE DESSERT PART OF THE EVENTS				///
 		//////////////////////////////////////////////////////////////
 		
-		lstResultDesserts.setCellRenderer(new DefaultListCellRenderer(){
+		lstResultDessertTurkish.setCellRenderer(new DefaultListCellRenderer(){
+			@Override
+			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
+				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
+				if(renderer instanceof JLabel && value instanceof Food){
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+				}
+				return renderer;
+			}
+			});
+		
+		lstResultDessertFarEastern.setCellRenderer(new DefaultListCellRenderer(){
+			@Override
+			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
+				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
+				if(renderer instanceof JLabel && value instanceof Food){
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+				}
+				return renderer;
+			}
+			});
+		
+		lstResultDessertFrench.setCellRenderer(new DefaultListCellRenderer(){
+			@Override
+			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
+				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
+				if(renderer instanceof JLabel && value instanceof Food){
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+				}
+				return renderer;
+			}
+			});
+		
+		lstResultDessertRussian.setCellRenderer(new DefaultListCellRenderer(){
+			@Override
+			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
+				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
+				if(renderer instanceof JLabel && value instanceof Food){
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+				}
+				return renderer;
+			}
+			});
+		
+		lstResultDessertOther.setCellRenderer(new DefaultListCellRenderer(){
 			@Override
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
@@ -906,7 +1219,51 @@ public class MainMenu extends JFrame {
 		// 				THE BEVERAGE PART OF THE EVENTS				///
 		//////////////////////////////////////////////////////////////
 		
-		lstResultBeverages.setCellRenderer(new DefaultListCellRenderer(){
+		lstResultBeverageTurkish.setCellRenderer(new DefaultListCellRenderer(){
+			@Override
+			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
+				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
+				if(renderer instanceof JLabel && value instanceof Food){
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+				}
+				return renderer;
+			}
+			});
+		
+		lstResultBeverageFarEastern.setCellRenderer(new DefaultListCellRenderer(){
+			@Override
+			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
+				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
+				if(renderer instanceof JLabel && value instanceof Food){
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+				}
+				return renderer;
+			}
+			});
+		
+		lstResultBeverageFrench.setCellRenderer(new DefaultListCellRenderer(){
+			@Override
+			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
+				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
+				if(renderer instanceof JLabel && value instanceof Food){
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+				}
+				return renderer;
+			}
+			});
+		
+		lstResultBeverageRussian.setCellRenderer(new DefaultListCellRenderer(){
+			@Override
+			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
+				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
+				if(renderer instanceof JLabel && value instanceof Food){
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+				}
+				return renderer;
+			}
+			});
+		
+		lstResultBeverageOther.setCellRenderer(new DefaultListCellRenderer(){
 			@Override
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
