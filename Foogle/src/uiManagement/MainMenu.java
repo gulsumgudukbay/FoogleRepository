@@ -464,7 +464,7 @@ public class MainMenu extends JFrame {
 	
 	private void classifyCuisine(ArrayList<Food> foodList){
 		for(int i=0;i<foodList.size();i++){
-			if(foodList.get(i).getCuisine() == "Turkish"){
+			if(foodList.get(i).getCuisine().equals("Turkish")){
 				if(foodList.get(i).getType().equals("meal")){
 					searchedfoodListMealTurkish.add((new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients())));
 				}
@@ -476,7 +476,7 @@ public class MainMenu extends JFrame {
 				}
 				
 			}
-			else if(foodList.get(i).getCuisine() == "Far Eastern"){
+			else if(foodList.get(i).getCuisine().equals("Far Eastern")){
 				if(foodList.get(i).getType().equals("meal")){
 					searchedfoodListMealFarEastern.add((new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients())));
 				}
@@ -488,7 +488,7 @@ public class MainMenu extends JFrame {
 				}
 				
 			}
-			else if(foodList.get(i).getCuisine() == "French"){
+			else if(foodList.get(i).getCuisine().equals("French")){
 				if(foodList.get(i).getType().equals("meal")){
 					searchedfoodListMealFrench.add((new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients())));
 				}
@@ -499,7 +499,7 @@ public class MainMenu extends JFrame {
 					searchedfoodListBeverageFrench.add((new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients())));
 				}
 			}
-			else if(foodList.get(i).getCuisine() == "Russian"){
+			else if(foodList.get(i).getCuisine().equals("Russian")){
 				if(foodList.get(i).getType().equals("meal")){
 					searchedfoodListMealRussian.add((new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients())));
 				}
@@ -510,7 +510,7 @@ public class MainMenu extends JFrame {
 					searchedfoodListBeverageRussian.add((new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients())));
 				}		
 			}
-			else if(foodList.get(i).getCuisine() == "Other"){
+			else if(foodList.get(i).getCuisine().equals("Other")){
 				if(foodList.get(i).getType().equals("meal")){
 					searchedfoodListMealOther.add((new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients())));
 				}
