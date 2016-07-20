@@ -34,6 +34,8 @@ public class UserDB {
 				owner.setPassword("password");
 				owner.setRestaurants(getAllRestaurantsOfARestaurantOwner(owner.getUsername()));
 				owners.add(owner);
+				
+				System.out.println(owner.getUsername()+ " "+ owner.getRestaurants().toString());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

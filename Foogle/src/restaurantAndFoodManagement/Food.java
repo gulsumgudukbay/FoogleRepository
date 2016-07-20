@@ -21,7 +21,7 @@ public class Food {
 		this.setCuisine(cuisine);
 		this.setName(name);
 		this.setPrice(price);
-		this.setIngredients(ingredients);
+		this.setIngredients(rdb.getAllIngredientsForAFood(name));
 		this.setType(type);
 	}
 	public Food() {
@@ -29,7 +29,7 @@ public class Food {
 		this.type = "";
 		this.name = "";
 		this.price = 0.0;
-		this.ingredients = new ArrayList<Ingredient>();
+		this.ingredients = rdb.getAllIngredientsForAFood(name);
 	}
 	
 	// MARK: Methods

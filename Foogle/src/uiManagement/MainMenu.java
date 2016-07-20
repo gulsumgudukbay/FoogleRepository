@@ -96,7 +96,7 @@ public class MainMenu extends JFrame {
 	//FOR SEARCH RESULTS
 	
 	private JButton btnFinish;
-	public UserResource uR = new UserResource();
+	public UserResource uR = UserResource.getSoleInstance();;
 	
 	////////////////////////////////////////////////////////////////
 	// 					THE MEAL PART OF SEARCH					///
@@ -142,7 +142,7 @@ public class MainMenu extends JFrame {
 	public ArrayList<Food> searchedfoodListDessertFrench = new ArrayList<Food>();
 	public ArrayList<Food> searchedfoodListDessertRussian = new ArrayList<Food>();
 	public ArrayList<Food> searchedfoodListDessertOther = new ArrayList<Food>();	
-	
+
 	private static String username;
 
 	/**
@@ -454,7 +454,6 @@ public class MainMenu extends JFrame {
 						
 		for(int i=0;i<uR.getAllIngredients().size();i++)
 			testListModelBeverage.addElement(uR.getAllIngredients().get(i).getName());
-		
 	}
 	
 ////////////////////////////////////////////////////////////////

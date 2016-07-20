@@ -78,7 +78,9 @@ public class Admin extends User{
 			}
 		}
 		
-		pdb.removeAllPendingRestaurants();
+		if(pdb.isAllRestaurantsProcessed()) {
+			pdb.removeAllPendingRestaurants();
+		}
 	}
 	
 }

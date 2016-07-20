@@ -16,11 +16,18 @@ public class UserResource {
 	static RestDB rdb = RestDB.getSoleInstance();
 	static UserDB udb = UserDB.getSoleInstance();
 	SearchController sc = new SearchController();
+	static UserResource ur = new UserResource();
+	
 	
 	static ArrayList<RestaurantOwner> owners = udb.getAllRestOwners();
 	Customer customer = Customer.getSoleInstance();
 	Admin admin = Admin.getSoleInstance();
 	ArrayList<Ingredient> allIngredients = customer.getAllIngredients();
+	
+	public static UserResource getSoleInstance(){
+		System.out.println(owners.toString());
+		return ur;
+	}
 	
 	// MARK: Methods
 	// Accessors and Mutators
@@ -44,6 +51,7 @@ public class UserResource {
 	}
 	// Get all ingredients for GUI
 	public ArrayList<Ingredient> getAllIngredients() {
+		System.out.println(" ********" + allIngredients);
 		return this.allIngredients;
 	}
 	// Appends new owner to owners list

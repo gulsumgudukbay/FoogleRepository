@@ -60,7 +60,7 @@ public class AddFoodScreen extends JFrame {
 	private JTextField textFieldOthers = new JTextField();
 	private JButton btnSubmit = new JButton("Submit");
 	private JSpinner spinPrice = new JSpinner();
-	private UserResource ur = new UserResource();
+	private UserResource ur = UserResource.getSoleInstance();
 	private final RestaurantOwner ro = ur.getRestaurantOwner(username);
 	
 	/**
