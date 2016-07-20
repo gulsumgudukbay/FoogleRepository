@@ -64,7 +64,7 @@ public class Admin extends User{
 				ArrayList<Ingredient> newList = RestaurantOwner.mergeLists(guiList, otherList);
 				food.setIngredients(newList);
 			}
-			//pdb.removeAllPendingIngredients();	
+			pdb.removeAllPendingIngredients();	
 		}	
 	}
 	// FIXME: Needs checking
@@ -77,8 +77,10 @@ public class Admin extends User{
 				pdb.rejectRestaurant(restaurant.getName());
 			}
 		}
-		//removve edilcek  zaman isallprocessed oldugunda olacak!!
-		//pdb.removeAllPendingRestaurants();
+		
+		if(pdb.isAllRestaurantsProcessed()) {
+			pdb.removeAllPendingRestaurants();
+		}
 	}
 	
 }
