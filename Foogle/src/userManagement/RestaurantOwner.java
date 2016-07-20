@@ -46,9 +46,6 @@ public class RestaurantOwner extends User {
 	public String getEmail() {
 		return email;
 	}
-	public ArrayList<Restaurant> getRestaurants() {
-		return restaurants;
-	}
 	
 	public void setUsername(String username) {
 		this.username = username;
@@ -58,9 +55,6 @@ public class RestaurantOwner extends User {
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public void setRestaurants(ArrayList<Restaurant> restaurants) {
-		this.restaurants = restaurants;
 	}
 	
 	// Utility methods
@@ -87,7 +81,7 @@ public class RestaurantOwner extends User {
 	// Returns restaurant with the given name, in restaurants list.
 	public Restaurant getRestaurant(String name) {
 		for(Restaurant restaurant: restaurants) {
-			if(restaurant.getName() == name) {
+			if(restaurant.getName().equals(name)) {
 				return restaurant;
 			}
 		}
@@ -95,6 +89,7 @@ public class RestaurantOwner extends User {
 	}
 	// Sign Up method
 	// Append it to Users owners list
+	// TODO: CHECK THIS METHOD
 	public void createRestaurantOwnerAccount(String username, String password, String email) {
 		RestaurantOwner owner = new RestaurantOwner(username, password, email);
 		UserResource.appendOwner(owner);
