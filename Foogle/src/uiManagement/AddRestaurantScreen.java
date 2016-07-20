@@ -14,8 +14,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import dataManagement.RestDB;
 import restaurantAndFoodManagement.Restaurant;
 import userManagement.RestaurantOwner;
+import userManagement.UserResource;
 
 public class AddRestaurantScreen extends JFrame {
 
@@ -25,6 +27,8 @@ public class AddRestaurantScreen extends JFrame {
 	private static String username;
 	private JLabel lblRestaurantName;
 	private JLabel labelIcon;
+	private UserResource ur = new UserResource();
+	private final RestaurantOwner ro = ur.getRestaurantOwner(username);
 	
 	
 	/**
@@ -55,6 +59,7 @@ public class AddRestaurantScreen extends JFrame {
 	
 	
 	public void initComponents() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Foogle");
 		setBounds(200, 200, 1440, 800);
@@ -82,14 +87,12 @@ public class AddRestaurantScreen extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				String newRes = txtRestaurantName.getText();
 				Restaurant resToAdd = new Restaurant(newRes);
-				RestaurantOwner ro = RestaurantOwner.getOwner(username);
 					
 				ro.addRestaurant(resToAdd);
 				JOptionPane.showMessageDialog(null, "The new restaurant is successfully created!");
 				dispose();
 				LoggedInScreen loggedInScreen = new LoggedInScreen(username);
-				loggedInScreen.setVisible(true);	
-				
+				loggedInScreen.setVisible(true);				
 			}
 		});
 		contentPane.add(btnSubmit);

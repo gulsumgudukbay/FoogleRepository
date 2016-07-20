@@ -27,6 +27,7 @@ import javax.swing.border.EmptyBorder;
 import restaurantAndFoodManagement.Food;
 import restaurantAndFoodManagement.Restaurant;
 import userManagement.RestaurantOwner;
+import userManagement.UserResource;
 
 
 public class MyAccountScreen extends JFrame {
@@ -42,7 +43,8 @@ public class MyAccountScreen extends JFrame {
 	private JLabel lblRestaurant = new JLabel("Restaurant:");
 	private JLabel lblFood = new JLabel("Food:");
 	private static String username;
-
+	private UserResource ur = new UserResource();
+	private final RestaurantOwner ro = ur.getRestaurantOwner(username);
 	
 	/**
 	 * Launch the application.
@@ -67,7 +69,6 @@ public class MyAccountScreen extends JFrame {
 	public MyAccountScreen(final String username) {
 		
 		this.username = username;
-		final RestaurantOwner ro = RestaurantOwner.getOwner(username);
 		rests = ro.getRestaurants();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -119,7 +120,6 @@ public class MyAccountScreen extends JFrame {
 					.addComponent(restaurants, GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
 					.addContainerGap())
 		);
-	
 		
 		restaurantsBox.setModel(new DefaultComboBoxModel<ArrayList<Restaurant>>((ArrayList<Restaurant>[]) rests.toArray()));
 				
