@@ -78,7 +78,7 @@ public class LoggedInScreen extends JFrame {
 		btnAddFood.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AddFoodScreen addFoodScreen = new AddFoodScreen();
+				AddFoodScreen addFoodScreen = new AddFoodScreen(username);
 				addFoodScreen.setVisible(true);
 				dispose();
 			}
