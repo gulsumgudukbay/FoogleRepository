@@ -8,13 +8,14 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import dataManagement.RestDB;
-import javax.swing.JLabel;
+import restaurantAndFoodManagement.Restaurant;
+import userManagement.RestaurantOwner;
 
 public class AddRestaurantScreen extends JFrame {
 
@@ -80,17 +81,15 @@ public class AddRestaurantScreen extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String newRes = txtRestaurantName.getText();
-				RestDB rdb = RestDB.getSoleInstance();
-				if(rdb.createRestaurant(newRes, LoginScreen.getUsername())){
-					JOptionPane.showMessageDialog(null, "The new restaurant is successfully created!");
-					dispose();
-					LoggedInScreen loggedInScreen = new LoggedInScreen(username);
-					loggedInScreen.setVisible(true);
+				Restaurant resToAdd = new Restaurant(newRes);
+				RestaurantOwner ro = RestaurantOwner.getOwner(username);
 					
-				}
-				else
-					JOptionPane.showMessageDialog(null,"The restaurant name is invalid, please try again");
-					
+				ro.addRestaurant(resToAdd);
+				JOptionPane.showMessageDialog(null, "The new restaurant is successfully created!");
+				dispose();
+				LoggedInScreen loggedInScreen = new LoggedInScreen(username);
+				loggedInScreen.setVisible(true);	
+				
 			}
 		});
 		contentPane.add(btnSubmit);

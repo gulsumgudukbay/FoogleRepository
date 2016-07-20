@@ -1,40 +1,39 @@
 package uiManagement;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.JList;
-
+import javax.swing.AbstractListModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.AbstractListModel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
 
-// BACK BUTONU IMAGE EKLENECEK, BAŞKA IMAGE YOK
-// COMBO BOX OLAYI VE ONUN DATABASE CONNECTIONU 
+import restaurantAndFoodManagement.Food;
+import restaurantAndFoodManagement.Restaurant;
+import userManagement.RestaurantOwner;
+
 
 public class MyAccountScreen extends JFrame {
 
 	private JPanel contentPane;
-	private String[] rests = new String[100]; // Bir adamın sahip olabileceği maximum restoran sayısını 100 varsayarak yapılmış bir liste
-	private String[] foods = new String[100]; // Bu iki boyutlu olacak ve reste göre food verecek, combodan hangisi seçildiyse onun arrayi görüntülenecek.
-	private String[] foods2 = new String[100]; 
+	private ArrayList<Restaurant> rests = new ArrayList<Restaurant>(); 
+	private ArrayList<Food> foods = new ArrayList<Food>(); 
 	private JComboBox restaurantsBox = new JComboBox();
 	private JList foodList = new JList();
 	private JButton btnBack = new JButton("Back");
@@ -65,17 +64,11 @@ public class MyAccountScreen extends JFrame {
 	 * Create the frame.
 	 * @param username 
 	 */
-	public MyAccountScreen(String username) {
+	public MyAccountScreen(final String username) {
 		
 		this.username = username;
-		rests[0] = "THE BEST REST";
-		rests[1] = "REST 2";
-		rests[2] = "REST 3";
-		
-		foods[0] = "DELİCİOUS";
-		foods[1] = "Salty";
-		
-		foods2[0] = "Good Meal";
+		final RestaurantOwner ro = RestaurantOwner.getOwner(username);
+		rests = ro.getRestaurants();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("My Account");
@@ -157,22 +150,36 @@ public class MyAccountScreen extends JFrame {
 					.addContainerGap(62, Short.MAX_VALUE))
 		);
 		
-		foodList.setModel(new AbstractListModel() {
-			String[] values = foods;
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
+		restaurantsBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String selectedRes = restaurantsBox.getSelectedItem().toString();
+				Restaurant currentRes = ro.getRestaurant(selectedRes);
+				foods = currentRes.getFoods();
+				
+				foodList.setModel(new AbstractListModel() {
+					ArrayList<Food> values = foods;
+
+					@Override
+					public int getSize() {
+						return values.size();
+					}
+
+					@Override
+					public Object getElementAt(int index) {
+						return values.get(index);
+					}
+					
+				});
 			}
 		});
+		
 		
 		scrollPane.setViewportView(foodList);
 
 		btnBack.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
 		lblRestaurant.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
 		lblFood.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
-		// btnBack.setIcon(new ImageIcon(LoginScreen.class.getResource("/resources/back_64.png")));
+		btnBack.setIcon(new ImageIcon(LoginScreen.class.getResource("/resources/back_64.png")));
 		
 		restaurants.setLayout(gl_restaurants);
 		contentPane.setLayout(gl_contentPane);
