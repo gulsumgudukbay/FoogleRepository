@@ -34,7 +34,7 @@ public class MyAccountScreen extends JFrame {
 	private JPanel contentPane;
 	private ArrayList<Restaurant> rests = new ArrayList<Restaurant>(); 
 	private ArrayList<Food> foods = new ArrayList<Food>(); 
-	private JComboBox restaurantsBox = new JComboBox();
+	private JComboBox<ArrayList<Restaurant>> restaurantsBox = new JComboBox();
 	private JList foodList = new JList();
 	private JButton btnBack = new JButton("Back");
 	private JPanel restaurants = new JPanel();
@@ -120,7 +120,8 @@ public class MyAccountScreen extends JFrame {
 					.addContainerGap())
 		);
 	
-		restaurantsBox.setModel(new DefaultComboBoxModel(rests));
+		
+		restaurantsBox.setModel(new DefaultComboBoxModel<ArrayList<Restaurant>>((ArrayList<Restaurant>[]) rests.toArray()));
 				
 		GroupLayout gl_restaurants = new GroupLayout(restaurants);
 		gl_restaurants.setHorizontalGroup(
