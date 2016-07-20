@@ -44,7 +44,7 @@ public class MyAccountScreen extends JFrame {
 	private JLabel lblFood = new JLabel("Food:");
 	private static String username;
 	public UserResource ur = UserResource.getSoleInstance();
-	private final RestaurantOwner ro = ur.getRestaurantOwner(username);
+	private RestaurantOwner ro = new RestaurantOwner();
 	
 	/**
 	 * Launch the application.
@@ -67,8 +67,9 @@ public class MyAccountScreen extends JFrame {
 	 * @param username 
 	 */
 	public MyAccountScreen(final String username) {
-		
+		ro = ur.getRestaurantOwner(username);
 		this.username = username;
+		System.out.println(" HELLO" + ro);
 		rests = ro.getRestaurants();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

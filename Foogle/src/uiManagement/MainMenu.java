@@ -441,7 +441,7 @@ public class MainMenu extends JFrame {
 		btnFinish.setVisible(false);
 		contentPane.add(btnFinish);
 		
-	/*	//FOR MEAL TEST
+		//FOR MEAL TEST
 		//creating a test list model for placing all ingredients to the combo box
 		DefaultComboBoxModel testListModelMeal = (DefaultComboBoxModel) comboBoxForMeal.getModel();
 		
@@ -461,7 +461,7 @@ public class MainMenu extends JFrame {
 						
 		for(int i=0;i<uR.getAllIngredients().size();i++)
 			testListModelBeverage.addElement(uR.getAllIngredients().get(i).getName());
-		
+		/*
 		//TEST FOR CUISINE
 		searchedTestIng.add(new Ingredient("domates"));
 		searchedTestIng.add(new Ingredient("biber"));
