@@ -460,6 +460,7 @@ public class MainMenu extends JFrame {
 		scrDessertRussian.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Russian", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		scrDessertRussian.setBounds(6, 250, 386, 77);
 		dessertpanel.add(scrDessertRussian);
+		scrDessertRussian.setVisible(false);
 		
 		lstResultDessertRussian = new JList(searchListDessertRussian);
 		scrDessertRussian.setViewportView(lstResultDessertRussian);
@@ -765,6 +766,9 @@ public class MainMenu extends JFrame {
 				else{
 					btnFinish.setVisible(true);
 					btnSearch.setVisible(false);
+					checkBoxBeverage.setEnabled(false);
+					checkBoxDessert.setEnabled(false);
+					checkBoxMeal.setEnabled(false);
 					
 					if(!checkBoxMeal.isEnabled()){
 						mealpanel.setVisible(true);
@@ -868,7 +872,7 @@ public class MainMenu extends JFrame {
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
 					System.out.println(((Food)value).getCuisine());
-					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
 			}
@@ -880,7 +884,7 @@ public class MainMenu extends JFrame {
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
 					System.out.println(((Food)value).getCuisine());
-					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
 			}
@@ -892,7 +896,7 @@ public class MainMenu extends JFrame {
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
 					System.out.println(((Food)value).getCuisine());
-					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
 			}
@@ -904,7 +908,7 @@ public class MainMenu extends JFrame {
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
 					System.out.println(((Food)value).getCuisine());
-					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
 			}
@@ -916,7 +920,7 @@ public class MainMenu extends JFrame {
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
 					System.out.println(((Food)value).getCuisine());
-					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
 			}
@@ -1048,7 +1052,7 @@ public class MainMenu extends JFrame {
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
-					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
 			}
@@ -1059,7 +1063,7 @@ public class MainMenu extends JFrame {
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
-					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
 			}
@@ -1070,7 +1074,7 @@ public class MainMenu extends JFrame {
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
-					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
 			}
@@ -1081,7 +1085,7 @@ public class MainMenu extends JFrame {
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
-					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
 			}
@@ -1092,7 +1096,7 @@ public class MainMenu extends JFrame {
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
-					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
 			}
@@ -1224,7 +1228,7 @@ public class MainMenu extends JFrame {
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
-					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
 			}
@@ -1235,7 +1239,7 @@ public class MainMenu extends JFrame {
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
-					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
 			}
@@ -1246,7 +1250,7 @@ public class MainMenu extends JFrame {
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
-					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
 			}
@@ -1257,7 +1261,7 @@ public class MainMenu extends JFrame {
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
-					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
 			}
@@ -1268,7 +1272,7 @@ public class MainMenu extends JFrame {
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
-					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Cuisine: " + ((Food) value).getCuisine() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString());
+					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
 			}
