@@ -44,6 +44,7 @@ public class Restaurant {
 	public ArrayList<Food> getFoods() {
 		return this.foods;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}

@@ -46,6 +46,9 @@ public class RestaurantOwner extends User {
 	public String getEmail() {
 		return email;
 	}
+	public ArrayList<Restaurant> getRestaurants() {
+		return restaurants;
+	}
 	
 	public void setUsername(String username) {
 		this.username = username;
@@ -55,6 +58,9 @@ public class RestaurantOwner extends User {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public void setRestaurants(ArrayList<Restaurant> restaurants) {
+		this.restaurants = restaurants;
 	}
 	
 	// Utility methods
