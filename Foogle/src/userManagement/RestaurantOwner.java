@@ -13,7 +13,7 @@ import searchManagement.SearchController;
 
 public class RestaurantOwner extends User {
 	RestDB rdb = RestDB.getSoleInstance();
-	UserDB udb = UserDB.getSoleInstance();
+	static UserDB udb = UserDB.getSoleInstance();
 	static PendingDB pdb = PendingDB.getSoleInstance();
 	SearchController sc = new SearchController();
 	
@@ -134,6 +134,15 @@ public class RestaurantOwner extends User {
 					return result;
 				}
 				
+			}
+		}
+		return null;
+	}
+	// Get restaurant owner from username
+	public static RestaurantOwner getOwner(String username) {
+		for(RestaurantOwner owner: udb.getAllRestOwners()) {
+			if(owner.getUsername() == username) {
+				return owner;
 			}
 		}
 		return null;
