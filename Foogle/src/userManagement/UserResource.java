@@ -16,8 +16,6 @@ public class UserResource {
 	SearchController sc = new SearchController();
 	
 	static ArrayList<RestaurantOwner> owners = udb.getAllRestOwners();
-	Customer customer = new Customer();
-	Admin admin = new Admin();
 	ArrayList<Ingredient> allIngredients = customer.getAllIngredients();
 	
 	// MARK: Methods
