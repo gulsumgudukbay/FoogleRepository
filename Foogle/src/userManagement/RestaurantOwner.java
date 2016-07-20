@@ -75,10 +75,12 @@ public class RestaurantOwner extends User {
 		rdb.createRestaurant(restaurant.getName(), this.getUsername());
 	}
 	// TODO: Check if the food is confirmed using PendingDB, using loop
-	public void addFoodToRestaurant(Food food, Restaurant restaurant, ArrayList<Ingredient> ingredients) {
-		restaurant.addFood(food.getName(), username, food.getCuisine(), food.getType(), food.getPrice(), ingredients);
+	public void addFoodToRestaurant(Food food, String restName, ArrayList<Ingredient> ingredients) {
+		for(int i = 0; i < restaurants.size();i++)
+			if(restaurants.get(i).getName().equals(restName))
+				restaurants.get(i).addFood(food.getName(), username, food.getCuisine(), food.getType(), food.getPrice(), ingredients);
 	}
-	// FIXME: Ambiguous method decleration
+	// FIXME: Ambiguous method declaration
 	// Foods of a specific restaurant? All restaurants?
 	public void viewFoods() {
 		/*for(Restaurant restaurant: restaurants) {
