@@ -94,25 +94,55 @@ public class MainMenu extends JFrame {
 	private JButton btnOkBeverage;
 	
 	//FOR SEARCH RESULTS
-
-	//private ArrayList<Food> myTestIngList;
-	DefaultListModel<Food> searchListMeal = new DefaultListModel<Food>();
-	private JList lstResultMeals;
-	private JScrollPane scrMeal;
-	public ArrayList<Food> hhMeal = new ArrayList<Food>();
 	
 	private JButton btnFinish;
 	public UserResource uR = new UserResource();
 	
+	////////////////////////////////////////////////////////////////
+	// 					THE MEAL PART OF SEARCH					///
+	//////////////////////////////////////////////////////////////
+	DefaultListModel<Food> searchListMeal = new DefaultListModel<Food>();
+	private JList lstResultMeals;
+	private JScrollPane scrMeal;
+	public ArrayList<Food> searchedFoodListMeal = new ArrayList<Food>();
+	
+	//CUISINE BASED LISTS OF MEAL
+	public ArrayList<Food> searchedfoodListMealTurkish = new ArrayList<Food>();
+	public ArrayList<Food> searchedfoodListMealFarEastern = new ArrayList<Food>();
+	public ArrayList<Food> searchedfoodListMealFrench = new ArrayList<Food>();
+	public ArrayList<Food> searchedfoodListMealRussian = new ArrayList<Food>();
+	public ArrayList<Food> searchedfoodListMealOther = new ArrayList<Food>();
+	
+	////////////////////////////////////////////////////////////////
+	// 					THE BEVERAGE PART OF SEARCH				///
+	//////////////////////////////////////////////////////////////
 	DefaultListModel<Food> searchListBeverage = new DefaultListModel<Food>();
 	private JList lstResultBeverages;
 	private JScrollPane scrBeverage;
-	public ArrayList<Food> hhBeverage = new ArrayList<Food>();
+	public ArrayList<Food> searchedFoodListBeverage = new ArrayList<Food>();
 	
+	//CUISINE BASED LISTS OF BEVERAGE
+	public ArrayList<Food> searchedfoodListBeverageTurkish = new ArrayList<Food>();
+	public ArrayList<Food> searchedfoodListBeverageFarEastern = new ArrayList<Food>();
+	public ArrayList<Food> searchedfoodListBeverageFrench = new ArrayList<Food>();
+	public ArrayList<Food> searchedfoodListBeverageRussian = new ArrayList<Food>();
+	public ArrayList<Food> searchedfoodListBeverageOther = new ArrayList<Food>();
+	
+	////////////////////////////////////////////////////////////////
+	// 					THE DESSERT PART OF SEARCH				///
+	//////////////////////////////////////////////////////////////
 	DefaultListModel<Food> searchListDessert = new DefaultListModel<Food>();
 	private JList lstResultDesserts;
 	private JScrollPane scrDessert;
-	public ArrayList<Food> hhDessert = new ArrayList<Food>();
+	public ArrayList<Food> searchedFoodListDessert = new ArrayList<Food>();
+	
+	//CUISINE BASED LISTS OF DESSERT
+	public ArrayList<Food> searchedfoodListDessertTurkish = new ArrayList<Food>();
+	public ArrayList<Food> searchedfoodListDessertFarEastern = new ArrayList<Food>();
+	public ArrayList<Food> searchedfoodListDessertFrench = new ArrayList<Food>();
+	public ArrayList<Food> searchedfoodListDessertRussian = new ArrayList<Food>();
+	public ArrayList<Food> searchedfoodListDessertOther = new ArrayList<Food>();	
+	
 	
 	private static String username;
 
@@ -426,15 +456,77 @@ public class MainMenu extends JFrame {
 		for(int i=0;i<uR.getAllIngredients().size();i++)
 			testListModelBeverage.addElement(uR.getAllIngredients().get(i).getName());
 		
-		//FOR SEARCH RESULTS
-//		myTestIngList = new ArrayList<Food>();
-//	    myTestIngList.add(new Food("waffle",5.25,testlistDessert));
-//	    myTestIngList.add(new Food("tiramisu",10.25,testlistDessert));
-//	    myTestIngList.add(new Food("kek",1.25,testlistDessert));
-//		initSearchList(myTestIngList);
-		
 	}
 	
+////////////////////////////////////////////////////////////////
+// 						METHODS								///
+//////////////////////////////////////////////////////////////	
+	
+	private void classifyCuisine(ArrayList<Food> foodList){
+		for(int i=0;i<foodList.size();i++){
+			if(foodList.get(i).getCuisine() == "Turkish"){
+				if(foodList.get(i).getType().equals("meal")){
+					searchedfoodListMealTurkish.add(foodList.get(i));
+				}
+				else if(foodList.get(i).getType().equals("dessert")){
+					searchedfoodListDessertTurkish.add(foodList.get(i));
+				}
+				else{
+					searchedfoodListBeverageTurkish.add(foodList.get(i));
+				}
+				
+			}
+			else if(foodList.get(i).getCuisine() == "Far Eastern"){
+				if(foodList.get(i).getType().equals("meal")){
+					searchedfoodListMealFarEastern.add(foodList.get(i));
+				}
+				else if(foodList.get(i).getType().equals("dessert")){
+					searchedfoodListDessertFarEastern.add(foodList.get(i));
+				}
+				else{
+					searchedfoodListBeverageFarEastern.add(foodList.get(i));
+				}
+				
+			}
+			else if(foodList.get(i).getCuisine() == "French"){
+				if(foodList.get(i).getType().equals("meal")){
+					searchedfoodListMealFrench.add(foodList.get(i));
+				}
+				else if(foodList.get(i).getType().equals("dessert")){
+					searchedfoodListDessertFrench.add(foodList.get(i));
+				}
+				else{
+					searchedfoodListBeverageFrench.add(foodList.get(i));
+				}
+			}
+			else if(foodList.get(i).getCuisine() == "Russian"){
+				if(foodList.get(i).getType().equals("meal")){
+					searchedfoodListMealRussian.add(foodList.get(i));
+				}
+				else if(foodList.get(i).getType().equals("dessert")){
+					searchedfoodListDessertRussian.add(foodList.get(i));
+				}
+				else{
+					searchedfoodListBeverageRussian.add(foodList.get(i));
+				}		
+			}
+			else if(foodList.get(i).getCuisine() == "Other"){
+				if(foodList.get(i).getType().equals("meal")){
+					searchedfoodListMealOther.add(foodList.get(i));
+				}
+				else if(foodList.get(i).getType().equals("dessert")){
+					searchedfoodListDessertOther.add(foodList.get(i));
+				}
+				else{
+					searchedfoodListBeverageOther.add(foodList.get(i));
+				}
+			}
+				
+		}
+			
+	}
+	
+	//add elements to list of GUI by using the searched food list from database and foodtype
 	private void initSearchList(ArrayList<Food> foodList,String foodtype) {
 		
 		for(int i=0;i<foodList.size();i++)
@@ -459,6 +551,7 @@ public class MainMenu extends JFrame {
 		return ingListToSend;
 		
 	}
+	
 	
 	////////////////////////////////////////////////////////////////
 	// This method contains all of the code for creating events.///
@@ -636,8 +729,14 @@ public class MainMenu extends JFrame {
 					System.out.println(newListUnwantedMeal.get(i).getName());
 				}
 								
-				hhMeal = uR.searchFood(newListWantedMeal, newListUnwantedMeal, "meal");
-				initSearchList(hhMeal,"meal");
+				searchedFoodListMeal = uR.searchFood(newListWantedMeal, newListUnwantedMeal, "meal");
+				classifyCuisine(searchedFoodListMeal);
+				initSearchList(searchedfoodListMealTurkish,"meal");
+				initSearchList(searchedfoodListMealFarEastern,"meal");
+				initSearchList(searchedfoodListMealFrench,"meal");
+				initSearchList(searchedfoodListMealRussian,"meal");
+				initSearchList(searchedfoodListMealOther,"meal");
+				
 				////////////////////
 				
 				mealpanel.setVisible(false);
@@ -762,8 +861,13 @@ public class MainMenu extends JFrame {
 					System.out.println(newListUnwantedDessert.get(i).getName());
 				}
 				
-				hhDessert = uR.searchFood(newListWantedDessert, newListUnwantedDessert, "dessert");
-				initSearchList(hhDessert,"dessert");
+				searchedFoodListDessert = uR.searchFood(newListWantedDessert, newListUnwantedDessert, "dessert");
+				classifyCuisine(searchedFoodListDessert);
+				initSearchList(searchedfoodListDessertTurkish,"dessert");
+				initSearchList(searchedfoodListDessertFarEastern,"dessert");
+				initSearchList(searchedfoodListDessertFrench,"dessert");
+				initSearchList(searchedfoodListDessertRussian,"dessert");
+				initSearchList(searchedfoodListDessertOther,"dessert");
 				////////////////////
 				
 				dessertpanel.setVisible(false);
@@ -889,8 +993,13 @@ public class MainMenu extends JFrame {
 					System.out.println(newListUnwantedBeverage.get(i).getName());
 				}
 			
-				hhBeverage = uR.searchFood(newListWantedBeverage, newListUnwantedBeverage, "beverage");
-				initSearchList(hhBeverage,"beverage");
+				searchedFoodListBeverage = uR.searchFood(newListWantedBeverage, newListUnwantedBeverage, "beverage");
+				classifyCuisine(searchedFoodListBeverage);
+				initSearchList(searchedfoodListBeverageTurkish,"beverage");
+				initSearchList(searchedfoodListBeverageFarEastern,"beverage");
+				initSearchList(searchedfoodListBeverageFrench,"beverage");
+				initSearchList(searchedfoodListBeverageRussian,"beverage");
+				initSearchList(searchedfoodListBeverageOther,"beverage");
 				////////////////////
 				
 				beveragepanel.setVisible(false);
