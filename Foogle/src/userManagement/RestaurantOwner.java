@@ -21,21 +21,18 @@ public class RestaurantOwner extends User {
 	private String username;
 	private String password;
 	private String email;
-	private ArrayList<Restaurant> restaurants;
+	private ArrayList<Restaurant> restaurants = udb.getAllRestaurantsOfARestaurantOwner(username);
 	
 	// MARK: Contructors
 	public RestaurantOwner() {
 		this.username = "";
 		this.password = "";
 		this.email = "";
-		this.restaurants = new ArrayList<Restaurant>();
 	}
 	public RestaurantOwner(String username, String password, String email) {
 		this.setUsername(username);
 		this.setPassword(password);
 		this.setEmail(email);
-		
-		this.restaurants = new ArrayList<Restaurant>();
 	}
 	
 	// MARK: Methods
