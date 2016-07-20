@@ -72,13 +72,17 @@ public class LoggedInScreen extends JFrame {
 		JButton btnAddFood = new JButton("Add Food");
 		btnAddFood.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				AddFoodScreen addFoodScreen = new AddFoodScreen(username);
+				addFoodScreen.setVisible(true);
+				
 			}
 		});
 		btnAddFood.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/hamburguer.png")));
 		btnAddFood.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AddFoodScreen addFoodScreen = new AddFoodScreen(username);
+				AddFoodScreen2 addFoodScreen = new AddFoodScreen2(username);
 				addFoodScreen.setVisible(true);
 				dispose();
 			}
@@ -86,6 +90,7 @@ public class LoggedInScreen extends JFrame {
 		
 		btnAddFood.setBounds(862, 405, 329, 86);
 		getContentPane().add(btnAddFood);
+		
 		
 		
 		JButton btnMyAcc = new JButton("My Account");
