@@ -466,59 +466,59 @@ public class MainMenu extends JFrame {
 		for(int i=0;i<foodList.size();i++){
 			if(foodList.get(i).getCuisine() == "Turkish"){
 				if(foodList.get(i).getType().equals("meal")){
-					searchedfoodListMealTurkish.add(foodList.get(i));
+					searchedfoodListMealTurkish.add((new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients())));
 				}
 				else if(foodList.get(i).getType().equals("dessert")){
-					searchedfoodListDessertTurkish.add(foodList.get(i));
+					searchedfoodListDessertTurkish.add((new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients())));
 				}
 				else{
-					searchedfoodListBeverageTurkish.add(foodList.get(i));
+					searchedfoodListBeverageTurkish.add((new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients())));
 				}
 				
 			}
 			else if(foodList.get(i).getCuisine() == "Far Eastern"){
 				if(foodList.get(i).getType().equals("meal")){
-					searchedfoodListMealFarEastern.add(foodList.get(i));
+					searchedfoodListMealFarEastern.add((new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients())));
 				}
 				else if(foodList.get(i).getType().equals("dessert")){
-					searchedfoodListDessertFarEastern.add(foodList.get(i));
+					searchedfoodListDessertFarEastern.add((new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients())));
 				}
 				else{
-					searchedfoodListBeverageFarEastern.add(foodList.get(i));
+					searchedfoodListBeverageFarEastern.add((new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients())));
 				}
 				
 			}
 			else if(foodList.get(i).getCuisine() == "French"){
 				if(foodList.get(i).getType().equals("meal")){
-					searchedfoodListMealFrench.add(foodList.get(i));
+					searchedfoodListMealFrench.add((new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients())));
 				}
 				else if(foodList.get(i).getType().equals("dessert")){
-					searchedfoodListDessertFrench.add(foodList.get(i));
+					searchedfoodListDessertFrench.add((new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients())));
 				}
 				else{
-					searchedfoodListBeverageFrench.add(foodList.get(i));
+					searchedfoodListBeverageFrench.add((new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients())));
 				}
 			}
 			else if(foodList.get(i).getCuisine() == "Russian"){
 				if(foodList.get(i).getType().equals("meal")){
-					searchedfoodListMealRussian.add(foodList.get(i));
+					searchedfoodListMealRussian.add((new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients())));
 				}
 				else if(foodList.get(i).getType().equals("dessert")){
-					searchedfoodListDessertRussian.add(foodList.get(i));
+					searchedfoodListDessertRussian.add((new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients())));
 				}
 				else{
-					searchedfoodListBeverageRussian.add(foodList.get(i));
+					searchedfoodListBeverageRussian.add((new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients())));
 				}		
 			}
 			else if(foodList.get(i).getCuisine() == "Other"){
 				if(foodList.get(i).getType().equals("meal")){
-					searchedfoodListMealOther.add(foodList.get(i));
+					searchedfoodListMealOther.add((new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients())));
 				}
 				else if(foodList.get(i).getType().equals("dessert")){
-					searchedfoodListDessertOther.add(foodList.get(i));
+					searchedfoodListDessertOther.add((new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients())));
 				}
 				else{
-					searchedfoodListBeverageOther.add(foodList.get(i));
+					searchedfoodListBeverageOther.add((new Food(foodList.get(i).getName(),foodList.get(i).getCuisine(),foodList.get(i).getType(),foodList.get(i).getPrice(),foodList.get(i).getIngredients())));
 				}
 			}
 				
