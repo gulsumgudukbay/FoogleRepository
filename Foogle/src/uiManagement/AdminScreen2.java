@@ -4,29 +4,27 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import restaurantAndFoodManagement.Ingredient;
 import restaurantAndFoodManagement.Restaurant;
 import userManagement.Admin;
-
-import javax.swing.JComboBox;
-import javax.swing.JRadioButton;
-import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.awt.event.ActionEvent;
-import javax.swing.ButtonGroup;
-import javax.swing.JCheckBox;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import userManagement.RestaurantOwner;
 
 public class AdminScreen2 extends JFrame {
 
@@ -42,6 +40,7 @@ public class AdminScreen2 extends JFrame {
 	private JCheckBox checkBoxRest;
 	public ArrayList<Ingredient> pendingIngredients = new ArrayList<Ingredient>();
 	public ArrayList<Restaurant> pendingRestaurants = new ArrayList<Restaurant>();
+	public ArrayList<ArrayList<Restaurant>> restsArr = new ArrayList<ArrayList<Restaurant>>();
 	
 
 	/**
@@ -245,11 +244,14 @@ public class AdminScreen2 extends JFrame {
 		
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				RestaurantOwner ro  = new RestaurantOwner();
+				ro.setUsername(username);
 				if(admin.isAllIngredientsProcessed())
 					admin.traverseAllFoods(username);
 				
-				if(admin.isAllRestaurantsProcessed())
-					admin.traverseAllRestaurants(username);
+				if(admin.isAllRestaurantsProcessed()){
+					admin.traverseAllRestaurants(ro);
+				}
 			}
 		});
 		

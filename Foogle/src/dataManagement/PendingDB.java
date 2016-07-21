@@ -79,8 +79,15 @@ public class PendingDB {
 	
 	public void insertToPendingIngredients(Ingredient ing, String foodName){
 		Statement stmtip = DatabaseManager.createStmt();
+		
+		String isconfirmed = "";
+		if(ing.isConfirmed())
+			isconfirmed = "T";
+		else
+			isconfirmed = "F";
+		
 		String query = "INSERT INTO `Foogle`.`Pending_Ingredients` (`name`, `isConfirmed`, `foodname`) VALUES ('"
-				+ ing.getName() + "', '" + ing.isConfirmed() + "', '" + foodName + "');";
+				+ ing.getName() + "', '" + isconfirmed + "', '" + foodName + "');";
 		try {
 			stmtip.executeUpdate(query);
 			System.out.println("added INGREDIENT");

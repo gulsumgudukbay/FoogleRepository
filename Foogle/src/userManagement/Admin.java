@@ -23,9 +23,6 @@ public class Admin extends User{
 	// MARK: Properties
 	private ArrayList<Ingredient> pendingIngredients;
 	private ArrayList<Restaurant> pendingRestaurants;
-
-	
-	
 	
 	// MARK: Constructors
 	public Admin() {
@@ -36,6 +33,10 @@ public class Admin extends User{
 	public Admin(ArrayList<Ingredient> pendingIngredients, ArrayList<Restaurant> pendingRestaurants) {
 		this.pendingIngredients = pendingIngredients;
 		this.pendingRestaurants = pendingRestaurants;
+	}
+	
+	public void addToRestsForCorrFoods(ArrayList<Restaurant> arr){
+		restsforCorrFoods.add(arr);
 	}
 	
 	public void addToPendingFoods(Food fd){

@@ -541,7 +541,7 @@ public class AddFoodScreen extends JFrame {
 					System.out.println(foodRestaurantsRest.get(i).getName());
 				}
 				
-				
+				admin.addToRestsForCorrFoods(foodRestaurantsRest);
 				//otherIngredientsSelected = EXTRA INGREDIENTS,  existingFoodIngredientsIng = EXISTING INGREDIENT SELECTED
 				foodOtherIngredients = textFieldOtherIng.getText();
 				
@@ -586,8 +586,8 @@ public class AddFoodScreen extends JFrame {
 				//restOwner.addFoodToRestaurants(newFood, foodRestaurantsRest);
 				admin.addToPendingFoods(newFood);
 				//System.out.println(restOwner.getAllRestaurantsOfARestaurantOwner(username).toString());
-				for(int i=0;i<otherIngredientsSelected.size();i++)
-					admin.addToPendingIngredients(new Ingredient(otherIngredientsSelected.get(i).getName()), foodName);
+				for(int i=0;i<allIngredientsForFood.size();i++)
+					admin.addToPendingIngredients(new Ingredient(allIngredientsForFood.get(i).getName()), foodName);
 				
 			}
 		});
