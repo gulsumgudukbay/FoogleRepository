@@ -227,7 +227,7 @@ public class AdminScreen2 extends JFrame {
 				Object selected = comboBoxRestaurant.getSelectedItem();
 				String strSelected = selected.toString();
 				Restaurant newRest = new Restaurant(strSelected);
-				if(checkBoxIng.isSelected()){
+				if(checkBoxRest.isSelected()){
 					admin.confirmRestaurant(strSelected);
 					newRest = searchRestaurant(strSelected);
 					newRest.setConfirmed(true);
@@ -247,7 +247,7 @@ public class AdminScreen2 extends JFrame {
 				RestaurantOwner ro  = new RestaurantOwner();
 				ro.setUsername(username);
 				if(admin.isAllIngredientsProcessed())
-					admin.traverseAllFoods(username);
+					admin.traverseAllFoods(ro);
 				
 				if(admin.isAllRestaurantsProcessed()){
 					admin.traverseAllRestaurants(ro);

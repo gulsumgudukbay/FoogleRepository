@@ -17,7 +17,7 @@ public class LoggedInScreen extends JFrame {
 	
 	private JPanel contentPane;
 	private static String username;
-	
+	static String origUN;
 	public static void main(String[] args) 
 	{
 		EventQueue.invokeLater(new Runnable() 
@@ -43,6 +43,9 @@ public class LoggedInScreen extends JFrame {
 		initComponents();
 	}
 	
+	public static String getorigun(){
+		return origUN;
+	}
 	
 	public void initComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -113,6 +116,7 @@ public class LoggedInScreen extends JFrame {
 		btnLogout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				origUN = username;
 				MainMenu mainMenu = new MainMenu();
 				mainMenu.setVisible(true);
 				dispose();

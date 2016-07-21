@@ -56,13 +56,20 @@ public class Admin extends User{
 	public boolean isAllRestaurantsProcessed(){
 		return pdb.isAllRestaurantsProcessed();
 	}
-	public void traverseAllFoods(String restOwner){
+	public void traverseAllFoods(RestaurantOwner restOwner){
 		for(int i = 0; i < pendingFoods.size(); i++){
-			if(pdb.isAllOtherIngredientsConfirmedFor(pendingFoods.get(i).getName())){
-				for(int j = 0; j < restsforCorrFoods.get(i).size(); j++)
-					restsforCorrFoods.get(i).get(j).addFood(pendingFoods.get(i).getName(), restOwner, pendingFoods.get(i).getCuisine(), pendingFoods.get(i).getType(), pendingFoods.get(i).getPrice(), pendingFoods.get(i).getIngredients());
-			}
-		}	
+			if(pdb.isAllOtherIngredientsConfirmedFor(pendingFoods.get(i).getName()))
+				restOwner.addFoodToRestaurants(pendingFoods.get(i), restsforCorrFoods.get(i));	
+		}
+		//removeAllPendingIngredients();
+	}
+	
+	public void removeAllPendingIngredients(){
+		pdb.removeAllPendingIngredients();
+	}
+	
+	public void removeAllPendingRestaurants(){
+		pdb.removeAllPendingRestaurants();
 	}
 	
 	public void traverseAllRestaurants(RestaurantOwner restOwner){

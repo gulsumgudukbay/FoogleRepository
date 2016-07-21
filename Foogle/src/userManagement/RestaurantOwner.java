@@ -83,6 +83,7 @@ public class RestaurantOwner extends User {
 	
 	public void addFoodToRestaurants(Food food, ArrayList<Restaurant> rests){
 		boolean b = true;
+		System.out.println(username + " USERNAME");/////////////////////
 		for(int i = 0; i < rests.size();i++){
 			 rests.get(i).addFood(food.getName(), username, food.getCuisine(), food.getType(), food.getPrice(), food.getIngredients());
 		}

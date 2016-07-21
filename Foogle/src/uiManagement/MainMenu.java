@@ -186,6 +186,7 @@ public class MainMenu extends JFrame {
 	private JList lstResultBeverageOther;
 
 	private static String username;
+	public static String origun;
 	private JButton btnAdmin;
 
 	/**
@@ -215,8 +216,10 @@ public class MainMenu extends JFrame {
 	 */
 	public MainMenu() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MainMenu.class.getResource("/resources/juice.png")));
+		origun = LoggedInScreen.getorigun();
 		initComponents();
 		createEvents();
+		
 	}
 	
 	////////////////////////////////////////////////////////////////
@@ -770,7 +773,7 @@ public class MainMenu extends JFrame {
 		btnAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				AdminScreen2 adminS = new AdminScreen2(username);
+				AdminScreen2 adminS = new AdminScreen2(origun);
 				adminS.setVisible(true);
 				
 			}
