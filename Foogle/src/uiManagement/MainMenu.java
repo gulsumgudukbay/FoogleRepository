@@ -188,6 +188,21 @@ public class MainMenu extends JFrame {
 	private static String username;
 	public static String origun;
 	private JButton btnAdmin;
+	private JLabel lblTurkish;
+	private JLabel lblFarEastern;
+	private JLabel lblFrench;
+	private JLabel lblRussian;
+	private JLabel lblOther;
+	private JLabel lblTurkish1;
+	private JLabel lblNewLabel;
+	private JLabel lblFrench1;
+	private JLabel lblRussian1;
+	private JLabel lblOther1;
+	private JLabel lblTurkish2;
+	private JLabel lblFar2;
+	private JLabel lblFrench2;
+	private JLabel lblRussian2;
+	private JLabel lblOther2;
 
 	/**
 	 * Launch the application.
@@ -351,6 +366,10 @@ public class MainMenu extends JFrame {
 		lstResultMealTurkish = new JList(searchListMealTurkish);
 		scrMealTurkish.setViewportView(lstResultMealTurkish);
 		
+		lblTurkish = new JLabel("");
+		lblTurkish.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/galata-tower.png")));
+		scrMealTurkish.setColumnHeaderView(lblTurkish);
+		
 		scrMealFarEastern = new JScrollPane();
 		scrMealFarEastern.setViewportBorder(new TitledBorder(null, "Far Eastern", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		scrMealFarEastern.setBounds(6, 95, 392, 77);
@@ -359,6 +378,10 @@ public class MainMenu extends JFrame {
 		
 		lstResultMealFarEastern = new JList(searchListMealFarEastern);
 		scrMealFarEastern.setViewportView(lstResultMealFarEastern);
+		
+		lblFarEastern = new JLabel("");
+		lblFarEastern.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/ming-dynasty-tombs.png")));
+		scrMealFarEastern.setColumnHeaderView(lblFarEastern);
 		
 		scrMealFrench = new JScrollPane();
 		scrMealFrench.setViewportBorder(new TitledBorder(null, "French", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -369,6 +392,10 @@ public class MainMenu extends JFrame {
 		lstResultMealFrench = new JList(searchListMealFrench);
 		scrMealFrench.setViewportView(lstResultMealFrench);
 		
+		lblFrench = new JLabel("");
+		lblFrench.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/french-eiffel-tower-2.png")));
+		scrMealFrench.setColumnHeaderView(lblFrench);
+		
 		scrMealRussian = new JScrollPane();
 		scrMealRussian.setViewportBorder(new TitledBorder(null, "Russian", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		scrMealRussian.setBounds(6, 252, 392, 77);
@@ -378,6 +405,10 @@ public class MainMenu extends JFrame {
 		lstResultMealRussian = new JList(searchListMealRussian);
 		scrMealRussian.setViewportView(lstResultMealRussian);
 		
+		lblRussian = new JLabel("");
+		lblRussian.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/kremlin.png")));
+		scrMealRussian.setColumnHeaderView(lblRussian);
+		
 		scrMealOther = new JScrollPane();
 		scrMealOther.setViewportBorder(new TitledBorder(null, "Other", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		scrMealOther.setBounds(6, 331, 392, 77);
@@ -386,6 +417,10 @@ public class MainMenu extends JFrame {
 		
 		lstResultMealOther = new JList(searchListMealOther);
 		scrMealOther.setViewportView(lstResultMealOther);
+		
+		lblOther = new JLabel("");
+		lblOther.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/worldwide.png")));
+		scrMealOther.setColumnHeaderView(lblOther);
 		
 		dessertpanel = new JPanel();
 		dessertpanel.setVisible(false);
@@ -442,6 +477,10 @@ public class MainMenu extends JFrame {
 		lstResultDessertTurkish = new JList(searchListDessertTurkish);
 		scrDessertTurkish.setViewportView(lstResultDessertTurkish);
 		
+		lblTurkish1 = new JLabel("");
+		lblTurkish1.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/galata-tower.png")));
+		scrDessertTurkish.setColumnHeaderView(lblTurkish1);
+		
 		scrDessertFarEastern = new JScrollPane();
 		scrDessertFarEastern.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Far Eastern", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		scrDessertFarEastern.setBounds(6, 92, 386, 78);
@@ -450,6 +489,10 @@ public class MainMenu extends JFrame {
 		
 		lstResultDessertFarEastern = new JList(searchListDessertFarEastern);
 		scrDessertFarEastern.setViewportView(lstResultDessertFarEastern);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/ming-dynasty-tombs.png")));
+		scrDessertFarEastern.setColumnHeaderView(lblNewLabel);
 		
 		scrDessertFrench = new JScrollPane();
 		scrDessertFrench.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "French", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -460,6 +503,10 @@ public class MainMenu extends JFrame {
 		lstResultDessertFrench = new JList(searchListDessertFrench);
 		scrDessertFrench.setViewportView(lstResultDessertFrench);
 		
+		lblFrench1 = new JLabel("");
+		lblFrench1.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/french-eiffel-tower-2.png")));
+		scrDessertFrench.setColumnHeaderView(lblFrench1);
+		
 		scrDessertRussian = new JScrollPane();
 		scrDessertRussian.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Russian", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		scrDessertRussian.setBounds(6, 250, 386, 77);
@@ -469,6 +516,10 @@ public class MainMenu extends JFrame {
 		lstResultDessertRussian = new JList(searchListDessertRussian);
 		scrDessertRussian.setViewportView(lstResultDessertRussian);
 		
+		lblRussian1 = new JLabel("");
+		lblRussian1.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/kremlin.png")));
+		scrDessertRussian.setColumnHeaderView(lblRussian1);
+		
 		scrDessertOther = new JScrollPane();
 		scrDessertOther.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Other", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		scrDessertOther.setBounds(6, 330, 386, 78);
@@ -477,6 +528,10 @@ public class MainMenu extends JFrame {
 		
 		lstResultDessertOther = new JList(searchListDessertOther);
 		scrDessertOther.setViewportView(lstResultDessertOther);
+		
+		lblOther1 = new JLabel("");
+		lblOther1.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/worldwide.png")));
+		scrDessertOther.setColumnHeaderView(lblOther1);
 		
 		beveragepanel = new JPanel();
 		beveragepanel.setVisible(false);
@@ -533,6 +588,10 @@ public class MainMenu extends JFrame {
 		lstResultBeverageTurkish = new JList(searchListBeverageTurkish);
 		scrBeverageTurkish.setViewportView(lstResultBeverageTurkish);
 		
+		lblTurkish2 = new JLabel("");
+		lblTurkish2.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/galata-tower.png")));
+		scrBeverageTurkish.setColumnHeaderView(lblTurkish2);
+		
 		scrBeverageFarEastern = new JScrollPane();
 		scrBeverageFarEastern.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Far Eastern", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		scrBeverageFarEastern.setBounds(6, 95, 386, 75);
@@ -541,6 +600,10 @@ public class MainMenu extends JFrame {
 		
 		lstResultBeverageFarEastern = new JList(searchListBeverageFarEastern);
 		scrBeverageFarEastern.setViewportView(lstResultBeverageFarEastern);
+		
+		lblFar2 = new JLabel("");
+		lblFar2.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/ming-dynasty-tombs.png")));
+		scrBeverageFarEastern.setColumnHeaderView(lblFar2);
 		
 		scrBeverageFrench = new JScrollPane();
 		scrBeverageFrench.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "French", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -551,6 +614,10 @@ public class MainMenu extends JFrame {
 		lstResultBeverageFrench = new JList(searchListBeverageFrench);
 		scrBeverageFrench.setViewportView(lstResultBeverageFrench);
 		
+		lblFrench2 = new JLabel("");
+		lblFrench2.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/french-eiffel-tower-2.png")));
+		scrBeverageFrench.setColumnHeaderView(lblFrench2);
+		
 		scrBeverageRussian = new JScrollPane();
 		scrBeverageRussian.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Russian", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		scrBeverageRussian.setBounds(6, 251, 386, 81);
@@ -560,6 +627,10 @@ public class MainMenu extends JFrame {
 		lstResultBeverageRussian = new JList(searchListBeverageRussian);
 		scrBeverageRussian.setViewportView(lstResultBeverageRussian);
 		
+		lblRussian2 = new JLabel("");
+		lblRussian2.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/kremlin.png")));
+		scrBeverageRussian.setColumnHeaderView(lblRussian2);
+		
 		scrBeverageOther = new JScrollPane();
 		scrBeverageOther.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Other", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		scrBeverageOther.setBounds(6, 333, 386, 75);
@@ -568,6 +639,10 @@ public class MainMenu extends JFrame {
 		
 		lstResultBeverageOther = new JList(searchListBeverageOther);
 		scrBeverageOther.setViewportView(lstResultBeverageOther);
+		
+		lblOther2 = new JLabel("");
+		lblOther2.setIcon(new ImageIcon(MainMenu.class.getResource("/resources/worldwide.png")));
+		scrBeverageOther.setColumnHeaderView(lblOther2);
 		
 		contentPane.setLayout(null);
 		contentPane.add(lblMeal);

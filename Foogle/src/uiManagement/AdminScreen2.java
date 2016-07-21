@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
@@ -25,6 +26,8 @@ import restaurantAndFoodManagement.Ingredient;
 import restaurantAndFoodManagement.Restaurant;
 import userManagement.Admin;
 import userManagement.RestaurantOwner;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class AdminScreen2 extends JFrame {
 
@@ -41,6 +44,9 @@ public class AdminScreen2 extends JFrame {
 	public ArrayList<Ingredient> pendingIngredients = new ArrayList<Ingredient>();
 	public ArrayList<Restaurant> pendingRestaurants = new ArrayList<Restaurant>();
 	public ArrayList<ArrayList<Restaurant>> restsArr = new ArrayList<ArrayList<Restaurant>>();
+	private JLabel label;
+	private JLabel label_1;
+	private JLabel label_2;
 	
 
 	/**
@@ -95,33 +101,42 @@ public class AdminScreen2 extends JFrame {
 		restaurantPanel.setBorder(new TitledBorder(null, "Restaurants", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
 		btnSubmit = new JButton("Submit");
+		btnSubmit.setIcon(new ImageIcon(AdminScreen2.class.getResource("/resources/login.png")));
 
 		btnSubmit.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		
+		label_2 = new JLabel("");
+		label_2.setIcon(new ImageIcon(AdminScreen2.class.getResource("/resources/restaurant-cutlery-circular-symbol-of-a-spoon-and-a-fork-in-a-circle.png")));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-					.addContainerGap(523, Short.MAX_VALUE)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(19, Short.MAX_VALUE)
+					.addComponent(label_2)
+					.addGap(41)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(restaurantPanel, GroupLayout.PREFERRED_SIZE, 447, GroupLayout.PREFERRED_SIZE)
 						.addComponent(ingredientPanel, GroupLayout.PREFERRED_SIZE, 447, GroupLayout.PREFERRED_SIZE))
-					.addGap(132)
+					.addGap(64)
 					.addComponent(btnSubmit)
-					.addGap(216))
+					.addGap(249))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(45)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(ingredientPanel, GroupLayout.PREFERRED_SIZE, 323, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(restaurantPanel, GroupLayout.PREFERRED_SIZE, 323, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(322)
-							.addComponent(btnSubmit)))
-					.addContainerGap(81, Short.MAX_VALUE))
+					.addGap(97)
+					.addComponent(label_2)
+					.addContainerGap(311, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addContainerGap(481, Short.MAX_VALUE)
+					.addComponent(btnSubmit)
+					.addGap(382))
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addContainerGap(194, Short.MAX_VALUE)
+					.addComponent(ingredientPanel, GroupLayout.PREFERRED_SIZE, 323, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(restaurantPanel, GroupLayout.PREFERRED_SIZE, 323, GroupLayout.PREFERRED_SIZE)
+					.addGap(81))
 		);
 		
 		comboBoxRestaurant = new JComboBox();
@@ -132,15 +147,24 @@ public class AdminScreen2 extends JFrame {
 			comboBoxModelRestaurant.addElement(admin.getAllPendingRestaurants().get(i).getName());
 		
 		checkBoxRest = new JCheckBox("Check the box if you want to accept the restaurant\n");
+		
+		label = new JLabel("");
+		label.setIcon(new ImageIcon(AdminScreen2.class.getResource("/resources/shop.png")));
 		GroupLayout gl_restaurantPanel = new GroupLayout(restaurantPanel);
 		gl_restaurantPanel.setHorizontalGroup(
 			gl_restaurantPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_restaurantPanel.createSequentialGroup()
+					.addContainerGap(194, Short.MAX_VALUE)
+					.addComponent(label)
+					.addGap(177))
 				.addGroup(gl_restaurantPanel.createSequentialGroup()
 					.addGap(49)
-					.addGroup(gl_restaurantPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(checkBoxRest, GroupLayout.PREFERRED_SIZE, 351, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBoxRestaurant, GroupLayout.PREFERRED_SIZE, 329, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(35, Short.MAX_VALUE))
+					.addComponent(comboBoxRestaurant, GroupLayout.PREFERRED_SIZE, 329, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(57, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, gl_restaurantPanel.createSequentialGroup()
+					.addContainerGap(27, Short.MAX_VALUE)
+					.addComponent(checkBoxRest, GroupLayout.PREFERRED_SIZE, 369, GroupLayout.PREFERRED_SIZE)
+					.addGap(39))
 		);
 		gl_restaurantPanel.setVerticalGroup(
 			gl_restaurantPanel.createParallelGroup(Alignment.LEADING)
@@ -149,7 +173,9 @@ public class AdminScreen2 extends JFrame {
 					.addComponent(comboBoxRestaurant, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
 					.addComponent(checkBoxRest)
-					.addGap(102))
+					.addGap(18)
+					.addComponent(label)
+					.addGap(20))
 		);
 		restaurantPanel.setLayout(gl_restaurantPanel);
 		
@@ -161,6 +187,9 @@ public class AdminScreen2 extends JFrame {
 			comboBoxModelIngredient.addElement(admin.getAllPendingIngredients().get(i).getName());
 		
 		checkBoxIng = new JCheckBox("Check the box if you want to accept the ingredient");
+		
+		label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon(AdminScreen2.class.getResource("/resources/hamburguer.png")));
 
 		GroupLayout gl_ingredientPanel = new GroupLayout(ingredientPanel);
 		gl_ingredientPanel.setHorizontalGroup(
@@ -170,7 +199,11 @@ public class AdminScreen2 extends JFrame {
 					.addGroup(gl_ingredientPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(checkBoxIng)
 						.addComponent(comboBoxIngredient, GroupLayout.PREFERRED_SIZE, 329, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(58, Short.MAX_VALUE))
+					.addContainerGap(36, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, gl_ingredientPanel.createSequentialGroup()
+					.addContainerGap(186, Short.MAX_VALUE)
+					.addComponent(label_1)
+					.addGap(185))
 		);
 		gl_ingredientPanel.setVerticalGroup(
 			gl_ingredientPanel.createParallelGroup(Alignment.LEADING)
@@ -179,7 +212,9 @@ public class AdminScreen2 extends JFrame {
 					.addComponent(comboBoxIngredient, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(94)
 					.addComponent(checkBoxIng)
-					.addContainerGap(117, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+					.addComponent(label_1)
+					.addGap(25))
 		);
 		ingredientPanel.setLayout(gl_ingredientPanel);
 		contentPane.setLayout(gl_contentPane);
@@ -242,6 +277,18 @@ public class AdminScreen2 extends JFrame {
 			}
 		});
 		
+		comboBoxIngredient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				checkBoxIng.setSelected(false);
+			}
+		});
+		
+		comboBoxRestaurant.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				checkBoxRest.setSelected(false);
+			}
+		});
+		
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RestaurantOwner ro  = new RestaurantOwner();
@@ -252,8 +299,12 @@ public class AdminScreen2 extends JFrame {
 				if(admin.isAllRestaurantsProcessed()){
 					admin.traverseAllRestaurants(ro);
 				}
+				
+				JOptionPane.showMessageDialog(null, "Your confirmation is updated!");
 			}
 		});
+		
+		
 		
 		
 	}

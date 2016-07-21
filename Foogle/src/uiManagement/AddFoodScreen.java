@@ -88,6 +88,7 @@ public class AddFoodScreen extends JFrame {
 	private final ButtonGroup buttonGroupCuisine = new ButtonGroup();
 	private final ButtonGroup buttonGroupType = new ButtonGroup();
 	private JRadioButton btnTurkish;
+	private JLabel label_3;
 
 	/**
 	 * Launch the application.
@@ -172,6 +173,9 @@ public class AddFoodScreen extends JFrame {
 		checkBoxForAddIngredient = new JCheckBox("Add this ingredient to the new food");
 		
 		lblInfoIngredient = new JLabel("Please select the ingredients you want to add your new food");
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(AddFoodScreen.class.getResource("/resources/french-fries.png")));
 		GroupLayout gl_ingredientPanel = new GroupLayout(ingredientPanel);
 		gl_ingredientPanel.setHorizontalGroup(
 			gl_ingredientPanel.createParallelGroup(Alignment.LEADING)
@@ -179,7 +183,10 @@ public class AddFoodScreen extends JFrame {
 					.addGap(24)
 					.addGroup(gl_ingredientPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(checkBoxForAddIngredient)
-						.addComponent(comboBoxForIngredients, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_ingredientPanel.createSequentialGroup()
+							.addComponent(comboBoxForIngredients, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE)
+							.addGap(49)
+							.addComponent(lblNewLabel_1))
 						.addComponent(lblInfoIngredient, GroupLayout.PREFERRED_SIZE, 378, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(24, Short.MAX_VALUE))
 		);
@@ -189,10 +196,12 @@ public class AddFoodScreen extends JFrame {
 					.addGap(37)
 					.addComponent(lblInfoIngredient)
 					.addGap(34)
-					.addComponent(comboBoxForIngredients, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(28)
+					.addGroup(gl_ingredientPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(comboBoxForIngredients, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel_1))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(checkBoxForAddIngredient)
-					.addContainerGap(67, Short.MAX_VALUE))
+					.addContainerGap(83, Short.MAX_VALUE))
 		);
 		ingredientPanel.setLayout(gl_ingredientPanel);
 		
@@ -208,14 +217,22 @@ public class AddFoodScreen extends JFrame {
 		
 		textFieldOtherIng = new JTextField();
 		textFieldOtherIng.setColumns(10);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon(AddFoodScreen.class.getResource("/resources/doughnut.png")));
 		GroupLayout gl_otherIngredientPanel = new GroupLayout(otherIngredientPanel);
 		gl_otherIngredientPanel.setHorizontalGroup(
 			gl_otherIngredientPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_otherIngredientPanel.createSequentialGroup()
-					.addGap(24)
-					.addGroup(gl_otherIngredientPanel.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(textFieldOtherIng, Alignment.LEADING)
-						.addComponent(lblInfoOtherIng, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE))
+					.addGroup(gl_otherIngredientPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_otherIngredientPanel.createSequentialGroup()
+							.addGap(24)
+							.addGroup(gl_otherIngredientPanel.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(textFieldOtherIng, Alignment.LEADING)
+								.addComponent(lblInfoOtherIng, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)))
+						.addGroup(gl_otherIngredientPanel.createSequentialGroup()
+							.addGap(56)
+							.addComponent(label_1)))
 					.addContainerGap(29, Short.MAX_VALUE))
 		);
 		gl_otherIngredientPanel.setVerticalGroup(
@@ -225,11 +242,14 @@ public class AddFoodScreen extends JFrame {
 					.addComponent(lblInfoOtherIng, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(41)
 					.addComponent(textFieldOtherIng, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(111, Short.MAX_VALUE))
+					.addGap(45)
+					.addComponent(label_1)
+					.addContainerGap(50, Short.MAX_VALUE))
 		);
 		otherIngredientPanel.setLayout(gl_otherIngredientPanel);
 		
-		btnComplete = new JButton("Add!1!1");
+		btnComplete = new JButton("Add");
+		btnComplete.setIcon(new ImageIcon(AddFoodScreen.class.getResource("/resources/dish.png")));
 		btnComplete.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 
 		
@@ -243,65 +263,91 @@ public class AddFoodScreen extends JFrame {
 	    formatter.setCommitsOnValidEdit(true);
 		formattedTextField = new JFormattedTextField(formatter);
 		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(AddFoodScreen.class.getResource("/resources/price-tag.png")));
+		
 		GroupLayout gl_foodPricePanel = new GroupLayout(foodPricePanel);
 		gl_foodPricePanel.setHorizontalGroup(
-			gl_foodPricePanel.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_foodPricePanel.createSequentialGroup()
+			gl_foodPricePanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_foodPricePanel.createSequentialGroup()
 					.addGap(29)
 					.addComponent(formattedTextField, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(208, Short.MAX_VALUE))
+					.addGap(71)
+					.addComponent(label)
+					.addContainerGap(76, Short.MAX_VALUE))
 		);
 		gl_foodPricePanel.setVerticalGroup(
 			gl_foodPricePanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_foodPricePanel.createSequentialGroup()
 					.addGap(16)
-					.addComponent(formattedTextField, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_foodPricePanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(formattedTextField, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+						.addComponent(label))
 					.addContainerGap(21, Short.MAX_VALUE))
 		);
 		foodPricePanel.setLayout(gl_foodPricePanel);
 		
 		textFieldFoodName = new JTextField();
 		textFieldFoodName.setColumns(10);
+		
+		JLabel label_2 = new JLabel("");
+		label_2.setIcon(new ImageIcon(AddFoodScreen.class.getResource("/resources/lemonade.png")));
 		GroupLayout gl_foodNamePanel = new GroupLayout(foodNamePanel);
 		gl_foodNamePanel.setHorizontalGroup(
 			gl_foodNamePanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_foodNamePanel.createSequentialGroup()
 					.addGap(39)
 					.addComponent(textFieldFoodName, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(208, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+					.addComponent(label_2)
+					.addGap(53))
 		);
 		gl_foodNamePanel.setVerticalGroup(
 			gl_foodNamePanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_foodNamePanel.createSequentialGroup()
 					.addGap(15)
-					.addComponent(textFieldFoodName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_foodNamePanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(textFieldFoodName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(label_2))
 					.addContainerGap(28, Short.MAX_VALUE))
 		);
 		foodNamePanel.setLayout(gl_foodNamePanel);
+		
+		JLabel lblicon = new JLabel("");
+		lblicon.setIcon(new ImageIcon(AddFoodScreen.class.getResource("/resources/meat.png")));
 		GroupLayout gl_foodTypePanel = new GroupLayout(foodTypePanel);
 		gl_foodTypePanel.setHorizontalGroup(
 			gl_foodTypePanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_foodTypePanel.createSequentialGroup()
 					.addGap(18)
-					.addGroup(gl_foodTypePanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnDessert)
-						.addComponent(btnBeverage, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblInfoType, GroupLayout.PREFERRED_SIZE, 378, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnMeal))
-					.addGap(30))
+					.addGroup(gl_foodTypePanel.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(gl_foodTypePanel.createSequentialGroup()
+							.addComponent(lblInfoType, GroupLayout.PREFERRED_SIZE, 378, GroupLayout.PREFERRED_SIZE)
+							.addGap(30))
+						.addGroup(gl_foodTypePanel.createSequentialGroup()
+							.addGroup(gl_foodTypePanel.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnDessert)
+								.addComponent(btnBeverage, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnMeal))
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(lblicon, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
+							.addGap(38))))
 		);
 		gl_foodTypePanel.setVerticalGroup(
 			gl_foodTypePanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_foodTypePanel.createSequentialGroup()
 					.addGap(55)
 					.addComponent(lblInfoType)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnMeal)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnDessert)
-					.addGap(12)
-					.addComponent(btnBeverage)
-					.addGap(56))
+					.addGap(18)
+					.addGroup(gl_foodTypePanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_foodTypePanel.createSequentialGroup()
+							.addComponent(btnMeal)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnDessert)
+							.addGap(12)
+							.addComponent(btnBeverage))
+						.addComponent(lblicon, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
+					.addGap(33))
 		);
 		foodTypePanel.setLayout(gl_foodTypePanel);
 		
@@ -314,6 +360,9 @@ public class AddFoodScreen extends JFrame {
 		lblInfoRest = new JLabel("Please select the restaurants for the new food to be added");
 		
 		checkBoxForAddToRest = new JCheckBox("Add the new food to this restaurant");
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(AddFoodScreen.class.getResource("/resources/cooker.png")));
 
 		GroupLayout gl_restSelectionpanel = new GroupLayout(restSelectionpanel);
 		gl_restSelectionpanel.setHorizontalGroup(
@@ -321,9 +370,13 @@ public class AddFoodScreen extends JFrame {
 				.addGroup(gl_restSelectionpanel.createSequentialGroup()
 					.addGap(23)
 					.addGroup(gl_restSelectionpanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(checkBoxForAddToRest)
-						.addComponent(lblInfoRest)
-						.addComponent(comboBoxForRestaurant, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE))
+						.addComponent(comboBoxForRestaurant, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_restSelectionpanel.createParallelGroup(Alignment.TRAILING, false)
+							.addGroup(gl_restSelectionpanel.createSequentialGroup()
+								.addComponent(checkBoxForAddToRest)
+								.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(lblNewLabel))
+							.addComponent(lblInfoRest, Alignment.LEADING)))
 					.addGap(25))
 		);
 		gl_restSelectionpanel.setVerticalGroup(
@@ -331,11 +384,17 @@ public class AddFoodScreen extends JFrame {
 				.addGroup(gl_restSelectionpanel.createSequentialGroup()
 					.addGap(38)
 					.addComponent(lblInfoRest)
-					.addGap(30)
-					.addComponent(comboBoxForRestaurant, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(29)
-					.addComponent(checkBoxForAddToRest)
-					.addGap(69))
+					.addGroup(gl_restSelectionpanel.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(gl_restSelectionpanel.createSequentialGroup()
+							.addGap(30)
+							.addComponent(comboBoxForRestaurant, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(29)
+							.addComponent(checkBoxForAddToRest)
+							.addGap(117))
+						.addGroup(Alignment.TRAILING, gl_restSelectionpanel.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(lblNewLabel)
+							.addGap(56))))
 		);
 		restSelectionpanel.setLayout(gl_restSelectionpanel);
 		
@@ -368,62 +427,82 @@ public class AddFoodScreen extends JFrame {
 		
 		btnOther = new JRadioButton("Other");
 		buttonGroupCuisine.add(btnOther);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon(AddFoodScreen.class.getResource("/resources/pizza.png")));
 		GroupLayout gl_foodCuisinePanel = new GroupLayout(foodCuisinePanel);
 		gl_foodCuisinePanel.setHorizontalGroup(
 			gl_foodCuisinePanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_foodCuisinePanel.createSequentialGroup()
-					.addGroup(gl_foodCuisinePanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_foodCuisinePanel.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(txtrPleaseSelectOne, GroupLayout.PREFERRED_SIZE, 373, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_foodCuisinePanel.createSequentialGroup()
-							.addGap(35)
-							.addGroup(gl_foodCuisinePanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnFarEastern)
-								.addComponent(btnTurkish)
-								.addComponent(btnFrench)
-								.addComponent(btnRussian)
-								.addComponent(btnOther))))
+					.addContainerGap()
+					.addComponent(txtrPleaseSelectOne, GroupLayout.PREFERRED_SIZE, 373, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(47, Short.MAX_VALUE))
+				.addGroup(gl_foodCuisinePanel.createSequentialGroup()
+					.addGap(34)
+					.addGroup(gl_foodCuisinePanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnFarEastern)
+						.addGroup(gl_foodCuisinePanel.createParallelGroup(Alignment.LEADING)
+							.addComponent(btnTurkish)
+							.addComponent(btnFrench)
+							.addComponent(btnRussian)
+							.addComponent(btnOther)))
+					.addPreferredGap(ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
+					.addComponent(lblNewLabel_2)
+					.addGap(79))
 		);
 		gl_foodCuisinePanel.setVerticalGroup(
 			gl_foodCuisinePanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_foodCuisinePanel.createSequentialGroup()
-					.addContainerGap()
+				.addGroup(Alignment.TRAILING, gl_foodCuisinePanel.createSequentialGroup()
 					.addComponent(txtrPleaseSelectOne, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnTurkish)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnFarEastern)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnFrench)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnRussian)
-					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addComponent(btnOther))
+					.addGroup(gl_foodCuisinePanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_foodCuisinePanel.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnTurkish)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnFarEastern)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnFrench)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnRussian)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(btnOther)
+							.addGap(15))
+						.addGroup(gl_foodCuisinePanel.createSequentialGroup()
+							.addGap(52)
+							.addComponent(lblNewLabel_2)
+							.addContainerGap())))
 		);
 		foodCuisinePanel.setLayout(gl_foodCuisinePanel);
+		
+		label_3 = new JLabel("");
+		label_3.setIcon(new ImageIcon(AddFoodScreen.class.getResource("/resources/groceries.png")));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(48)
-					.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(48)
+							.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(69)
+							.addComponent(label_3)))
 					.addGap(55)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(foodNamePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(foodTypePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(foodPricePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+							.addComponent(foodNamePanel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(foodTypePanel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 						.addComponent(restSelectionpanel, GroupLayout.PREFERRED_SIZE, 438, GroupLayout.PREFERRED_SIZE))
 					.addGap(39)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(foodCuisinePanel, GroupLayout.PREFERRED_SIZE, 438, GroupLayout.PREFERRED_SIZE)
 						.addComponent(ingredientPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(otherIngredientPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addGap(72)
-							.addComponent(btnComplete)))
-					.addGap(67))
+							.addComponent(btnComplete, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE))
+						.addComponent(foodCuisinePanel, GroupLayout.PREFERRED_SIZE, 438, GroupLayout.PREFERRED_SIZE))
+					.addGap(35))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -431,26 +510,31 @@ public class AddFoodScreen extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(23)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(foodNamePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(foodTypePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(foodPricePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(restSelectionpanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addComponent(ingredientPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(otherIngredientPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(foodCuisinePanel, 0, 0, Short.MAX_VALUE))))
+									.addComponent(otherIngredientPanel, GroupLayout.PREFERRED_SIZE, 261, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(foodCuisinePanel, GroupLayout.PREFERRED_SIZE, 190, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addComponent(label_3))
+										.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+											.addComponent(foodNamePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(foodTypePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+									.addGap(6)
+									.addComponent(foodPricePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(restSelectionpanel, 0, 0, Short.MAX_VALUE))))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(326)
 							.addComponent(btnComplete)))
-					.addContainerGap(47, Short.MAX_VALUE))
+					.addContainerGap(11, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 		
