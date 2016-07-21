@@ -38,11 +38,9 @@ public class Food {
 	}
 	
 	public String getCuisine() {
-		System.out.println("CUISINE "+ cuisine);
 		return cuisine;
 	}
 	public void setCuisine(String cuisine) {
-		System.out.println("SETTING "+cuisine);
 		this.cuisine = cuisine;
 	}
 	public String getType() {

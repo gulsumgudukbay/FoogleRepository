@@ -16,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 import dataManagement.RestDB;
 import restaurantAndFoodManagement.Restaurant;
+import userManagement.Admin;
 import userManagement.RestaurantOwner;
 import userManagement.UserResource;
 
@@ -29,6 +30,7 @@ public class AddRestaurantScreen extends JFrame {
 	private JLabel labelIcon;
 	private UserResource ur = UserResource.getSoleInstance();
 	private  RestaurantOwner ro = new RestaurantOwner();
+	public Admin admin = Admin.getSoleInstance();
 	
 	
 	
@@ -91,7 +93,12 @@ public class AddRestaurantScreen extends JFrame {
 				Restaurant resToAdd = new Restaurant(newRes);
 				System.out.println(ro.getUsername());
 				System.out.println(ro.getRestaurants().toString());
-				ro.addRestaurant(resToAdd);
+				//ro.addRestaurant(resToAdd);
+				admin.addToPendingRestaurants(username, newRes);
+				Restaurant newRestaurant = new Restaurant(newRes);
+				newRestaurant.setConfirmed(false);
+				admin.addToPendingRestaurants(newRestaurant);
+				
 				
 				JOptionPane.showMessageDialog(null, "The new restaurant is successfully created!");
 				dispose();

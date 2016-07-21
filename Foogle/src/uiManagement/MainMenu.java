@@ -186,6 +186,7 @@ public class MainMenu extends JFrame {
 	private JList lstResultBeverageOther;
 
 	private static String username;
+	private JButton btnAdmin;
 
 	/**
 	 * Launch the application.
@@ -590,6 +591,13 @@ public class MainMenu extends JFrame {
 		btnFinish.setVisible(false);
 		contentPane.add(btnFinish);
 		
+		btnAdmin = new JButton("");
+
+		btnAdmin.setBounds(661, 86, 28, 17);
+		btnAdmin.setBackground(new Color(250, 240, 230));
+		btnAdmin.setEnabled(true);
+		contentPane.add(btnAdmin);
+		
 		//FOR MEAL TEST
 		//creating a test list model for placing all ingredients to the combo box
 		DefaultComboBoxModel testListModelMeal = (DefaultComboBoxModel) comboBoxForMeal.getModel();
@@ -758,6 +766,16 @@ public class MainMenu extends JFrame {
 	//////////////////////////////////////////////////////////////
 	private void createEvents() 
 	{
+		
+		btnAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				AdminScreen2 adminS = new AdminScreen2(username);
+				adminS.setVisible(true);
+				
+			}
+		});
+		
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

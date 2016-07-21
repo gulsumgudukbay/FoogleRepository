@@ -80,6 +80,15 @@ public class RestaurantOwner extends User {
 			if(restaurants.get(i).getName().equals(restName))
 				restaurants.get(i).addFood(food.getName(), username, food.getCuisine(), food.getType(), food.getPrice(), ingredients);
 	}
+	
+	public void addFoodToRestaurants(Food food, ArrayList<Restaurant> rests){
+		boolean b = true;
+		for(int i = 0; i < rests.size();i++){
+			 rests.get(i).addFood(food.getName(), username, food.getCuisine(), food.getType(), food.getPrice(), food.getIngredients());
+		}
+		
+			rdb.createIngredients(food.getName(), food.getIngredients());
+	}
 	// FIXME: Ambiguous method declaration
 	// Foods of a specific restaurant? All restaurants?
 	public void viewFoods() {

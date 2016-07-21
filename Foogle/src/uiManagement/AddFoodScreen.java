@@ -120,7 +120,8 @@ public class AddFoodScreen extends JFrame {
 	private void initComponents() {
 		
 		restOwner = uR.getRestaurantOwner(username);
-		
+		restOwner.setRestaurants(restOwner.getAllRestaurantsOfARestaurantOwner(username));
+		System.out.println(restOwner.getRestaurants().toString());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -579,6 +580,14 @@ public class AddFoodScreen extends JFrame {
 				allIngredientsForFood = restOwner.mergeLists(existingFoodIngredientsIng, otherIngredientsSelected);
 				Food newFood = new Food(foodName,foodCuisine,foodType,foodPrice,allIngredientsForFood);
 				pendingFoods.add(newFood);
+				System.out.println("***"+restOwner.getAllRestaurantsOfARestaurantOwner(username).toString());
+
+				//add a food to multiple restaurants
+				//restOwner.addFoodToRestaurants(newFood, foodRestaurantsRest);
+				admin.addToPendingFoods(newFood);
+				//System.out.println(restOwner.getAllRestaurantsOfARestaurantOwner(username).toString());
+				for(int i=0;i<otherIngredientsSelected.size();i++)
+					admin.addToPendingIngredients(new Ingredient(otherIngredientsSelected.get(i).getName()), foodName);
 				
 			}
 		});

@@ -56,7 +56,7 @@ public class PendingDB {
 		Statement stmtpr = DatabaseManager.createStmt();
 		ResultSet rset = null;
 
-		String query = "select * from Pending_Restaurant";
+		String query = "select * from Pending_Restaurants";
 		try {
 			rset = stmtpr.executeQuery(query);
 			while (rset.next()) {

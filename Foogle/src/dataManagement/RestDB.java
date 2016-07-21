@@ -33,27 +33,37 @@ public class RestDB {
 			Statement stmtcr = DatabaseManager.createStmt();
 			try {
 				stmtcr.executeUpdate(query);
+				return true;
 			} catch (SQLException e) {
 				e.printStackTrace();
 				return false;
 			}
 
+
+		}
+	}
+
+	
+	public boolean createIngredients( String foodName, ArrayList<Ingredient> ingredients){
+		ArrayList<Integer> arr = new ArrayList<Integer>();
+		arr = getFoodIDs(foodName);
+		for(int j = 0; j < arr.size(); j++){
 			for (int i = 0; i < ingredients.size(); i++) {
 				String query2 = "INSERT INTO `Foogle`.`Ingredients` (`name`, `Foods_id`) VALUES ('" + ingredients.get(i)
-						+ "', '" + getFoodID(foodName) + "');";
-				Statement stmtcr2 = DatabaseManager.createStmt();
+						+ "', '" + arr.get(j) + "');";
+				Statement stmtcrii = DatabaseManager.createStmt();
 				try {
-					stmtcr2.executeUpdate(query2);
+					stmtcrii.executeUpdate(query2);
 				} catch (SQLException e) {
 					e.printStackTrace();
 					return false;
 				}
 			}
-			System.out.println("Created!");
-			return true;
 		}
+		System.out.println("ings!");
+		return true;
 	}
-
+	
 	// returns all of the ingredients in the database
 	public ArrayList<Ingredient> getAllIngredients() {
 		ArrayList<Ingredient> ings = new ArrayList<Ingredient>();
@@ -347,6 +357,7 @@ public class RestDB {
 	private int getRestaurantID(String restaurantName, String restOwnerName) {
 		int id = -1;
 		int restID = getRestaurantOwnerID(restOwnerName);
+		System.out.println("RESTOWNER ID "+restID);
 		String query = "select * from Restaurants where Restaurant_Owners_id = " + restID + " and name = '"
 				+ restaurantName + "'";
 		ResultSet rset;
@@ -481,6 +492,23 @@ public class RestDB {
 
 	}
 
+	// Returns the food ids of a given food name
+		private ArrayList<Integer> getFoodIDs(String foodName) {
+			ArrayList<Integer> arr = new ArrayList<Integer>();
+			String query = "select * from Foods where name = '" + foodName + "'";
+			ResultSet rset;
+			try {
+				rset = stmt.executeQuery(query);
+				while (rset.next())
+					arr.add(rset.getInt("id"));
+				return arr;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return arr;
+			}
+
+		}
+	
 	// Returns all the ingredients belonging to a food
 	public ArrayList<Ingredient> getAllIngredientsForAFood(String foodName) {
 
@@ -519,11 +547,12 @@ public class RestDB {
 			ArrayList<Food> fds = new ArrayList<Food>();
 			ResultSet rset = null;
 			int restaurantID = getRestaurantID(restaurantName, restaurantOwnerName);
+			System.out.println("REST ID "+ restaurantID);
 			String query = "select * from Foods where Restaurants_id = '" + restaurantID + "'";
 			try {
-				Food fd = new Food();
 				rset = stmt2.executeQuery(query);
 				while (rset.next()) {
+					Food fd = new Food();
 					String name = rset.getString("name");
 					fd.setName(name);
 					fd.setIngredients(getAllIngredientsForAFood(name));
@@ -545,8 +574,8 @@ public class RestDB {
 		System.out.println(rdb.doesRestaurantExist("testlkjRestaurant", "test"));
 		rdb.getAllIngredientsForAFood("food1");
 		rdb.getAllIngredients();
-		rdb.getAllFoods("testRestaurant", "test2");
-
+		System.out.println(rdb.getAllFoods("testRestaurant", "test").toString());
+		System.out.println(rdb.getAllFoods("testRestaurant2", "test").toString());
 		ArrayList<String> wanted = new ArrayList<String>();
 		wanted.add("ing13");
 		wanted.add("ing3");

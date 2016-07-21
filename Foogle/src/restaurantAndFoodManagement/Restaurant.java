@@ -10,7 +10,7 @@ public class Restaurant {
 	RestDB rdb = RestDB.getSoleInstance();
 	// MARK: Properties
 	private String name;
-	private ArrayList<Food> foods;
+	private ArrayList<Food> foods = new ArrayList<Food>();
 	private boolean isConfirmed;
 	
 	// MARK: Constructors
@@ -24,9 +24,9 @@ public class Restaurant {
 		this.setName(name);
 	}
 	
-	public Restaurant(String name, ArrayList<Food> foods, RestaurantOwner owner) {
+	public Restaurant(String name, ArrayList<Food> foods) {
 		this.setName(name);
-		this.setFoods(rdb.getAllFoods(name, owner.getUsername()));
+		this.setFoods(foods);
 		this.setConfirmed(false);
 	}
 	
@@ -50,6 +50,10 @@ public class Restaurant {
 	}
 	public void setConfirmed(boolean isConfirmed) {
 		this.isConfirmed = isConfirmed;
+	}
+	
+	public void setFoodsFromDatabase(String un){
+		foods = (rdb.getAllFoods(name, un));
 	}
 	
 	// Utility methods
@@ -76,18 +80,18 @@ public class Restaurant {
 		return false;
 	}
 	// Creates a new food with given parameters, and adds the food to foods list (if it's not already on the list)
-	public void addFood(String name, String restOwner, String cuisine, String type, Double price, ArrayList<Ingredient> ingredients) {
-		if (this.checkFoodOccurance(name)) {
+	public boolean addFood(String name, String restOwner, String cuisine, String type, Double price, ArrayList<Ingredient> ingredients) {
+		//if (this.checkFoodOccurance(name)) {
 			// TEST
-			System.out.println("Food " + name + " is already on the list");
-		} else {
+		//	System.out.println("Food " + name + " is already on the list");
+		//} else {
 			
 			// TEST
-			System.out.println("Food " + name + " is added to the list");
-		}
+		//	System.out.println("Food " + name + " is added to the list");
+		//}
 		Food temp = new Food(name, cuisine, type, price, ingredients);
 		temp.setIngredients(rdb.getAllIngredientsForAFood(name));
-		rdb.createFoodToExistingRestaurant(this.getName(), restOwner, temp.getName(), temp.getType(), temp.getCuisine(), temp.getPrice(), ingredients);
+		return rdb.createFoodToExistingRestaurant(this.getName(), restOwner, temp.getName(), temp.getType(), temp.getCuisine(), temp.getPrice(), ingredients);
 
 	}
 	

@@ -98,7 +98,7 @@ public class LoggedInScreen extends JFrame {
 		btnMyAcc.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MyAccountScreen myAccScreen = new MyAccountScreen(username);
+				MyAccountScreen2 myAccScreen = new MyAccountScreen2(username);
 				myAccScreen.setVisible(true);
 				dispose();
 			}
