@@ -42,8 +42,15 @@ public class Admin extends User{
 	}
 	
 	public ArrayList<Ingredient> getAllPendingIngredients(){
-	 return null;
+		return pdb.getAllPendingIngredients();
 	}
+	
+	public ArrayList<Restaurant> getAllPendingRestaurants(){
+		return pdb.getAllPendingRestaurants();
+	}
+	
+	
+	
 	
 	// MARK: Methods
 	// Accessors and Mutators
