@@ -216,6 +216,31 @@ public class PendingDB {
 		
 	}
 	
+	public boolean isRestaurantConfirmed(String rest){
+
+		ResultSet rset = null;
+    	Statement stmtirc = DatabaseManager.createStmt();
+
+		String query = "select * from Pending_Restaurants where name = '" + rest + "'";	
+	
+		try{
+			rset = stmtirc.executeQuery(query);
+			
+			boolean b = true;
+			if(rset.next()){
+				if(!rset.getString("isConfirmed").equals("T"))
+					b = false;
+			}
+			return b;
+			
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+	
 	
 	public boolean isAllIngredientsProcessed(){
 		ResultSet rset = null;

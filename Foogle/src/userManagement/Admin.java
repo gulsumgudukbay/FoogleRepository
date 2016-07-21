@@ -12,7 +12,8 @@ public class Admin extends User{
 	PendingDB pdb = PendingDB.getSoleInstance();
 	private static Admin a = new Admin();
 	public static ArrayList<Food> pendingFoods = new ArrayList<Food>();
-	
+	public static ArrayList<ArrayList<Restaurant>> restsforCorrFoods = new ArrayList<ArrayList<Restaurant>>();
+	public static ArrayList<Restaurant> pendingRests = new ArrayList<Restaurant>();
 	
 	public static Admin getSoleInstance() {
 		return a;
@@ -37,8 +38,37 @@ public class Admin extends User{
 		this.pendingRestaurants = pendingRestaurants;
 	}
 	
-	public static void addToPendingFoods(Food fd){
+	public void addToPendingFoods(Food fd){
 		pendingFoods.add(fd);
+	}
+	public void addToPendingFoodRestaurants(ArrayList<Restaurant> rests){
+		restsforCorrFoods.add(rests);
+	}
+	public void addToPendingRestaurants(Restaurant r){
+		pendingRests.add(r);
+	}
+	
+	public boolean isAllIngredientsProcessed(){
+		return pdb.isAllIngredientsProcessed();
+	}
+	
+	public boolean isAllRestaurantsProcessed(){
+		return pdb.isAllRestaurantsProcessed();
+	}
+	public void traverseAllFoods(String restOwner){
+		for(int i = 0; i < pendingFoods.size(); i++){
+			if(pdb.isAllOtherIngredientsConfirmedFor(pendingFoods.get(i).getName())){
+				for(int j = 0; j < restsforCorrFoods.get(i).size(); j++)
+					restsforCorrFoods.get(i).get(j).addFood(pendingFoods.get(i).getName(), restOwner, pendingFoods.get(i).getCuisine(), pendingFoods.get(i).getType(), pendingFoods.get(i).getPrice(), pendingFoods.get(i).getIngredients());
+			}
+		}	
+	}
+	
+	public void traverseAllRestaurants(RestaurantOwner restOwner){
+		for(int i = 0; i < pendingRests.size(); i++)
+			if(pdb.isRestaurantConfirmed(pendingRests.get(i).getName()))
+				restOwner.addRestaurant(pendingRests.get(i));
+		
 	}
 	
 	public ArrayList<Ingredient> getAllPendingIngredients(){
