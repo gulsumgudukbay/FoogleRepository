@@ -199,7 +199,7 @@ public class AddFoodScreen2 extends JFrame {
 					Food foodToAdd = new Food(foodName, cuisine, foodType, price, ingsOfNewFood);
 					Restaurant resToAdd = ro.getRestaurant(resName);
 					
-					ro.addFoodToRestaurant(foodToAdd, resToAdd, ingsOfNewFood);
+					// ro.addFoodToRestaurant(foodToAdd, resToAdd, ingsOfNewFood);
 					ingsOfNewFood.clear();
 				}
 				else { // If there are new ingredients
