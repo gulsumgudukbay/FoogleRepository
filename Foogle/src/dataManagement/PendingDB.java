@@ -99,7 +99,7 @@ public class PendingDB {
 	public void insertToPendingRestaurants(String ownerUN, String rest){
 		Statement stmtrp = DatabaseManager.createStmt();
 		String query = "INSERT INTO `Foogle`.`Pending_Restaurants` (`idRestaurant_Owner`, `name`, `isConfirmed`) VALUES ('"
-				+ udb.getRestaurantOwnerID(ownerUN)+ "', 'F');";
+				+ udb.getRestaurantOwnerID(ownerUN)+ "', '"+ rest +"', 'F');";
 		try {
 			stmtrp.executeUpdate(query);
 			System.out.println("added rest");
