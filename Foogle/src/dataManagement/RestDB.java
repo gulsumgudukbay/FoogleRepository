@@ -556,6 +556,9 @@ public class RestDB {
 					String name = rset.getString("name");
 					fd.setName(name);
 					fd.setIngredients(getAllIngredientsForAFood(name));
+					fd.setPrice(rset.getDouble("price"));
+					fd.setCuisine(rset.getString("cuisine"));
+					fd.setType(rset.getString("type"));
 					fds.add(fd);
 				}
 			} catch (SQLException e) {

@@ -257,7 +257,7 @@ private void initSearchList(ArrayList<Food> foodList) {
 				rest.setName(strSelected);
 				rest.setFoodsFromDatabase(username);
 				foods = rdb.getAllFoods(strSelected, username);
-				System.out.println(foods.toString());
+				System.out.println("FOODS "+ foods.toString());
 				initSearchList(foods);
 				
 				
