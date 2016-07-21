@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.sun.glass.events.KeyEvent;
+
 import dataManagement.UserDB;
 import userManagement.RestaurantOwner;
 
@@ -92,6 +94,7 @@ public class LoginScreen extends JFrame {
 		btnLogin = new JButton("Login");
 		btnLogin.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
 		btnLogin.setIcon(new ImageIcon(LoginScreen.class.getResource("/resources/login.png")));
+		btnLogin.setMnemonic(KeyEvent.VK_ENTER);
 		
 		bossImage = new JLabel("");
 		bossImage.setIcon(new ImageIcon(LoginScreen.class.getResource("/resources/boss.png")));

@@ -535,7 +535,7 @@ public class MainMenu extends JFrame {
 		beveragepanel.add(scrBeverageFarEastern);
 		scrBeverageFarEastern.setVisible(false);
 		
-		lstResultBeverageFarEastern = new JList(searchListDessertFarEastern);
+		lstResultBeverageFarEastern = new JList(searchListBeverageFarEastern);
 		scrBeverageFarEastern.setViewportView(lstResultBeverageFarEastern);
 		
 		scrBeverageFrench = new JScrollPane();
@@ -544,7 +544,7 @@ public class MainMenu extends JFrame {
 		beveragepanel.add(scrBeverageFrench);
 		scrBeverageFrench.setVisible(false);
 		
-		lstResultBeverageFrench = new JList(searchListDessertFrench);
+		lstResultBeverageFrench = new JList(searchListBeverageFrench);
 		scrBeverageFrench.setViewportView(lstResultBeverageFrench);
 		
 		scrBeverageRussian = new JScrollPane();
@@ -553,7 +553,7 @@ public class MainMenu extends JFrame {
 		beveragepanel.add(scrBeverageRussian);
 		scrBeverageRussian.setVisible(false);
 		
-		lstResultBeverageRussian = new JList(searchListDessertRussian);
+		lstResultBeverageRussian = new JList(searchListBeverageRussian);
 		scrBeverageRussian.setViewportView(lstResultBeverageRussian);
 		
 		scrBeverageOther = new JScrollPane();
@@ -562,7 +562,7 @@ public class MainMenu extends JFrame {
 		beveragepanel.add(scrBeverageOther);
 		scrBeverageOther.setVisible(false);
 		
-		lstResultBeverageOther = new JList(searchListDessertOther);
+		lstResultBeverageOther = new JList(searchListBeverageOther);
 		scrBeverageOther.setViewportView(lstResultBeverageOther);
 		
 		contentPane.setLayout(null);

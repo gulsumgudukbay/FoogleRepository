@@ -11,7 +11,7 @@ public class Food {
 	private String cuisine;
 	private String type;
 	private double price;
-	private ArrayList<Ingredient> ingredients;
+	private ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();;
 	public RestDB rdb = RestDB.getSoleInstance();
 	
 	// MARK: Constructors
@@ -19,7 +19,7 @@ public class Food {
 		this.setCuisine(cuisine);
 		this.setName(name);
 		this.setPrice(price);
-		this.setIngredients(rdb.getAllIngredientsForAFood(name));
+		this.setIngredients(ingredients);
 		this.setType(type);
 	}
 	public Food() {

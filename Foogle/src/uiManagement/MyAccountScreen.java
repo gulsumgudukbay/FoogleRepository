@@ -103,8 +103,8 @@ public class MyAccountScreen extends JFrame {
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(54)
-					.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
-					.addGap(101)
+					.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
+					.addGap(91)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblHi)
 						.addComponent(restaurants, GroupLayout.PREFERRED_SIZE, 921, GroupLayout.PREFERRED_SIZE))
@@ -115,7 +115,7 @@ public class MyAccountScreen extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(38)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblHi))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(restaurants, GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
@@ -136,7 +136,7 @@ public class MyAccountScreen extends JFrame {
 					.addGap(18)
 					.addGroup(gl_restaurants.createParallelGroup(Alignment.LEADING)
 						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 708, GroupLayout.PREFERRED_SIZE)
-						.addComponent(restaurantsBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(restaurantsBox, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(82, Short.MAX_VALUE))
 		);
 		gl_restaurants.setVerticalGroup(
@@ -150,7 +150,7 @@ public class MyAccountScreen extends JFrame {
 					.addGroup(gl_restaurants.createParallelGroup(Alignment.BASELINE)
 						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 538, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblFood))
-					.addContainerGap(62, Short.MAX_VALUE))
+					.addContainerGap(60, Short.MAX_VALUE))
 		);
 		
 		restaurantsBox.addActionListener(new ActionListener() {

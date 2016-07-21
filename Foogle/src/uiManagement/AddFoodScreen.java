@@ -27,13 +27,17 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.NumberFormatter;
 
+import dataManagement.OtherIngredientProcessor;
+import restaurantAndFoodManagement.Food;
 import restaurantAndFoodManagement.Ingredient;
 import restaurantAndFoodManagement.Restaurant;
+import userManagement.Admin;
 import userManagement.RestaurantOwner;
 import userManagement.UserResource;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ButtonGroup;
 
 public class AddFoodScreen extends JFrame {
 
@@ -41,12 +45,20 @@ public class AddFoodScreen extends JFrame {
 	private JComboBox comboBoxForRestaurant;
 	public UserResource uR = UserResource.getSoleInstance();
 	public RestaurantOwner restOwner = new RestaurantOwner();
+	public OtherIngredientProcessor processor = new OtherIngredientProcessor();
+	public Admin admin = Admin.getSoleInstance();
 	
 	public String foodName;
-	public Double foodPrice;
+	public String foodCuisine;
+	public String foodOtherIngredients;
+	public double foodPrice;
+	public String foodType;
+	
 	public ArrayList<Object> existingFoodIngredientsObject = new ArrayList<Object>();
-	public ArrayList<Object> pendingFoodIngredientsObject = new ArrayList<Object>();
 	public ArrayList<Object> foodRestaurantsObject = new ArrayList<Object>();
+	public ArrayList<Ingredient> otherIngredientsSelected = new ArrayList<Ingredient>();
+	public ArrayList<Ingredient> allIngredientsForFood = new ArrayList<Ingredient>();
+	public ArrayList<Food> pendingFoods = new ArrayList<Food>();
 	
 	private static String username;
 	private JPanel foodTypePanel;
@@ -73,6 +85,9 @@ public class AddFoodScreen extends JFrame {
 	private JRadioButton btnRussian;
 	private JRadioButton btnOther;
 	private JButton btnComplete;
+	private final ButtonGroup buttonGroupCuisine = new ButtonGroup();
+	private final ButtonGroup buttonGroupType = new ButtonGroup();
+	private JRadioButton btnTurkish;
 
 	/**
 	 * Launch the application.
@@ -124,10 +139,13 @@ public class AddFoodScreen extends JFrame {
 		foodTypePanel.setBackground(new Color(250, 240, 230));
 		
 		btnMeal = new JRadioButton("Meal");
+		buttonGroupType.add(btnMeal);
 		
 		btnDessert = new JRadioButton("Dessert");
+		buttonGroupType.add(btnDessert);
 		
 		btnBeverage = new JRadioButton("Beverage");
+		buttonGroupType.add(btnBeverage);
 		
 		lblInfoType = new JLabel("Please select the one of the food types for your new food\n");
 		
@@ -211,14 +229,14 @@ public class AddFoodScreen extends JFrame {
 		otherIngredientPanel.setLayout(gl_otherIngredientPanel);
 		
 		btnComplete = new JButton("Add!1!1");
-
 		btnComplete.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+
 		
 		NumberFormat format = NumberFormat.getInstance();
 	    NumberFormatter formatter = new NumberFormatter(format);
-	    formatter.setValueClass(Integer.class);
-	    formatter.setMinimum(0);
-	    formatter.setMaximum(Integer.MAX_VALUE);
+	    formatter.setValueClass(Double.class);
+	    formatter.setMinimum(0.0);
+	    formatter.setMaximum(Double.MAX_VALUE);
 	    formatter.setAllowsInvalid(false);
 	    // If you want the value to be committed on each keystroke instead of focus lost
 	    formatter.setCommitsOnValidEdit(true);
@@ -335,15 +353,20 @@ public class AddFoodScreen extends JFrame {
 		txtrPleaseSelectOne.setEditable(false);
 		txtrPleaseSelectOne.setBackground(new Color(250, 240, 230));
 		
-		JRadioButton rdbtnTurkish = new JRadioButton("Turkish");
+		btnTurkish = new JRadioButton("Turkish");
+		buttonGroupCuisine.add(btnTurkish);
 		
 		btnFarEastern = new JRadioButton("Far Eastern");
+		buttonGroupCuisine.add(btnFarEastern);
 		
 		btnFrench = new JRadioButton("French");
+		buttonGroupCuisine.add(btnFrench);
 		
 		btnRussian = new JRadioButton("Russian");
+		buttonGroupCuisine.add(btnRussian);
 		
 		btnOther = new JRadioButton("Other");
+		buttonGroupCuisine.add(btnOther);
 		GroupLayout gl_foodCuisinePanel = new GroupLayout(foodCuisinePanel);
 		gl_foodCuisinePanel.setHorizontalGroup(
 			gl_foodCuisinePanel.createParallelGroup(Alignment.LEADING)
@@ -356,7 +379,7 @@ public class AddFoodScreen extends JFrame {
 							.addGap(35)
 							.addGroup(gl_foodCuisinePanel.createParallelGroup(Alignment.LEADING)
 								.addComponent(btnFarEastern)
-								.addComponent(rdbtnTurkish)
+								.addComponent(btnTurkish)
 								.addComponent(btnFrench)
 								.addComponent(btnRussian)
 								.addComponent(btnOther))))
@@ -368,7 +391,7 @@ public class AddFoodScreen extends JFrame {
 					.addContainerGap()
 					.addComponent(txtrPleaseSelectOne, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(rdbtnTurkish)
+					.addComponent(btnTurkish)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnFarEastern)
 					.addPreferredGap(ComponentPlacement.RELATED)
@@ -444,6 +467,20 @@ public class AddFoodScreen extends JFrame {
 		
 	}
 	
+	//object list from the user desires to ingredient list 	
+	private ArrayList<Restaurant> sendRestList(ArrayList<Object> restList) {
+		
+		ArrayList<Restaurant> restListToSend = new ArrayList<Restaurant>();
+		for(int i=0;i<restList.size();i++){
+			Restaurant newRest = new Restaurant();
+			newRest.setName(restList.get(i).toString());
+			restListToSend.add(newRest);
+		}
+		
+		return restListToSend;
+		
+	}
+	
 	private void createEvents() {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -469,15 +506,79 @@ public class AddFoodScreen extends JFrame {
 			}
 		});
 		
+		checkBoxForAddToRest.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Object selected = comboBoxForRestaurant.getSelectedItem();
+				if(checkBoxForAddToRest.isSelected() && !foodRestaurantsObject.contains(selected)){
+					foodRestaurantsObject.add(selected);
+				}
+				if(!checkBoxForAddToRest.isSelected() && foodRestaurantsObject.contains(selected)){
+					foodRestaurantsObject.remove(selected);
+				}
+				System.out.println("Selected Restaurants for new food");
+				System.out.println(foodRestaurantsObject.toString());
+			}
+		});
+		
+		
 		
 		btnComplete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				//make the object arraylist , an ingredient array list = EXISTING INGREDIENT SELECTED
 				ArrayList<Ingredient> existingFoodIngredientsIng= new ArrayList<Ingredient>(); 
 				existingFoodIngredientsIng = sendIngList(existingFoodIngredientsObject);
 				for(int i=0;i<existingFoodIngredientsIng.size();i++){
 					System.out.println(existingFoodIngredientsIng .get(i).getName());
 				}
+				
+				//make the object arraylist , an restaurant array list foodRestaurantsRest= SELECTED RESTAURANTS
+				ArrayList<Restaurant> foodRestaurantsRest= new ArrayList<Restaurant>(); 
+				foodRestaurantsRest = sendRestList(foodRestaurantsObject);
+				for(int i=0;i<foodRestaurantsRest.size();i++){
+					System.out.println(foodRestaurantsRest.get(i).getName());
+				}
+				
+				
+				//otherIngredientsSelected = EXTRA INGREDIENTS,  existingFoodIngredientsIng = EXISTING INGREDIENT SELECTED
+				foodOtherIngredients = textFieldOtherIng.getText();
+				
+				
+				otherIngredientsSelected = processor.insertToPending(foodOtherIngredients);
+				System.out.println("Other Ingredients for new food");
+				System.out.println(otherIngredientsSelected.toString());
+				
+				//set price of food
+				foodPrice = Double.parseDouble(formattedTextField.getText());
+				
+				//set name of food
+				foodName = textFieldFoodName.getText();
+				
+				//set type of food
+				if(btnMeal.isSelected())
+					foodType = "meal";
+				else if(btnDessert.isSelected())
+					foodType = "dessert";
+				else
+					foodType = "beverage";
+				
+				//set cuisine of food
+				if(btnTurkish.isSelected())
+					foodCuisine = "Turkish";
+				else if(btnFarEastern.isSelected())
+					foodCuisine = "Far Eastern";
+				else if(btnFrench.isSelected())
+					foodCuisine = "French";
+				else if(btnRussian.isSelected())
+					foodCuisine = "Russian";
+				else
+					foodCuisine = "Other";
+				
+				//set all ingredients (other and existing) included in food 
+				allIngredientsForFood = restOwner.mergeLists(existingFoodIngredientsIng, otherIngredientsSelected);
+				Food newFood = new Food(foodName,foodCuisine,foodType,foodPrice,allIngredientsForFood);
+				pendingFoods.add(newFood);
 				
 			}
 		});
@@ -488,5 +589,10 @@ public class AddFoodScreen extends JFrame {
 			}
 		});
 		
+		comboBoxForRestaurant.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				checkBoxForAddToRest.setSelected(false);
+			}
+		});
 	}
 }
