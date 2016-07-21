@@ -47,6 +47,7 @@ public class AdminScreen2 extends JFrame {
 	private JLabel label;
 	private JLabel label_1;
 	private JLabel label_2;
+	private JButton btnBack;
 	
 
 	/**
@@ -107,13 +108,24 @@ public class AdminScreen2 extends JFrame {
 		
 		label_2 = new JLabel("");
 		label_2.setIcon(new ImageIcon(AdminScreen2.class.getResource("/resources/restaurant-cutlery-circular-symbol-of-a-spoon-and-a-fork-in-a-circle.png")));
+		
+		btnBack = new JButton("Back");
+
+		btnBack.setIcon(new ImageIcon(AdminScreen2.class.getResource("/resources/back_64.png")));
+		btnBack.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(19, Short.MAX_VALUE)
-					.addComponent(label_2)
-					.addGap(41)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(label_2)
+							.addGap(41))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(28)
+							.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(restaurantPanel, GroupLayout.PREFERRED_SIZE, 447, GroupLayout.PREFERRED_SIZE)
 						.addComponent(ingredientPanel, GroupLayout.PREFERRED_SIZE, 447, GroupLayout.PREFERRED_SIZE))
@@ -122,17 +134,19 @@ public class AdminScreen2 extends JFrame {
 					.addGap(249))
 		);
 		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(97)
+					.addGap(15)
+					.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(label_2)
-					.addContainerGap(311, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-					.addContainerGap(481, Short.MAX_VALUE)
+					.addContainerGap(181, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(332, Short.MAX_VALUE)
 					.addComponent(btnSubmit)
 					.addGap(382))
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-					.addContainerGap(194, Short.MAX_VALUE)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(45, Short.MAX_VALUE)
 					.addComponent(ingredientPanel, GroupLayout.PREFERRED_SIZE, 323, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(restaurantPanel, GroupLayout.PREFERRED_SIZE, 323, GroupLayout.PREFERRED_SIZE)
@@ -152,28 +166,26 @@ public class AdminScreen2 extends JFrame {
 		label.setIcon(new ImageIcon(AdminScreen2.class.getResource("/resources/shop.png")));
 		GroupLayout gl_restaurantPanel = new GroupLayout(restaurantPanel);
 		gl_restaurantPanel.setHorizontalGroup(
-			gl_restaurantPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_restaurantPanel.createSequentialGroup()
+			gl_restaurantPanel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_restaurantPanel.createSequentialGroup()
 					.addContainerGap(194, Short.MAX_VALUE)
 					.addComponent(label)
 					.addGap(177))
-				.addGroup(gl_restaurantPanel.createSequentialGroup()
+				.addGroup(Alignment.LEADING, gl_restaurantPanel.createSequentialGroup()
 					.addGap(49)
-					.addComponent(comboBoxRestaurant, GroupLayout.PREFERRED_SIZE, 329, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(57, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_restaurantPanel.createSequentialGroup()
-					.addContainerGap(27, Short.MAX_VALUE)
-					.addComponent(checkBoxRest, GroupLayout.PREFERRED_SIZE, 369, GroupLayout.PREFERRED_SIZE)
-					.addGap(39))
+					.addGroup(gl_restaurantPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(checkBoxRest, GroupLayout.PREFERRED_SIZE, 369, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxRestaurant, GroupLayout.PREFERRED_SIZE, 329, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(17, Short.MAX_VALUE))
 		);
 		gl_restaurantPanel.setVerticalGroup(
 			gl_restaurantPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_restaurantPanel.createSequentialGroup()
 					.addGap(35)
 					.addComponent(comboBoxRestaurant, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
 					.addComponent(checkBoxRest)
-					.addGap(18)
+					.addGap(44)
 					.addComponent(label)
 					.addGap(20))
 		);
@@ -301,6 +313,14 @@ public class AdminScreen2 extends JFrame {
 				}
 				
 				JOptionPane.showMessageDialog(null, "Your confirmation is updated!");
+			}
+		});
+		
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				MainMenu mainmenu = new MainMenu();
+				mainmenu.setVisible(true);
 			}
 		});
 		
