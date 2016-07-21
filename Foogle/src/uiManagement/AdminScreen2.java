@@ -322,6 +322,7 @@ public class AdminScreen2 extends JFrame {
 				MainMenu mainmenu = new MainMenu();
 				mainmenu.setVisible(true);
 			}
+			
 		});
 		
 		

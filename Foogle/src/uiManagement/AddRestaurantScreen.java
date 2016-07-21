@@ -55,7 +55,6 @@ public class AddRestaurantScreen extends JFrame {
 	 * @param username 
 	 */
 	public AddRestaurantScreen(String username) {
-		setBackground(new Color(253, 245, 230));
 		this.username = username;
 		initComponents();
 	}

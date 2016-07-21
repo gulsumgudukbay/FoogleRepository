@@ -108,6 +108,7 @@ public class MyAccountScreen2 extends JFrame {
 		panel.setBackground(new Color(250, 240, 230));
 		
 		button = new JButton("Back");
+
 		button.setIcon(new ImageIcon(MyAccountScreen2.class.getResource("/resources/back_64.png")));
 		button.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -260,9 +261,14 @@ private void initSearchList(ArrayList<Food> foodList) {
 				System.out.println(foods.toString());
 				initSearchList(foods);
 				
-				
-				
-				
+			}
+		});
+		
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				LoggedInScreen loggedInScreen = new LoggedInScreen(username);
+				loggedInScreen.setVisible(true);
 			}
 		});
 		
