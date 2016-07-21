@@ -11,6 +11,8 @@ import userManagement.RestaurantOwner;
 public class Admin extends User{
 	PendingDB pdb = PendingDB.getSoleInstance();
 	private static Admin a = new Admin();
+	public static ArrayList<Food> pendingFoods = new ArrayList<Food>();
+	
 	
 	public static Admin getSoleInstance() {
 		return a;
@@ -20,15 +22,27 @@ public class Admin extends User{
 	// MARK: Properties
 	private ArrayList<Ingredient> pendingIngredients;
 	private ArrayList<Restaurant> pendingRestaurants;
+
+	
+	
 	
 	// MARK: Constructors
 	public Admin() {
 		this.pendingIngredients = new ArrayList<Ingredient>();
 		this.pendingRestaurants = new ArrayList<Restaurant>();
 	}
+
 	public Admin(ArrayList<Ingredient> pendingIngredients, ArrayList<Restaurant> pendingRestaurants) {
 		this.pendingIngredients = pendingIngredients;
 		this.pendingRestaurants = pendingRestaurants;
+	}
+	
+	public static void addToPendingFoods(Food fd){
+		pendingFoods.add(fd);
+	}
+	
+	public ArrayList<Ingredient> getAllPendingIngredients(){
+	 return null;
 	}
 	
 	// MARK: Methods
@@ -44,6 +58,30 @@ public class Admin extends User{
 	}
 	public void setPendingRestaurants(ArrayList<Restaurant> pendingRestaurants) {
 		this.pendingRestaurants = pendingRestaurants;
+	}
+	
+	public void confirmIngredient(String name){
+		pdb.confirmIngredient(name);
+	}
+	
+	public void rejectIngredient(String name){
+		pdb.rejectIngredient(name);
+	}
+	
+	public void confirmRestaurant(String name){
+		pdb.confirmRestaurant(name);
+	}
+	
+	public void rejectRestaurant(String name){
+		pdb.rejectRestaurant(name);
+	}
+	
+	public void addToPendingIngredients(Ingredient ing, String foodname){
+		pdb.insertToPendingIngredients(ing, foodname);
+	}
+	
+	public void addToPendingRestaurants(String ownerUN, String rest){
+		pdb.insertToPendingRestaurants(ownerUN, rest);
 	}
 	
 	// Utility methods

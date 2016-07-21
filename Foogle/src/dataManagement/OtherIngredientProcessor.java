@@ -20,7 +20,9 @@ public class OtherIngredientProcessor {
 			
 		st = new StringTokenizer(ings, " ");
 		while(st.hasMoreTokens()){
-			ingsSeperated.add(new Ingredient(st.nextToken()));
+			Ingredient ing = new Ingredient(st.nextToken());
+			ing.setConfirmed(false);
+			ingsSeperated.add(ing);
 		}
 			
 		return ingsSeperated;
