@@ -19,8 +19,7 @@ public class RestDB {
 		return rdb;
 	}
 
-	// TODO is called if all of its other ingredients are confirmed or if there
-	// aren't any other ingredients specified
+	
 	public boolean createFoodToExistingRestaurant(String restaurantName, String restaurantOwnerUsername,
 			String foodName, String type, String cuisine, double price, ArrayList<Ingredient> ingredients) {
 		if (doesFoodExist(foodName, restaurantName, restaurantOwnerUsername)

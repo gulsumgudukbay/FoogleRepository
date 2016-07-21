@@ -24,6 +24,8 @@ public class Admin extends User{
 	private ArrayList<Restaurant> pendingRestaurants;
 
 	
+	
+	
 	// MARK: Constructors
 	public Admin() {
 		this.pendingIngredients = new ArrayList<Ingredient>();
@@ -37,6 +39,10 @@ public class Admin extends User{
 	
 	public static void addToPendingFoods(Food fd){
 		pendingFoods.add(fd);
+	}
+	
+	public ArrayList<Ingredient> getAllPendingIngredients(){
+	 return null;
 	}
 	
 	// MARK: Methods
@@ -69,6 +75,15 @@ public class Admin extends User{
 	public void rejectRestaurant(String name){
 		pdb.rejectRestaurant(name);
 	}
+	
+	public void addToPendingIngredients(Ingredient ing, String foodname){
+		pdb.insertToPendingIngredients(ing, foodname);
+	}
+	
+	public void addToPendingRestaurants(String ownerUN, String rest){
+		pdb.insertToPendingRestaurants(ownerUN, rest);
+	}
+	
 	// Utility methods
 	// FIXME: Needs checking
 	// Returns merged list

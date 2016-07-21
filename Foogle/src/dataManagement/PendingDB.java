@@ -6,11 +6,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import restaurantAndFoodManagement.Ingredient;
+import restaurantAndFoodManagement.Restaurant;
 
 public class PendingDB {
 
 	private static PendingDB pdb = new PendingDB();
-	
+	UserDB udb = UserDB.getSoleInstance();
 	public static PendingDB getSoleInstance(){
 		return pdb;
 	}
@@ -23,6 +24,83 @@ public class PendingDB {
 		System.out.println(pdb.isAllOtherIngredientsConfirmedFor("2"));
 		System.out.println(pdb.getTheFoodNameOfPendingIngredient("testing2"));
 	}
+	
+	public ArrayList<Ingredient> getAllPendingIngredients(){
+		ArrayList<Ingredient> ings = new ArrayList<Ingredient>();
+		Statement stmtpi = DatabaseManager.createStmt();
+		ResultSet rset = null;
+
+		String query = "select * from Pending_Ingredients";
+		try {
+			rset = stmtpi.executeQuery(query);
+			while (rset.next()) {
+				Ingredient ingr = new Ingredient();
+				ingr.setName(rset.getString("name"));
+				if(rset.getString("isConfirmed").equals("T"))
+					ingr.setConfirmed(true);
+				else
+					ingr.setConfirmed(false);
+				ings.add(ingr);
+			}
+
+			System.out.println("INGS"+ ings.toString());
+			return ings;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public ArrayList<Restaurant> getAllPendingRestaurants(){
+		ArrayList<Restaurant> rests = new ArrayList<Restaurant>();
+		Statement stmtpr = DatabaseManager.createStmt();
+		ResultSet rset = null;
+
+		String query = "select * from Pending_Restaurant";
+		try {
+			rset = stmtpr.executeQuery(query);
+			while (rset.next()) {
+				Restaurant rest = new Restaurant();
+				rest.setName(rset.getString("name"));
+				if(rset.getString("isConfirmed").equals("T"))
+					rest.setConfirmed(true);
+				else
+					rest.setConfirmed(false);
+				rests.add(rest);
+			}
+
+			System.out.println("RESTS"+rests.toString());
+			return rests;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public void insertToPendingIngredients(Ingredient ing, String foodName){
+		Statement stmtip = DatabaseManager.createStmt();
+		String query = "INSERT INTO `Foogle`.`Pending_Ingredients` (`name`, `isConfirmed`, `foodname`) VALUES ('"
+				+ ing.getName() + "', '" + ing.isConfirmed() + "', '" + foodName + "');";
+		try {
+			stmtip.executeUpdate(query);
+			System.out.println("added INGREDIENT");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void insertToPendingRestaurants(String ownerUN, String rest){
+		Statement stmtrp = DatabaseManager.createStmt();
+		String query = "INSERT INTO `Foogle`.`Pending_Restaurants` (`idRestaurant_Owner`, `name`, `isConfirmed`) VALUES ('"
+				+ udb.getRestaurantOwnerID(ownerUN)+ "', 'F');";
+		try {
+			stmtrp.executeUpdate(query);
+			System.out.println("added rest");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public void confirmIngredient(String name){
 		Statement stmtconfi = DatabaseManager.createStmt();
