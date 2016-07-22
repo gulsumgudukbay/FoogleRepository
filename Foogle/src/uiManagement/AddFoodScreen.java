@@ -637,8 +637,10 @@ public class AddFoodScreen extends JFrame {
 				System.out.println("Other Ingredients for new food");
 				System.out.println(otherIngredientsSelected.toString());
 				
+				
 				//set price of food
-				foodPrice = Double.parseDouble(formattedTextField.getText());
+				if(formattedTextField.getText() != null && !formattedTextField.getText().equals(""))
+					foodPrice = Double.parseDouble(formattedTextField.getText());
 				
 				//set name of food
 				foodName = textFieldFoodName.getText();
