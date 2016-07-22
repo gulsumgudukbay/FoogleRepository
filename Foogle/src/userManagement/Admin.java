@@ -61,7 +61,7 @@ public class Admin extends User{
 			if(pdb.isAllOtherIngredientsConfirmedFor(pendingFoods.get(i).getName()))
 				restOwner.addFoodToRestaurants(pendingFoods.get(i), restsforCorrFoods.get(i));	
 		}
-		//removeAllPendingIngredients();
+		removeAllPendingIngredients();
 	}
 	
 	public void removeAllPendingIngredients(){
@@ -76,7 +76,7 @@ public class Admin extends User{
 		for(int i = 0; i < pendingRests.size(); i++)
 			if(pdb.isRestaurantConfirmed(pendingRests.get(i).getName()))
 				restOwner.addRestaurant(pendingRests.get(i));
-		
+		removeAllPendingRestaurants();
 	}
 	
 	public ArrayList<Ingredient> getAllPendingIngredients(){
