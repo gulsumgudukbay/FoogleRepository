@@ -17,6 +17,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
@@ -119,7 +120,7 @@ public class AddFoodScreen extends JFrame {
 	}
 
 	private void initComponents() {
-		
+		setTitle("Foogle");
 		restOwner = uR.getRestaurantOwner(username);
 		restOwner.setRestaurants(restOwner.getAllRestaurantsOfARestaurantOwner(username));
 		System.out.println(restOwner.getRestaurants().toString());
@@ -611,6 +612,8 @@ public class AddFoodScreen extends JFrame {
 		btnComplete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+
+				
 				//make the object arraylist , an ingredient array list = EXISTING INGREDIENT SELECTED
 				ArrayList<Ingredient> existingFoodIngredientsIng= new ArrayList<Ingredient>(); 
 				existingFoodIngredientsIng = sendIngList(existingFoodIngredientsObject);
@@ -660,19 +663,32 @@ public class AddFoodScreen extends JFrame {
 				else
 					foodCuisine = "Other";
 				
-				//set all ingredients (other and existing) included in food 
 				allIngredientsForFood = restOwner.mergeLists(existingFoodIngredientsIng, otherIngredientsSelected);
-				Food newFood = new Food(foodName,foodCuisine,foodType,foodPrice,allIngredientsForFood);
-				pendingFoods.add(newFood);
-				System.out.println("***"+restOwner.getAllRestaurantsOfARestaurantOwner(username).toString());
-
-				//add a food to multiple restaurants
-				//restOwner.addFoodToRestaurants(newFood, foodRestaurantsRest);
-				admin.addToPendingFoods(newFood);
-				//System.out.println(restOwner.getAllRestaurantsOfARestaurantOwner(username).toString());
-				for(int i=0;i<allIngredientsForFood.size();i++)
-					admin.addToPendingIngredients(new Ingredient(allIngredientsForFood.get(i).getName()), foodName);
 				
+				if(textFieldFoodName.getText().equals("") || formattedTextField.getText().equals("") || 
+						(!btnMeal.isSelected() && !btnDessert.isSelected() && !btnBeverage.isSelected()) ||
+						(!btnTurkish.isSelected() && !btnFarEastern.isSelected() && !btnRussian.isSelected() && !btnFrench.isSelected() && !btnOther.isSelected()) ||
+						allIngredientsForFood.isEmpty())
+					JOptionPane.showMessageDialog(null, "Please check if you fill all blanks!");
+				else{
+					//set all ingredients (other and existing) included in food 
+					Food newFood = new Food(foodName,foodCuisine,foodType,foodPrice,allIngredientsForFood);
+					pendingFoods.add(newFood);
+					System.out.println("***"+restOwner.getAllRestaurantsOfARestaurantOwner(username).toString());
+
+					//add a food to multiple restaurants
+					//restOwner.addFoodToRestaurants(newFood, foodRestaurantsRest);
+					admin.addToPendingFoods(newFood);
+					//System.out.println(restOwner.getAllRestaurantsOfARestaurantOwner(username).toString());
+					for(int i=0;i<allIngredientsForFood.size();i++)
+						admin.addToPendingIngredients(new Ingredient(allIngredientsForFood.get(i).getName()), foodName);
+					
+					
+					JOptionPane.showMessageDialog(null, "Thanks! Your request will be evaluated!");
+					dispose();
+					LoggedInScreen loggedInScreen = new LoggedInScreen(username);
+					loggedInScreen.setVisible(true);
+				}
 			}
 		});
 		

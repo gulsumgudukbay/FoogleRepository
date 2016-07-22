@@ -1,5 +1,7 @@
 package uiManagement;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -19,6 +21,9 @@ import restaurantAndFoodManagement.Restaurant;
 import userManagement.Admin;
 import userManagement.RestaurantOwner;
 import userManagement.UserResource;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class AddRestaurantScreen extends JFrame {
 
@@ -62,22 +67,20 @@ public class AddRestaurantScreen extends JFrame {
 	
 	public void initComponents() {
 		ro = ur.getRestaurantOwner(username);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Foogle");
-		setBounds(200, 200, 1440, 800);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(250, 240, 230));
+		contentPane.setPreferredSize(new Dimension(1440,800));
+	    getContentPane().add(contentPane, BorderLayout.SOUTH);
+	    pack();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
 		setResizable(false);
-		getContentPane().setLayout(null);
-		getContentPane().setBackground(new Color(250, 240, 230));
-		
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
 		txtRestaurantName = new JTextField();
 		txtRestaurantName.setBounds(987, 237, 295, 52);
-		contentPane.add(txtRestaurantName);
 		txtRestaurantName.setColumns(10);
 		
 		JButton btnSubmit = new JButton("Submit");
@@ -105,7 +108,6 @@ public class AddRestaurantScreen extends JFrame {
 				loggedInScreen.setVisible(true);				
 			}
 		});
-		contentPane.add(btnSubmit);
 		
 		btnSubmit.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
@@ -119,19 +121,54 @@ public class AddRestaurantScreen extends JFrame {
 				dispose();
 			}
 		});
-		contentPane.add(btnBack);
 		
 		btnBack.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
 		btnBack.setIcon(new ImageIcon(LoginScreen.class.getResource("/resources/back_64.png")));
 		
-		lblRestaurantName = new JLabel("Restaurant Name:");
-		lblRestaurantName.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
-		lblRestaurantName.setBounds(787, 236, 199, 52);
-		contentPane.add(lblRestaurantName);
-		
 		labelIcon = new JLabel("");
 		labelIcon.setBounds(184, 161, 604, 477);
 		labelIcon.setIcon(new ImageIcon(AddRestaurantScreen.class.getResource("/resources/table.png")));
-		contentPane.add(labelIcon);
+		
+		lblRestaurantName = new JLabel("Restaurant Name:");
+		lblRestaurantName.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
+		lblRestaurantName.setBounds(787, 236, 199, 52);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(181)
+							.addComponent(labelIcon)
+							.addGap(95)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(lblRestaurantName)
+									.addGap(6)
+									.addComponent(txtRestaurantName, GroupLayout.PREFERRED_SIZE, 208, GroupLayout.PREFERRED_SIZE))
+								.addComponent(btnSubmit)))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(46)
+							.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(239, Short.MAX_VALUE))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addGap(38)
+					.addComponent(btnBack)
+					.addPreferredGap(ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+					.addComponent(labelIcon)
+					.addGap(109))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(253)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(txtRestaurantName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblRestaurantName))
+					.addGap(105)
+					.addComponent(btnSubmit)
+					.addContainerGap(329, Short.MAX_VALUE))
+		);
+		contentPane.setLayout(gl_contentPane);
 	}
 }
