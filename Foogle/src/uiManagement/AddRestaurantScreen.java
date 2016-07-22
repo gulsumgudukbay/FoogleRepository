@@ -90,22 +90,28 @@ public class AddRestaurantScreen extends JFrame {
 		btnSubmit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println(ro.getUsername());
-				String newRes = txtRestaurantName.getText();
-				Restaurant resToAdd = new Restaurant(newRes);
-				System.out.println(ro.getUsername());
-				System.out.println(ro.getRestaurants().toString());
-				//ro.addRestaurant(resToAdd);
-				admin.addToPendingRestaurants(username, newRes);
-				Restaurant newRestaurant = new Restaurant(newRes);
-				newRestaurant.setConfirmed(false);
-				admin.addToPendingRestaurants(newRestaurant);
 				
-				
-				JOptionPane.showMessageDialog(null, "The new restaurant is successfully created!");
-				dispose();
-				LoggedInScreen loggedInScreen = new LoggedInScreen(username);
-				loggedInScreen.setVisible(true);				
+				if(txtRestaurantName.getText().equals(""))
+					JOptionPane.showMessageDialog(null, "Please enter a name for restaurant!");
+				else{
+					System.out.println(ro.getUsername());
+					String newRes = txtRestaurantName.getText();
+					Restaurant resToAdd = new Restaurant(newRes);
+					System.out.println(ro.getUsername());
+					System.out.println(ro.getRestaurants().toString());
+					//ro.addRestaurant(resToAdd);
+					admin.addToPendingRestaurants(username, newRes);
+					Restaurant newRestaurant = new Restaurant(newRes);
+					newRestaurant.setConfirmed(false);
+					admin.addToPendingRestaurants(newRestaurant);
+					
+					
+					JOptionPane.showMessageDialog(null, "Your request to add a restaurant will be processed!");
+					dispose();
+					LoggedInScreen loggedInScreen = new LoggedInScreen(username);
+					loggedInScreen.setVisible(true);	
+				}
+			
 			}
 		});
 		
