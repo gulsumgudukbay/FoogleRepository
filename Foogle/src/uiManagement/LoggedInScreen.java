@@ -82,14 +82,7 @@ public class LoggedInScreen extends JFrame {
 			}
 		});
 		btnAddFood.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/hamburguer.png")));
-		btnAddFood.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				AddFoodScreen2 addFoodScreen = new AddFoodScreen2(username);
-				addFoodScreen.setVisible(true);
-				dispose();
-			}
-		});
+		
 		
 		btnAddFood.setBounds(862, 405, 329, 86);
 		getContentPane().add(btnAddFood);
