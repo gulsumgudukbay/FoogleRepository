@@ -18,6 +18,13 @@ public class LoggedInScreen extends JFrame {
 	private JPanel contentPane;
 	private static String username;
 	static String origUN;
+	private JButton btnBack;
+	private JLabel lblHi;
+	private JLabel lblicon;
+	private JButton btnLogout;
+	private JButton btnMyAcc;
+	private JButton btnAddFood;
+	private JButton btnAddRes;
 	public static void main(String[] args) 
 	{
 		EventQueue.invokeLater(new Runnable() 
@@ -41,8 +48,9 @@ public class LoggedInScreen extends JFrame {
 	public LoggedInScreen(String username) {
 		this.username = username;
 		initComponents();
+		createEvents();
 	}
-	
+
 	public static String getorigun(){
 		return origUN;
 	}
@@ -57,9 +65,52 @@ public class LoggedInScreen extends JFrame {
 		getContentPane().setLayout(null);
 		getContentPane().setBackground(new Color(250, 240, 230));
 		
-		JButton btnAddRes = new JButton("Add a Restaurant");
+		btnAddRes = new JButton("Add a Restaurant");
 		btnAddRes.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/shop.png")));
+		btnAddRes.setBounds(862, 270, 329, 86);
+		getContentPane().add(btnAddRes);
 		
+		btnAddFood = new JButton("Add Food");
+		btnAddFood.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/hamburguer.png")));
+		btnAddFood.setBounds(862, 405, 329, 86);
+		getContentPane().add(btnAddFood);
+		
+		btnMyAcc = new JButton("My Account");
+		btnMyAcc.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/round-account-button-with-user-inside.png")));
+		btnMyAcc.setBounds(1214, 24, 196, 76);
+		getContentPane().add(btnMyAcc);
+		
+		btnLogout = new JButton("Logout");
+		btnLogout.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/logout.png")));
+		btnLogout.setBounds(1214, 112, 196, 76);
+		getContentPane().add(btnLogout);
+		
+		lblicon = new JLabel("");
+		lblicon.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/chef-2.png")));
+		lblicon.setBounds(187, 156, 542, 413);
+		getContentPane().add(lblicon);
+		
+		lblHi = new JLabel("Hi " + username + "!");
+		lblHi.setFont(new Font("Lantinghei SC", Font.PLAIN, 25));
+		lblHi.setBounds(804, 156, 302, 42);
+		getContentPane().add(lblHi);
+		
+		btnBack = new JButton("Back");
+		btnBack.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/back_64.png")));
+		btnBack.setBounds(51, 24, 151, 76);
+		getContentPane().add(btnBack);
+		
+		btnBack.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
+		btnLogout.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		btnMyAcc.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		btnAddFood.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
+		btnAddRes.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
+	}
+	
+	
+	private void createEvents() {
+		
+		// go to add restaurant screen
 		btnAddRes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AddRestaurantScreen addResScreen = new AddRestaurantScreen(username);
@@ -68,11 +119,7 @@ public class LoggedInScreen extends JFrame {
 			}
 		});
 		
-		btnAddRes.setBounds(862, 270, 329, 86);
-		getContentPane().add(btnAddRes);
-		
-		
-		JButton btnAddFood = new JButton("Add Food");
+		//go to add food screen
 		btnAddFood.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -81,16 +128,8 @@ public class LoggedInScreen extends JFrame {
 				
 			}
 		});
-		btnAddFood.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/hamburguer.png")));
 		
-		
-		btnAddFood.setBounds(862, 405, 329, 86);
-		getContentPane().add(btnAddFood);
-		
-		
-		
-		JButton btnMyAcc = new JButton("My Account");
-		btnMyAcc.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/round-account-button-with-user-inside.png")));
+		//go to my account screen
 		btnMyAcc.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -100,12 +139,7 @@ public class LoggedInScreen extends JFrame {
 			}
 		});
 		
-		btnMyAcc.setBounds(1214, 24, 196, 76);
-		getContentPane().add(btnMyAcc);
-		
-		
-		JButton btnLogout = new JButton("Logout");
-		btnLogout.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/logout.png")));
+		// go to main menu screen
 		btnLogout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -116,20 +150,7 @@ public class LoggedInScreen extends JFrame {
 			}
 		});
 		
-		btnLogout.setBounds(1214, 112, 196, 76);
-		getContentPane().add(btnLogout);
-		
-		JLabel lblicon = new JLabel("");
-		lblicon.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/chef-2.png")));
-		lblicon.setBounds(187, 156, 542, 413);
-		getContentPane().add(lblicon);
-		
-		JLabel lblHi = new JLabel("Hi " + username + "!");
-		lblHi.setFont(new Font("Lantinghei SC", Font.PLAIN, 25));
-		lblHi.setBounds(804, 156, 302, 42);
-		getContentPane().add(lblHi);
-		
-		JButton btnBack = new JButton("Back");
+		// go to login screen
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -137,14 +158,6 @@ public class LoggedInScreen extends JFrame {
 				loginScreen.setVisible(true);
 			}
 		});
-		btnBack.setIcon(new ImageIcon(LoggedInScreen.class.getResource("/resources/back_64.png")));
-		btnBack.setBounds(51, 24, 151, 76);
-		getContentPane().add(btnBack);
 		
-		btnBack.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
-		btnLogout.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		btnMyAcc.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		btnAddFood.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
-		btnAddRes.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
 	}
 }

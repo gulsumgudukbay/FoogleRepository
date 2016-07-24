@@ -82,7 +82,6 @@ public class AdminScreen2 extends JFrame {
 		pendingIngredients = admin.getAllPendingIngredients();
 		pendingRestaurants = admin.getAllPendingRestaurants();
 		
-		
 		setTitle("Foogle");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -233,13 +232,14 @@ public class AdminScreen2 extends JFrame {
 		
 	}
 	
+	//return the specific ingredient from the pending ingredient list for the given name 
 	private Ingredient searchIngredient(String ingName){
 		for(int i=0;i< pendingIngredients.size();i++)
 			if(pendingIngredients.get(i).getName().equals(ingName))
 				return pendingIngredients.get(i);
 		return null;
 	}
-	
+	//return the specific restaurant from the pending restaurant list for the given name 
 	private Restaurant searchRestaurant(String restName){
 		for(int i=0;i< pendingRestaurants.size();i++)
 			if(pendingRestaurants.get(i).getName().equals(restName))
@@ -254,6 +254,8 @@ public class AdminScreen2 extends JFrame {
 				Object selected = comboBoxIngredient.getSelectedItem();
 				String strSelected = selected.toString();
 				Ingredient newIng = new Ingredient(strSelected);
+				
+				// if selected accept the ingredient else reject it
 				if(checkBoxIng.isSelected()){
 					admin.confirmIngredient(strSelected);
 					newIng = searchIngredient(strSelected);
@@ -274,6 +276,8 @@ public class AdminScreen2 extends JFrame {
 				Object selected = comboBoxRestaurant.getSelectedItem();
 				String strSelected = selected.toString();
 				Restaurant newRest = new Restaurant(strSelected);
+				
+				// if selected accept the restaurant else reject it
 				if(checkBoxRest.isSelected()){
 					admin.confirmRestaurant(strSelected);
 					newRest = searchRestaurant(strSelected);
@@ -289,12 +293,14 @@ public class AdminScreen2 extends JFrame {
 			}
 		});
 		
+		//each time a ingredient is selected make the checkbox unchecked
 		comboBoxIngredient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				checkBoxIng.setSelected(false);
 			}
 		});
 		
+		//each time a restaurant is selected make the checkbox unchecked
 		comboBoxRestaurant.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				checkBoxRest.setSelected(false);
@@ -305,9 +311,12 @@ public class AdminScreen2 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				RestaurantOwner ro  = new RestaurantOwner();
 				ro.setUsername(username);
+				
+				// if admin process all of the ingredients, traverse all foods given of restaurant owner
 				if(admin.isAllIngredientsProcessed())
 					admin.traverseAllFoods(ro);
 				
+				// if admin process all of the restaurants, traverse all restaurants given of restaurant owner
 				if(admin.isAllRestaurantsProcessed()){
 					admin.traverseAllRestaurants(ro);
 				}
@@ -317,6 +326,8 @@ public class AdminScreen2 extends JFrame {
 		});
 		
 		btnBack.addActionListener(new ActionListener() {
+			
+			//go back to main menu
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				MainMenu mainmenu = new MainMenu();

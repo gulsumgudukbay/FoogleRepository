@@ -97,6 +97,7 @@ public class MyAccountScreen2 extends JFrame {
 		
 		comboBox = new JComboBox();
 
+		// add all the restaurants of the restaurant owner to the combo box
 		DefaultComboBoxModel comboBoxModelRestaurant = (DefaultComboBoxModel) comboBox.getModel();
 		
 		for(int i=0;i<restOwner.getAllRestaurantsOfARestaurantOwner(username).size();i++)
@@ -192,6 +193,8 @@ public class MyAccountScreen2 extends JFrame {
 		
 	}
 	
+	
+//classify the searched result list according to the food type	
 private void initSearchList(ArrayList<Food> foodList) {
 		
 		for(int i=0;i<foodList.size();i++){
@@ -210,7 +213,7 @@ private void initSearchList(ArrayList<Food> foodList) {
 	
 	private void createEvents() {
 
-		
+		// get only the specific parts of object while using JList
 		lstMeal.setCellRenderer(new DefaultListCellRenderer(){
 			@Override
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
@@ -223,6 +226,7 @@ private void initSearchList(ArrayList<Food> foodList) {
 			}
 			});
 		
+		// get only the specific parts of object while using JList
 		lstDessert.setCellRenderer(new DefaultListCellRenderer(){
 			@Override
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
@@ -235,6 +239,7 @@ private void initSearchList(ArrayList<Food> foodList) {
 			}
 			});
 		
+		// get only the specific parts of object while using JList
 		lstBeverage.setCellRenderer(new DefaultListCellRenderer(){
 			@Override
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
@@ -253,6 +258,7 @@ private void initSearchList(ArrayList<Food> foodList) {
 				searchListDessert.removeAllElements();
 				searchListBeverage.removeAllElements();
 				
+				//add all foods of selected restaurant from the combo box to the search result list
 				Object selected = comboBox.getSelectedItem();
 				String strSelected = selected.toString();
 				rest.setName(strSelected);
@@ -265,6 +271,8 @@ private void initSearchList(ArrayList<Food> foodList) {
 		});
 		
 		button.addActionListener(new ActionListener() {
+			
+			//go to logged in screen
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				LoggedInScreen loggedInScreen = new LoggedInScreen(username);

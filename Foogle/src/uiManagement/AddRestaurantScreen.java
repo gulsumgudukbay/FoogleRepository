@@ -36,6 +36,7 @@ public class AddRestaurantScreen extends JFrame {
 	private UserResource ur = UserResource.getSoleInstance();
 	private  RestaurantOwner ro = new RestaurantOwner();
 	public Admin admin = Admin.getSoleInstance();
+	private JButton btnSubmit;
 	
 	
 	
@@ -62,8 +63,8 @@ public class AddRestaurantScreen extends JFrame {
 	public AddRestaurantScreen(String username) {
 		this.username = username;
 		initComponents();
+		createEvents();
 	}
-	
 	
 	public void initComponents() {
 		ro = ur.getRestaurantOwner(username);
@@ -83,51 +84,13 @@ public class AddRestaurantScreen extends JFrame {
 		txtRestaurantName.setBounds(987, 237, 295, 52);
 		txtRestaurantName.setColumns(10);
 		
-		JButton btnSubmit = new JButton("Submit");
+		btnSubmit = new JButton("Submit");
 		btnSubmit.setIcon(new ImageIcon(AddRestaurantScreen.class.getResource("/resources/login.png")));
 		btnSubmit.setBounds(1089, 338, 193, 66);
-		
-		btnSubmit.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				if(txtRestaurantName.getText().equals(""))
-					JOptionPane.showMessageDialog(null, "Please enter a name for restaurant!");
-				else{
-					System.out.println(ro.getUsername());
-					String newRes = txtRestaurantName.getText();
-					Restaurant resToAdd = new Restaurant(newRes);
-					System.out.println(ro.getUsername());
-					System.out.println(ro.getRestaurants().toString());
-					//ro.addRestaurant(resToAdd);
-					admin.addToPendingRestaurants(username, newRes);
-					Restaurant newRestaurant = new Restaurant(newRes);
-					newRestaurant.setConfirmed(false);
-					admin.addToPendingRestaurants(newRestaurant);
-					
-					
-					JOptionPane.showMessageDialog(null, "Your request to add a restaurant will be processed!");
-					dispose();
-					LoggedInScreen loggedInScreen = new LoggedInScreen(username);
-					loggedInScreen.setVisible(true);	
-				}
-			
-			}
-		});
-		
 		btnSubmit.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		btnBack = new JButton("Back");
 		btnBack.setBounds(59, 43, 152, 76);
-		btnBack.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				LoggedInScreen loggedInScreen = new LoggedInScreen(username);
-				loggedInScreen.setVisible(true);
-				dispose();
-			}
-		});
-		
 		btnBack.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
 		btnBack.setIcon(new ImageIcon(LoginScreen.class.getResource("/resources/back_64.png")));
 		
@@ -177,4 +140,48 @@ public class AddRestaurantScreen extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
+	
+	private void createEvents() {
+		btnSubmit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				//check if the text field is leaved empty
+				if(txtRestaurantName.getText().equals(""))
+					JOptionPane.showMessageDialog(null, "Please enter a name for restaurant!");
+				else{
+					System.out.println(ro.getUsername());
+					String newRes = txtRestaurantName.getText();
+					Restaurant resToAdd = new Restaurant(newRes);
+					System.out.println(ro.getUsername());
+					System.out.println(ro.getRestaurants().toString());
+					
+					// add the new restaurant to the pending list
+					admin.addToPendingRestaurants(username, newRes);
+					Restaurant newRestaurant = new Restaurant(newRes);
+					newRestaurant.setConfirmed(false);
+					admin.addToPendingRestaurants(newRestaurant);
+					
+					// go to logged in screen
+					JOptionPane.showMessageDialog(null, "Your request to add a restaurant will be processed!");
+					dispose();
+					LoggedInScreen loggedInScreen = new LoggedInScreen(username);
+					loggedInScreen.setVisible(true);	
+				}
+			
+			}
+		});
+		
+		//got to logged in screen
+		btnBack.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				LoggedInScreen loggedInScreen = new LoggedInScreen(username);
+				loggedInScreen.setVisible(true);
+				dispose();
+			}
+		});
+		
+	}
+
 }

@@ -151,15 +151,22 @@ public class CreateAccountScreen extends JFrame {
 				
 				String strPassword = String.valueOf(passwordField.getPassword());
 				
+				//check if one of the fields left empty
 				if(textFieldUserName.getText().isEmpty() || textFieldEmail.getText().isEmpty() || passwordField.getPassword().length == 0){
 					JOptionPane.showMessageDialog(null,"Please check if you enter all of the blanks! ");
 				}
+				
+				//check if the username exist
 				else if(restOwner.doesUsernameExist(textFieldUserName.getText())){
 					JOptionPane.showMessageDialog(null,"User name already exists, please try another name or check if you already have an account! ");
 				}
+				
+				//check if the email exist
 				else if(restOwner.doesEmailExist(textFieldEmail.getText())){
 					JOptionPane.showMessageDialog(null,"Email already exists, please try another mail or check if you already have an account! ");
 				}
+				
+				//create a new account and go back to main menu
 				else{  
 					restOwner.createRestaurantOwnerAccount(textFieldUserName.getText(),strPassword, textFieldEmail.getText());
 					JOptionPane.showMessageDialog(null,"Your account is created! :) ");

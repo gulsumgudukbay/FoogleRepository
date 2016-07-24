@@ -166,6 +166,7 @@ public class AddFoodScreen extends JFrame {
 		
 		comboBoxForIngredients = new JComboBox();
 
+		//add all ingredients to the combo box for the selection of ingredients of the new food
 		DefaultComboBoxModel comboBoxModelIngredient = (DefaultComboBoxModel) comboBoxForIngredients.getModel();
 		
 		for(int i=0;i<uR.getAllIngredients().size();i++)
@@ -352,6 +353,7 @@ public class AddFoodScreen extends JFrame {
 		);
 		foodTypePanel.setLayout(gl_foodTypePanel);
 		
+		//add all restaurants of a restaurant owner to the combo box for the selection of restaurants of the new food
 		comboBoxForRestaurant = new JComboBox();
 		DefaultComboBoxModel comboBoxModelRestaurant = (DefaultComboBoxModel) comboBoxForRestaurant.getModel();
 		
@@ -569,6 +571,8 @@ public class AddFoodScreen extends JFrame {
 	
 	private void createEvents() {
 		btnBack.addActionListener(new ActionListener() {
+			
+			//go to logged in screen
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				LoggedInScreen loggedInScreen= new LoggedInScreen(username);
@@ -581,9 +585,13 @@ public class AddFoodScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				Object selected = comboBoxForIngredients.getSelectedItem();
+				
+				//add food to the food array list if it is not added before
 				if(checkBoxForAddIngredient.isSelected() && !existingFoodIngredientsObject.contains(selected)){
 					existingFoodIngredientsObject.add(selected);
 				}
+				
+				//remove food from food array list if it is added before
 				if(!checkBoxForAddIngredient.isSelected() && existingFoodIngredientsObject.contains(selected)){
 					existingFoodIngredientsObject.remove(selected);
 				}
@@ -596,9 +604,12 @@ public class AddFoodScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				Object selected = comboBoxForRestaurant.getSelectedItem();
+				
+				//add restaurant to restaurant array list if it is not added before
 				if(checkBoxForAddToRest.isSelected() && !foodRestaurantsObject.contains(selected)){
 					foodRestaurantsObject.add(selected);
 				}
+				//remove restaurant from the restaurant array list if it is added before
 				if(!checkBoxForAddToRest.isSelected() && foodRestaurantsObject.contains(selected)){
 					foodRestaurantsObject.remove(selected);
 				}
@@ -613,7 +624,6 @@ public class AddFoodScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 
-				
 				//make the object arraylist , an ingredient array list = EXISTING INGREDIENT SELECTED
 				ArrayList<Ingredient> existingFoodIngredientsIng= new ArrayList<Ingredient>(); 
 				existingFoodIngredientsIng = sendIngList(existingFoodIngredientsObject);
@@ -667,6 +677,7 @@ public class AddFoodScreen extends JFrame {
 				
 				allIngredientsForFood = restOwner.mergeLists(existingFoodIngredientsIng, otherIngredientsSelected);
 				
+				//if one of the required fields are leaved empty give warning message
 				if(textFieldFoodName.getText().equals("") || formattedTextField.getText().equals("") || 
 						(!btnMeal.isSelected() && !btnDessert.isSelected() && !btnBeverage.isSelected()) ||
 						(!btnTurkish.isSelected() && !btnFarEastern.isSelected() && !btnRussian.isSelected() && !btnFrench.isSelected() && !btnOther.isSelected()) ||
@@ -679,13 +690,11 @@ public class AddFoodScreen extends JFrame {
 					System.out.println("***"+restOwner.getAllRestaurantsOfARestaurantOwner(username).toString());
 
 					//add a food to multiple restaurants
-					//restOwner.addFoodToRestaurants(newFood, foodRestaurantsRest);
 					admin.addToPendingFoods(newFood);
-					//System.out.println(restOwner.getAllRestaurantsOfARestaurantOwner(username).toString());
 					for(int i=0;i<allIngredientsForFood.size();i++)
 						admin.addToPendingIngredients(new Ingredient(allIngredientsForFood.get(i).getName()), foodName);
 					
-					
+					//go to logged in screen
 					JOptionPane.showMessageDialog(null, "Thanks! Your request will be evaluated!");
 					dispose();
 					LoggedInScreen loggedInScreen = new LoggedInScreen(username);

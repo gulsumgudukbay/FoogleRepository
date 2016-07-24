@@ -169,6 +169,7 @@ public class LoginScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String strPassword = String.valueOf(passwordField.getPassword());
 				
+				//if one of text fields are empty
 				if(userNameTextField.getText().isEmpty() || passwordField.getPassword().length == 0){
 					JOptionPane.showMessageDialog(null,"Please check if you enter all of the blanks! ");
 				}
@@ -187,6 +188,8 @@ public class LoginScreen extends JFrame {
 		});
 		
 		btnback.addActionListener(new ActionListener() {
+			
+			//go to main menu screen
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				MainMenu mainmenu = new MainMenu();
@@ -195,6 +198,8 @@ public class LoginScreen extends JFrame {
 		});
 		
 		btnCreate.addActionListener(new ActionListener() {
+			
+			//go to create account screen
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				CreateAccountScreen createAccount = new CreateAccountScreen(username);
