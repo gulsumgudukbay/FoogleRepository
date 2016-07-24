@@ -137,7 +137,6 @@ public class UserDB {
 				e.printStackTrace();
 				return false;
 			} // Restaurant Owner creation in database
-			System.out.println("Created!");
 			return true;
 		}
 	}

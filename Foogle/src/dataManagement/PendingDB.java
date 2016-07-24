@@ -45,7 +45,6 @@ public class PendingDB {
 				ings.add(ingr);
 			}
 
-			System.out.println("INGS"+ ings.toString());
 			return ings;
 		} catch (SQLException e) {
 			e.printStackTrace();

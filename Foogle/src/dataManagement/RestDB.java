@@ -60,7 +60,6 @@ public class RestDB {
 				}
 			}
 		}
-		System.out.println("ings!");
 		return true;
 	}
 	
@@ -107,7 +106,6 @@ public class RestDB {
 				e.printStackTrace();
 				return false;
 			}
-			System.out.println("Created restaurant!");
 			return true;
 		}
 	}
@@ -355,7 +353,6 @@ public class RestDB {
 	private int getRestaurantID(String restaurantName, String restOwnerName) {
 		int id = -1;
 		int restID = getRestaurantOwnerID(restOwnerName);
-		System.out.println("RESTOWNER ID "+restID);
 		String query = "select * from Restaurants where Restaurant_Owners_id = " + restID + " and name = '"
 				+ restaurantName + "'";
 		ResultSet rset;
@@ -543,7 +540,6 @@ public class RestDB {
 			ArrayList<Food> fds = new ArrayList<Food>();
 			ResultSet rset = null;
 			int restaurantID = getRestaurantID(restaurantName, restaurantOwnerName);
-			System.out.println("REST ID "+ restaurantID);
 			String query = "select * from Foods where Restaurants_id = '" + restaurantID + "'";
 			try {
 				rset = stmt2.executeQuery(query);

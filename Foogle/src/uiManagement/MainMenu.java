@@ -970,7 +970,6 @@ public class MainMenu extends JFrame {
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
-					System.out.println(((Food)value).getCuisine());
 					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
@@ -982,7 +981,6 @@ public class MainMenu extends JFrame {
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
-					System.out.println(((Food)value).getCuisine());
 					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
@@ -994,7 +992,6 @@ public class MainMenu extends JFrame {
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
-					System.out.println(((Food)value).getCuisine());
 					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
@@ -1006,7 +1003,6 @@ public class MainMenu extends JFrame {
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
-					System.out.println(((Food)value).getCuisine());
 					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
@@ -1018,7 +1014,6 @@ public class MainMenu extends JFrame {
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
-					System.out.println(((Food)value).getCuisine());
 					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
