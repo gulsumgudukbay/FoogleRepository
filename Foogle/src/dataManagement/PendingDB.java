@@ -86,8 +86,8 @@ public class PendingDB {
 		else
 			isconfirmed = "F";
 		
-		String query = "INSERT INTO `Foogle`.`Pending_Ingredients` (`name`, `isConfirmed`, `foodname`) VALUES ('"
-				+ ing.getName() + "', '" + isconfirmed + "', '" + foodName + "');";
+		String query = "INSERT INTO `Foogle`.`Pending_Ingredients` (`name`, `isConfirmed`, `foodname`, `other_id`) VALUES ('"
+				+ ing.getName() + "', '" + isconfirmed + "', '" + foodName + "', NULL);";
 		try {
 			stmtip.executeUpdate(query);
 			System.out.println("added INGREDIENT");
@@ -98,8 +98,8 @@ public class PendingDB {
 	
 	public void insertToPendingRestaurants(String ownerUN, String rest){
 		Statement stmtrp = DatabaseManager.createStmt();
-		String query = "INSERT INTO `Foogle`.`Pending_Restaurants` (`idRestaurant_Owner`, `name`, `isConfirmed`) VALUES ('"
-				+ udb.getRestaurantOwnerID(ownerUN)+ "', '"+ rest +"', 'F');";
+		String query = "INSERT INTO `Foogle`.`Pending_Restaurants` (`idRestaurant_Owner`, `name`, `isConfirmed`, `idPending_Restaurants`) VALUES ('"
+				+ udb.getRestaurantOwnerID(ownerUN)+ "', '"+ rest +"', 'F', NULL);";
 		try {
 			stmtrp.executeUpdate(query);
 			System.out.println("added rest");
