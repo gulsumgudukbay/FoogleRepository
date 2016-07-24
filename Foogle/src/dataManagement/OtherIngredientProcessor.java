@@ -15,6 +15,7 @@ public class OtherIngredientProcessor {
 		System.out.println(arr.toString());
 	}
 	
+	//Separates the entered ingredients and returns an arraylist of them
 	public ArrayList<Ingredient> insertToPending(String ings) {
 		ArrayList<Ingredient> ingsSeperated = new ArrayList<Ingredient> ();
 			

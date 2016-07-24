@@ -11,6 +11,7 @@ public class ConnectionManager {
 	private static Connection con;
 	private Statement stmt;
 	
+	//Creates the connection to localhost
 	private ConnectionManager(){	
 		try{
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Foogle?useSSL=false", "root", "gulsumg");
@@ -25,6 +26,7 @@ public class ConnectionManager {
 		return cm;
 	}
 	
+	//Creates a statement
 	public static Statement createStmt() {
 		try {
 			return con.createStatement();

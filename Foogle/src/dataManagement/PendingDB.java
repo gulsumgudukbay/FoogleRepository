@@ -25,6 +25,8 @@ public class PendingDB {
 		System.out.println(pdb.getTheFoodNameOfPendingIngredient("testing2"));
 	}
 	
+	//Returns all the pending ingredients in an arraylist of Ingredient objects
+	//RestaurantOwner class uses this method
 	public ArrayList<Ingredient> getAllPendingIngredients(){
 		ArrayList<Ingredient> ings = new ArrayList<Ingredient>();
 		Statement stmtpi = DatabaseManager.createStmt();
@@ -51,6 +53,8 @@ public class PendingDB {
 		}
 	}
 	
+	//Returns all the pending restaurants in an arraylist of Restaurant objects
+	//RestaurantOwner class uses this method
 	public ArrayList<Restaurant> getAllPendingRestaurants(){
 		ArrayList<Restaurant> rests = new ArrayList<Restaurant>();
 		Statement stmtpr = DatabaseManager.createStmt();
@@ -68,8 +72,6 @@ public class PendingDB {
 					rest.setConfirmed(false);
 				rests.add(rest);
 			}
-
-			System.out.println("RESTS"+rests.toString());
 			return rests;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -77,6 +79,8 @@ public class PendingDB {
 		}
 	}
 	
+	//Adds a pending ingredient to the Pending_Ingredients table in the database
+	//RestaurantOwner class uses this method
 	public void insertToPendingIngredients(Ingredient ing, String foodName){
 		Statement stmtip = DatabaseManager.createStmt();
 		
@@ -90,74 +94,78 @@ public class PendingDB {
 				+ ing.getName() + "', '" + isconfirmed + "', '" + foodName + "', NULL);";
 		try {
 			stmtip.executeUpdate(query);
-			System.out.println("added INGREDIENT");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	//Adds a pending restaurant to the Pending_Restaurants table in the database
+	//RestaurantOwner class uses this method
 	public void insertToPendingRestaurants(String ownerUN, String rest){
 		Statement stmtrp = DatabaseManager.createStmt();
 		String query = "INSERT INTO `Foogle`.`Pending_Restaurants` (`idRestaurant_Owner`, `name`, `isConfirmed`, `idPending_Restaurants`) VALUES ('"
 				+ udb.getRestaurantOwnerID(ownerUN)+ "', '"+ rest +"', 'F', NULL);";
 		try {
 			stmtrp.executeUpdate(query);
-			System.out.println("added rest");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	
+	//Confirms an ingredient
+	//Admin class uses this method
 	public void confirmIngredient(String name){
 		Statement stmtconfi = DatabaseManager.createStmt();
 
 		String query = "update Pending_Ingredients set isConfirmed = 'T' where name='" + name + "'";
 		try {
 			stmtconfi.executeUpdate(query);
-			System.out.println("CONFIRMED INGREDIENT");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	//Confirms a restaurant
+	//Admin class uses this method
     public void confirmRestaurant(String name){
     	Statement stmtconfr = DatabaseManager.createStmt();
 
 		String query = "update Pending_Restaurants set isConfirmed = 'T' where name='" + name + "'";
 		try {
 			stmtconfr.executeUpdate(query);
-			System.out.println("CONFIRMED Restaurant");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
     
+    //Rejects an ingredient
+  	//Admin class uses this method
     public void rejectIngredient(String name){
     	Statement stmtreji = DatabaseManager.createStmt();
 
 		String query = "update Pending_Ingredients set isConfirmed = 'F' where name='" + name + "'";
 		try {
 			stmtreji.executeUpdate(query);
-			System.out.println("REJECTED INGREDIENT");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
+    //Rejects a restaurant
+  	//Admin class uses this method
     public void rejectRestaurant(String name){
     	Statement stmtrejr = DatabaseManager.createStmt();
 
 		String query = "update Pending_Restaurants set isConfirmed = 'F' where name='" + name + "'";
 		try {
 			stmtrejr.executeUpdate(query);
-			System.out.println("REJECTED Restaurant");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public String getTheFoodNameOfPendingIngredient(String name){
+    //Returns the name of a pending ingredient
+	private String getTheFoodNameOfPendingIngredient(String name){
 		String foodname = "";
 		Statement stmtgfn = DatabaseManager.createStmt();
 
@@ -175,8 +183,8 @@ public class PendingDB {
 
 	}
 	
-	
-	public ArrayList<Ingredient> getAllOtherIngredientsForAFood(String foodname){
+	//Returns all the ingredients for food as an arraylist of ingredients
+	private ArrayList<Ingredient> getAllOtherIngredientsForAFood(String foodname){
 
 		ArrayList<Ingredient> ings = new ArrayList<Ingredient>();
 		ResultSet rset = null;
@@ -199,6 +207,8 @@ public class PendingDB {
 		return ings;
 	}
 	
+	//Returns true if all ingredients are confirmed for the given food name
+	//Used by the Admin
 	public boolean isAllOtherIngredientsConfirmedFor(String foodName){
 
 		ResultSet rset = null;
@@ -223,13 +233,13 @@ public class PendingDB {
 		
 	}
 	
+	//Returns true if the specified restaurant is confirmed
+	//Used by the Admin
 	public boolean isRestaurantConfirmed(String rest){
-
 		ResultSet rset = null;
     	Statement stmtirc = DatabaseManager.createStmt();
 
 		String query = "select * from Pending_Restaurants where name = '" + rest + "'";	
-	
 		try{
 			rset = stmtirc.executeQuery(query);
 			
@@ -238,17 +248,17 @@ public class PendingDB {
 				if(!rset.getString("isConfirmed").equals("T"))
 					b = false;
 			}
-			return b;
-			
+			return b;		
 		}
 		catch(SQLException e){
 			e.printStackTrace();
 			return false;
-		}
-		
+		}	
 	}
 	
 	
+	//Returns true if the admin rejected/confirmed all the ingredients
+	//Used by the Admin
 	public boolean isAllIngredientsProcessed(){
 		ResultSet rset = null;
     	Statement stmtp = DatabaseManager.createStmt();
@@ -272,6 +282,8 @@ public class PendingDB {
 		
 	}
 	
+	//Returns true if all of the Restaurants are confirmed/rejected by the admin
+	//Used by the Admin
 	public boolean isAllRestaurantsProcessed(){
 		ResultSet rset = null;
     	Statement stmtrp = DatabaseManager.createStmt();
@@ -285,16 +297,16 @@ public class PendingDB {
 				if(!rset.getString("isConfirmed").equals("T") && !rset.getString("isConfirmed").equals("F"))
 					b = false;
 			}
-			return b;
-			
+			return b;		
 		}
 		catch(SQLException e){
 			e.printStackTrace();
 			return false;
-		}
-		
+		}	
 	}
 	
+	//Removes all the pending restaurant rows in the database table after all the restaurants are processed
+	//Used by the Admin
 	public void removeAllPendingRestaurants(){
     	Statement stmtremr = DatabaseManager.createStmt();
 		String query = "DELETE from Pending_Restaurants";	
@@ -304,10 +316,11 @@ public class PendingDB {
 		}
 		catch(SQLException e){
 			e.printStackTrace();
-		}
-		
+		}		
 	}
 	
+	//Removes all the pending ingredient rows in the database table after all the restaurants are processed
+	//Used by the Admin
 	public void removeAllPendingIngredients(){
     	Statement stmtremi = DatabaseManager.createStmt();
 		String query = "DELETE from Pending_Ingredients";	
@@ -318,6 +331,5 @@ public class PendingDB {
 		catch(SQLException e){
 			e.printStackTrace();
 		}
-		
 	}
 }

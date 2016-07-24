@@ -214,11 +214,12 @@ public class RestDB {
 
 		if (result != null) {
 
+			//Removing type mismatches
 			for (int i = 0; i < result.size(); i++)
 				if (!(result.get(i).getType()).equals(type)) 
 					result.remove(i--);
 				
-
+			//Removing the foods that have unwanted ingredients in
 			for (int i = 0; i < unwanted.size(); i++) 
 				for (int j = 0; j < result.size(); j++) 
 					if (result.get(j).searchInIngredients(unwanted.get(i))) {
@@ -226,7 +227,7 @@ public class RestDB {
 						j--;
 					}
 			
-		
+			//Removing the foods that don't have the wanted ingredients in
 			for(int i = 0; i < result.size();i++){
 				for(int j = 0; j < wanted.size(); j++){
 					if (!result.get(i).searchInIngredients(wanted.get(j)) && j == wanted.size()-1){
@@ -244,14 +245,11 @@ public class RestDB {
 				if (!searchInFoodArrayList(finalresult, result.get(i)))
 					finalresult.add(result.get(i));
 
-			for (int i = 0; i < finalresult.size(); i++)
-				System.out.println("search: " + finalresult.get(i).getName());
-
 		}
 		return finalresult;
 	}
 
-	//Return all the restaurants that the food is in TODO: TEST
+	//Returns all the restaurant that food belongs to as an arraylist of restaurants
 	public ArrayList<Restaurant> getAllRestaurantsOfFood(String foodName){
 		if (doesFoodExist(foodName)) {
 			ArrayList<Restaurant> rests = new ArrayList<Restaurant>();
@@ -278,6 +276,7 @@ public class RestDB {
 			return null;
 	}
 	
+	//Returns restaurant name
 	private String getRestaurantName(int id) {
 		String name = "";
 		String query = "select * from Restaurants where id = " + id ;
@@ -310,9 +309,8 @@ public class RestDB {
 		return false;
 	}
 
-	// Determines whether if the restaurant exists in a restaurant owner's
-	// database
-	public boolean doesRestaurantExist(String name, String restaurantOwnerUsername) {
+	// Determines whether if the restaurant exists in a restaurant owner's database
+	private boolean doesRestaurantExist(String name, String restaurantOwnerUsername) {
 		if (name == null || name.equals("") || restaurantOwnerUsername == null || restaurantOwnerUsername.equals(""))
 			return false;
 		else {
@@ -372,9 +370,8 @@ public class RestDB {
 		}
 	}
 
-	// Determines whether if the food exists in a given restaurant of a given
-	// restaurant owner
-	public boolean doesFoodExist(String name, String restaurantName, String restaurantOwnerUsername) {
+	// Determines whether if the food exists in a given restaurant of a given restaurant owner
+	private boolean doesFoodExist(String name, String restaurantName, String restaurantOwnerUsername) {
 		if (name == null || name.equals("") || restaurantName == null || restaurantName.equals(""))
 			return false;
 		else {
@@ -395,7 +392,7 @@ public class RestDB {
 	}
 
 	// Determines whether if the food exists in the database
-	public boolean doesFoodExist(String name) {
+	private boolean doesFoodExist(String name) {
 		if (name == null || name.equals(""))
 			return false;
 		else {
@@ -415,7 +412,7 @@ public class RestDB {
 	}
 
 	// Determines whether if the restaurant exists in the database
-	public boolean doesRestaurantExist(String name) {
+	private boolean doesRestaurantExist(String name) {
 		if (name == null || name.equals(""))
 			return false;
 		else {
@@ -435,7 +432,7 @@ public class RestDB {
 	}
 
 	// Determines whether if the ingredient exists in a food
-	public boolean doesIngredientExistInFood(String ingname, String foodname) {
+	private boolean doesIngredientExistInFood(String ingname, String foodname) {
 		if (ingname == null || ingname.equals("") || foodname == null || foodname.equals(""))
 			return false;
 		else {
@@ -456,7 +453,7 @@ public class RestDB {
 	}
 
 	// Determines whether if the ingredient exists in the database
-	public boolean doesIngredientExist(String name) {
+	private boolean doesIngredientExist(String name) {
 		if (name == null || name.equals(""))
 			return false;
 		else {
@@ -493,21 +490,20 @@ public class RestDB {
 	}
 
 	// Returns the food ids of a given food name
-		private ArrayList<Integer> getFoodIDs(String foodName) {
-			ArrayList<Integer> arr = new ArrayList<Integer>();
-			String query = "select * from Foods where name = '" + foodName + "'";
-			ResultSet rset;
-			try {
-				rset = stmt.executeQuery(query);
-				while (rset.next())
-					arr.add(rset.getInt("id"));
-				return arr;
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return arr;
-			}
-
+	private ArrayList<Integer> getFoodIDs(String foodName) {
+		ArrayList<Integer> arr = new ArrayList<Integer>();
+		String query = "select * from Foods where name = '" + foodName + "'";
+		ResultSet rset;
+		try {
+			rset = stmt.executeQuery(query);
+			while (rset.next())
+				arr.add(rset.getInt("id"));
+			return arr;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return arr;
 		}
+	}
 	
 	// Returns all the ingredients belonging to a food
 	public ArrayList<Ingredient> getAllIngredientsForAFood(String foodName) {

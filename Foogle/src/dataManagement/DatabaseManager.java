@@ -16,10 +16,12 @@ public class DatabaseManager {
 			dbSoleInstance = new DatabaseManager();
 	}
 	
+	//Creates a statement
 	public static Statement createStmt(){
 		return cm.createStmt();
 	}
 	
+	//Returns the sole instance for singleton pattern 
 	public static DatabaseManager getSoleInstance(){
 		return dbSoleInstance;
 	}

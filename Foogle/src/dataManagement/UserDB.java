@@ -17,7 +17,7 @@ public class UserDB {
 		return udb;
 	}
 	
-	
+	//Returns all the restaurant owners as an arraylist of RestaurantOwner objects
 	public ArrayList<RestaurantOwner> getAllRestOwners(){
 		ArrayList<RestaurantOwner> owners = new ArrayList<RestaurantOwner>();
 		ResultSet rset = null;
@@ -34,8 +34,6 @@ public class UserDB {
 				owner.setPassword("password");
 				owner.setRestaurants(getAllRestaurantsOfARestaurantOwner(owner.getUsername()));
 				owners.add(owner);
-				
-				//System.out.println(owner.getUsername()+ " "+ owner.getRestaurants().toString());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -45,6 +43,7 @@ public class UserDB {
 		return owners;
 	}
 	
+	//Returns all the restaurants of a restaurant owner as an arraylist of Restaurant objects
 	public ArrayList<Restaurant> getAllRestaurantsOfARestaurantOwner(String username){
 		ArrayList<Restaurant> rests = new ArrayList<Restaurant>();
 		ResultSet rset = null;
@@ -68,6 +67,7 @@ public class UserDB {
 		return rests;
 	}
 	
+	//Returns the id of a specified restaurant owner
 	public int getRestaurantOwnerID(String username) {
 		int id = -1;
 		String query = "select * from Restaurant_Owners where username = '" + username + "'";
@@ -84,7 +84,8 @@ public class UserDB {
 
 	}
 
-	public String getRestaurantOwnerUN(int id) {
+	//Returns the username of a id specified restaurant owner
+	private String getRestaurantOwnerUN(int id) {
 		String un = "";
 		String query = "select * from Restaurant_Owners where idRestaurant_Owners = " + id ;
 		ResultSet rset;
@@ -100,7 +101,7 @@ public class UserDB {
 
 	}
 	
-	
+	//Returns true if the entered password matches the username
 	public boolean isAuthenticated(String username, String password) {
 		if (password == null || password.equals(""))
 			return false;
@@ -123,6 +124,7 @@ public class UserDB {
 
 	}
 
+	//Creates a new Restaurant Owner row in the db table
 	public boolean createRestaurantOwnerAccount(String username, String password, String email) {
 		if (doesUsernameExist(username) || username == null || password == null || email == null)
 			return false;
@@ -140,7 +142,8 @@ public class UserDB {
 		}
 	}
 
-	public boolean isUsernameValid(String username) {
+	//Checks whether if the username entered is valid. i.e. it doesn't exist.
+	private boolean isUsernameValid(String username) {
 		if (username == null || username.equals(""))
 			return false;
 		else {
@@ -159,6 +162,7 @@ public class UserDB {
 		}
 	}
 
+	//Checks whether if the specified username exists
 	public boolean doesUsernameExist(String username) {
 		if (username == null || username.equals(""))
 			return false;
@@ -178,6 +182,7 @@ public class UserDB {
 		}
 	}
 
+	//Checks the uniqueness of the email
 	public boolean doesEmailExist(String email) {
 		if (email == null || email.equals(""))
 			return false;
