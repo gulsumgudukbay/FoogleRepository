@@ -62,11 +62,9 @@ public class Restaurant {
 		for(Food temp: foods) {
 			if(temp.getName().equals(name)) {
 				// TEST
-				System.out.println("Found: " + name);
 				return temp;
 			}
 		}
-		System.out.println("Ingredient " + name + " not found.");
 		return null;
 	}
 	

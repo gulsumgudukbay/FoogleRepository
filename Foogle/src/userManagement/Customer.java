@@ -18,7 +18,7 @@ public class Customer extends User {
 	}
 	
 	public ArrayList<Ingredient> getAllIngredients(){
-		System.out.println("HERE"+ings.toString());
+		//System.out.println("HERE"+ings.toString());
 		return rdb.getAllIngredients();
 	}
 	

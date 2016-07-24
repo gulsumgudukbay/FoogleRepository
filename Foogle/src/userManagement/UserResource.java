@@ -25,7 +25,7 @@ public class UserResource {
 	ArrayList<Ingredient> allIngredients = customer.getAllIngredients();
 	
 	public static UserResource getSoleInstance(){
-		System.out.println(owners.toString());
+		//System.out.println(owners.toString());
 		return ur;
 	}
 	

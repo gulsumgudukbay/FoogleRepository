@@ -219,7 +219,7 @@ private void initSearchList(ArrayList<Food> foodList) {
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
-					System.out.println(((Food)value).getCuisine());
+					//System.out.println(((Food)value).getCuisine());
 					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
@@ -232,7 +232,7 @@ private void initSearchList(ArrayList<Food> foodList) {
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
-					System.out.println(((Food)value).getCuisine());
+					//System.out.println(((Food)value).getCuisine());
 					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
@@ -245,7 +245,7 @@ private void initSearchList(ArrayList<Food> foodList) {
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 				Component renderer = (Component) super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Food){
-					System.out.println(((Food)value).getCuisine());
+					//System.out.println(((Food)value).getCuisine());
 					((JLabel) renderer).setText( "Food name: " + ((Food) value).getName() + "-" + "Price: " + ((Food) value).getPrice() + "-" + ((Food) value).listToString() + "-" + ((Food) value).listToRestaurant());
 				}
 				return renderer;
@@ -264,7 +264,7 @@ private void initSearchList(ArrayList<Food> foodList) {
 				rest.setName(strSelected);
 				rest.setFoodsFromDatabase(username);
 				foods = rdb.getAllFoods(strSelected, username);
-				System.out.println("FOODS "+ foods.toString());
+				//System.out.println("FOODS "+ foods.toString());
 				initSearchList(foods);
 				
 			}

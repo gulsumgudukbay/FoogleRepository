@@ -123,7 +123,6 @@ public class AddFoodScreen extends JFrame {
 		setTitle("Foogle");
 		restOwner = uR.getRestaurantOwner(username);
 		restOwner.setRestaurants(restOwner.getAllRestaurantsOfARestaurantOwner(username));
-		System.out.println(restOwner.getRestaurants().toString());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -595,8 +594,6 @@ public class AddFoodScreen extends JFrame {
 				if(!checkBoxForAddIngredient.isSelected() && existingFoodIngredientsObject.contains(selected)){
 					existingFoodIngredientsObject.remove(selected);
 				}
-				System.out.println("Selected Existing Ingredients");
-				System.out.println(existingFoodIngredientsObject.toString());
 			}
 		});
 		
@@ -613,8 +610,6 @@ public class AddFoodScreen extends JFrame {
 				if(!checkBoxForAddToRest.isSelected() && foodRestaurantsObject.contains(selected)){
 					foodRestaurantsObject.remove(selected);
 				}
-				System.out.println("Selected Restaurants for new food");
-				System.out.println(foodRestaurantsObject.toString());
 			}
 		});
 		
@@ -627,16 +622,16 @@ public class AddFoodScreen extends JFrame {
 				//make the object arraylist , an ingredient array list = EXISTING INGREDIENT SELECTED
 				ArrayList<Ingredient> existingFoodIngredientsIng= new ArrayList<Ingredient>(); 
 				existingFoodIngredientsIng = sendIngList(existingFoodIngredientsObject);
-				for(int i=0;i<existingFoodIngredientsIng.size();i++){
+				/*for(int i=0;i<existingFoodIngredientsIng.size();i++){
 					System.out.println(existingFoodIngredientsIng .get(i).getName());
-				}
+				}*/
 				
 				//make the object arraylist , an restaurant array list foodRestaurantsRest= SELECTED RESTAURANTS
 				ArrayList<Restaurant> foodRestaurantsRest= new ArrayList<Restaurant>(); 
 				foodRestaurantsRest = sendRestList(foodRestaurantsObject);
-				for(int i=0;i<foodRestaurantsRest.size();i++){
+				/*for(int i=0;i<foodRestaurantsRest.size();i++){
 					System.out.println(foodRestaurantsRest.get(i).getName());
-				}
+				}*/
 				
 				admin.addToRestsForCorrFoods(foodRestaurantsRest);
 				//otherIngredientsSelected = EXTRA INGREDIENTS,  existingFoodIngredientsIng = EXISTING INGREDIENT SELECTED
@@ -644,8 +639,8 @@ public class AddFoodScreen extends JFrame {
 				
 				
 				otherIngredientsSelected = processor.insertToPending(foodOtherIngredients);
-				System.out.println("Other Ingredients for new food");
-				System.out.println(otherIngredientsSelected.toString());
+				/*System.out.println("Other Ingredients for new food");
+				System.out.println(otherIngredientsSelected.toString());*/
 				
 				
 				//set price of food
@@ -687,7 +682,7 @@ public class AddFoodScreen extends JFrame {
 					//set all ingredients (other and existing) included in food 
 					Food newFood = new Food(foodName,foodCuisine,foodType,foodPrice,allIngredientsForFood);
 					pendingFoods.add(newFood);
-					System.out.println("***"+restOwner.getAllRestaurantsOfARestaurantOwner(username).toString());
+					//System.out.println("***"+restOwner.getAllRestaurantsOfARestaurantOwner(username).toString());
 
 					//add a food to multiple restaurants
 					admin.addToPendingFoods(newFood);

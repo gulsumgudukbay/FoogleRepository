@@ -89,11 +89,9 @@ public class Food {
 		for(Ingredient temp: ingredients) {
 			if(temp.getName() == name) {
 				// TEST
-				System.out.println("Found: " + name);
 				return temp;
 			}
 		}
-		System.out.println("Ingredient " + name + " not found.");
 		return null;
 	}
 	

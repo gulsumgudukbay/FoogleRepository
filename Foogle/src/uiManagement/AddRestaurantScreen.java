@@ -150,11 +150,11 @@ public class AddRestaurantScreen extends JFrame {
 				if(txtRestaurantName.getText().equals(""))
 					JOptionPane.showMessageDialog(null, "Please enter a name for restaurant!");
 				else{
-					System.out.println(ro.getUsername());
+					//System.out.println(ro.getUsername());
 					String newRes = txtRestaurantName.getText();
 					Restaurant resToAdd = new Restaurant(newRes);
-					System.out.println(ro.getUsername());
-					System.out.println(ro.getRestaurants().toString());
+					//System.out.println(ro.getUsername());
+					//System.out.println(ro.getRestaurants().toString());
 					
 					// add the new restaurant to the pending list
 					admin.addToPendingRestaurants(username, newRes);
